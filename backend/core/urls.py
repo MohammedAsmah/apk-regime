@@ -14,27 +14,9 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-# from django.contrib import admin
-# from django.urls import path, include
-
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-
-#     # USERS
-#     path("api/auth/", include("users.urls")),
-    
-#     # NUTRITION
-#     path("api/nutrition/", include("nutrition.urls")),
-    
-#     # CHAT
-#     path("api/chat/", include("chat.urls")),
-
-#     # PROGRESS / DAILY LOG
-#     path("api/progress/", include("progress.urls")),
-# ]
-
-
-# core/urls.py
+"""
+URL configuration for core project.
+"""
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import permissions
@@ -52,23 +34,28 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-   
     path('admin/', admin.site.urls),
 
-    
-    # USERS
-    path("api/auth/", include("users.urls")),
+    # --- 1. USERS & AUTH ---
+    path("api/v1/auth/", include("users.urls")),
 
-    # NUTRITION
-    path("api/nutrition/", include("nutrition.urls")),
-    
-    # CHAT
-    path("api/chat/", include("chat.urls")),
+    # --- 2. NUTRITION ---
+   
+    path('api/v1/', include('nutrition.urls')),
 
-    # PROGRESS
-    path('api/progress/', include('progress.urls')),
+    # --- 3. CHAT ---
+    path("chat/", include("chat.urls")),
 
-    # SWAGGER
+    # --- 4. PROGRESS ---
+    path("api/v1/progress/", include("progress.urls")),
+
+    # --- 5. COMMUNITY ---
+    path("api/v1/community/", include("community.urls")),
+
+    # --- 6. PAYMENTS ---
+        path("api/v1/payments/", include("payments.urls")),
+
+
+    # --- 7. SWAGGER ---
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
-

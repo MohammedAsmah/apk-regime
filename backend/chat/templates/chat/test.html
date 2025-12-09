@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Chat AI (Tor/Local)</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; max-width: 800px; margin: auto; }
+        #chat-log { height: 400px; border: 1px solid #ddd; overflow-y: scroll; padding: 10px; background: #f9f9f9; margin-bottom: 10px; }
+        .message { padding: 8px; margin: 5px 0; border-radius: 5px; }
+        .user { background-color: #e3f2fd; text-align: right; margin-left: 20%; }
+        .assistant { background-color: #d1e7dd; text-align: left; margin-right: 20%; }
+        .system { color: gray; font-size: 0.8em; text-align: center; }
+        input[type="text"] { width: 70%; padding: 10px; }
+        button { padding: 10px 20px; cursor: pointer; }
+        #token-area { margin-bottom: 20px; padding: 10px; background: #eee; }
+    </style>
+</head>
+<body>
+    <h2>🤖 NutriFit AI Chat Test</h2>
+
+    <div id="token-area">
+        <label>JWT Access Token:</label><br>
+        <input type="text" id="auth-token" placeholder="Coller le token ici..." style="width: 100%;">
+        <button onclick="connectChat()">🔌 Connect WebSocket</button>
+    </div>
+
+    <div id="chat-log"></div>
+    
+    <div style="display: flex;">
+        <input id="chat-message-input" type="text" placeholder="Posez une question nutrition..." disabled>
+        <button id="chat-message-submit" disabled>Envoyer</button>
+    </div>
+
+    <script>
+        let chatSocket = null;
+        let sessionId = null;
+
+        function connectChat() {
+            const token = document.getElementById('auth-token').value;
+            if (!token) { alert("Token requis!"); return; }
+
+            const ws_scheme = window.location.protocol === "https:" ? "wss" : "ws";
+            const url = `${ws_scheme}://${window.location.host}/ws/chat/?token=${token}`;
+
+            chatSocket = new WebSocket(url);
+
+            chatSocket.onopen = function(e) {
+                log("--- Connecté au serveur ---", "system");
+                document.getElementById('chat-message-input').disabled = false;
+                document.getElementById('chat-message-submit').disabled = false;
+            };
+
+            chatSocket.onmessage = function(e) {
+                const data = JSON.parse(e.data);
+                
+                if (data.error) {
+                    log("Erreur: " + data.error, "system");
+                } else {
+                    if (data.session_id) sessionId = data.session_id;
+                    log(data.message, "assistant");
+                }
+            };
+
+            chatSocket.onclose = function(e) {
+                log("--- Déconnecté ---", "system");
+            };
+        }
+
+        function log(message, type) {
+            const chatLog = document.getElementById('chat-log');
+            chatLog.innerHTML += `<div class="message ${type}"><b>${type.toUpperCase()}:</b> ${message}</div>`;
+            chatLog.scrollTop = chatLog.scrollHeight;
+        }
+
+        document.getElementById('chat-message-submit').onclick = function(e) {
+            const input = document.getElementById('chat-message-input');
+            const message = input.value;
+            
+            chatSocket.send(JSON.stringify({
+                'message': message,
+                'session_id': sessionId 
+            }));
+            
+            log(message, "user");
+            input.value = '';
+        };
+    </script>
+</body>
+</html>

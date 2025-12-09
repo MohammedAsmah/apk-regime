@@ -1,20 +1,23 @@
 from django.urls import path
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-    TokenBlacklistView
+from rest_framework_simplejwt.views import TokenRefreshView, TokenBlacklistView
+from .views import (
+    RegisterView, 
+    MyTokenObtainPairView, 
+    UserProfileView, 
+    ChangePasswordView,
+    OnboardingView,      
+    DeleteAccountView   
 )
-from .views import RegisterView
 
 urlpatterns = [
     path("register/", RegisterView.as_view(), name="register"),
-
-    # LOGIN = access + refresh
-    path("login/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
-
-    # Refresh token
+    path("login/", MyTokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("refresh/", TokenRefreshView.as_view(), name="token_refresh"),
-
-    # Logout (blacklist refresh token)
     path("logout/", TokenBlacklistView.as_view(), name="token_blacklist"),
+    
+    path("profile/", UserProfileView.as_view(), name="user_profile"),
+    path("change-password/", ChangePasswordView.as_view(), name="change_password"),
+    
+    path("onboarding/", OnboardingView.as_view(), name="user_onboarding"), 
+    path("account/", DeleteAccountView.as_view(), name="delete_account"),   
 ]
