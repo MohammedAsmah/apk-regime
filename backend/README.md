@@ -1,38 +1,59 @@
-# 🥗 APK-Regime - Assistant IA Nutritionnel (Backend)
+# 🥗 Beauté Naturelle - Backend Assistant IA Nutritionnel
 
-Hada howa l-moteur central dyal l-application **Beauté Naturelle**, m-gadd b **Django REST Framework** w m-optimizé bach i-dir wa7ed l-suivi d-qiq l-perte de poids b-stikhdam l-Intelligence Artificielle.
+![Django](https://img.shields.io/badge/Django-5.2.8-092E20?style=for-the-badge&logo=django&logoColor=white)
+![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
 
-## 🧠 Intelligence d-l-Assistant IA
-L-backend kiy-tabbaq l-marahil l-3ilmiya d-l-cadrage nutritionnel bach i-3ti n-asa'i7 m-kh-essesa:
+## 📋 Présentation du Projet
+Ce dépôt contient le moteur central (Backend) de l'application **Beauté Naturelle**, un écosystème intelligent dédié à l'accompagnement personnalisé pour la perte de poids. Développé avec **Django REST Framework**, ce système intègre des algorithmes de calcul métabolique et une architecture temps réel pour un coaching interactif.
 
-### 1. Calculateur Métabolique (Mifflin-St Jeor)
-L-Assistant kiy-7seb l-**BMR** (Basal Metabolic Rate) dyal l-user automatique bach i-3ref ch-hal dyal l-energy kiy-7req l-jismi f l-7ala d-l-ra7a.
-* **Formule**: $10 \times \text{poids (kg)} + 6.25 \times \text{taille (cm)} - 5 \times \text{âge (ans)} + s$
+---
+
+## 🧠 Intelligence Artificielle & Nutrition
+
+Le backend repose sur des protocoles scientifiques rigoureux pour garantir des résultats optimaux :
+
+### 1. Métabolisme Prédictif (Équation de Mifflin-St Jeor)
+Le système calcule dynamiquement le **BMR** (Basal Metabolic Rate) pour définir les besoins caloriques journaliers en fonction du profil utilisateur.
+$$BMR = 10 \times \text{poids (kg)} + 6.25 \times \text{taille (cm)} - 5 \times \text{âge (ans)} + s$$
+
+### 2. Analyse des Macronutriments
+Intégration d'une base de données exhaustive permettant de décomposer chaque aliment en :
+* **Protéines** : Maintien de la masse musculaire.
+* **Lipides** : Équilibre hormonal et vitamines liposolubles.
+* **Glucides** : Gestion de l'index glycémique et de l'énergie.
 
 
-### 2. Base de Données Nutritionnelle (50k+ Aliments)
-Integration d-wa7ed l-dataset kbir fih l-macronutriments:
-* **Protéines**: Bach n-7afdo 3la l-3adala.
-* **Lipides**: L-douhoun l-moufida.
-* **Glucides**: Masdar l-taqa.
 
+### 3. Coaching Interactif via WebSockets
+Utilisation de **Daphne** et **Django Channels** pour assurer une communication bidirectionnelle asynchrone, permettant à l'assistant IA de fournir un feedback instantané sur les repas saisis.
 
-### 3. Coaching en Temps Réel (WebSockets)
-Utilisation d-**Daphne** w **Django Channels** bach l-IA t-welli t-jaweb l-user real-time dakhil l-app Flutter.
 
 
 ---
 
-## 🛠️ Configuration Technique
+## 🛠️ Stack Technique
 
-### ⚙️ Stack Technique
-* **Framework**: Django 5.2.8 / Django REST Framework
-* **Real-time**: Daphne / Channels (ASGI)
-* **Database**: PostgreSQL (nutri_fit)
-* **Storage**: AWS S3 / MinIO (nutrifit-media)
-* **Security**: JWT Authentication / python-dotenv
+* **Langage** : Python 3.14+
+* **Framework Web** : Django 5.2.8 / DRF
+* **Serveur ASGI** : Daphne (Gestion des WebSockets)
+* **Base de Données** : PostgreSQL
+* **Stockage Cloud** : AWS S3 / MinIO (Gestion des photos de repas et rapports)
+* **Sécurité** : SimpleJWT (Rotation de tokens) & Python-Dotenv
 
-### 🚀 Lancement Rapide
-1. **Activ-i l-venv**: 
-   ```bash
-   ".\venv\Scripts\activate"
+---
+
+## 🚀 Installation et Démarrage
+
+### 1. Prérequis
+- Python 3.10 ou supérieur
+- PostgreSQL installé et configuré
+
+### 2. Configuration de l'environnement
+```bash
+# Activer l'environnement virtuel
+".\venv\Scripts\activate"
+
+# Installer les dépendances
+pip install -r requirements.txt
