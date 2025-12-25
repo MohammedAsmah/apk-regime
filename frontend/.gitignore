@@ -1,0 +1,11 @@
+.dart_tool/
+.flutter-plugins
+.packages
+pubspec.lock
+build/
+android/.gradle
+ios/Pods/
+.vscode/
+.idea/
+.env
+.metadata
