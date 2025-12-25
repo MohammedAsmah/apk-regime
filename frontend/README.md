@@ -26,7 +26,7 @@ Mobile app for weight loss coaching with AI-powered nutrition tracking.
 ### Installation
 
 1. Clone repository
-git clone https://github.com/Nouhaila91/APK-Regime.git
+git clone https://github.com/AGH-Data-Agency-Holding/APK-Regime
 cd APK-Regime/frontend
 
 2. Install dependencies
@@ -51,7 +51,7 @@ lib/
 - presentation/ (state management)
 
 ## API Integration
-Backend: https://github.com/Nouhaila91/APK-Regime/tree/main/backend
+Backend: https://github.com/AGH-Data-Agency-Holding/APK-Regime/tree/main/backend
 
 ## Contributing
 1. Create feature branch: git checkout -b feature/name
