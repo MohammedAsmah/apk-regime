@@ -265,7 +265,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
-        'APP_DIRS': True, # Hadi hiya li kat-7ell moshkil (admin.E403)
+        'APP_DIRS': True, 
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -288,6 +288,19 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
     "AUTH_HEADER_TYPES": ("Bearer",),
+}
+
+# CONFIGURATION SWAGGER (drf-yasg) 
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+            'description': "Kteb: 'Bearer [Token_dyalk] bax ykhedem lik swagger w les endpoint '"
+        }
+    },
+    'USE_SESSION_AUTH': False, # Forcer JWT / ID3/ID4 
 }
 
 # MIDDLEWARE
