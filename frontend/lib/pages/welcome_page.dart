@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_trnx_project/pages/login_page.dart';
+import 'package:flutter_trnx_project/pages/sign_up_page.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -31,52 +33,68 @@ class WelcomePage extends StatelessWidget {
             SizedBox(height: 20),
 
             // login button: add inkwell or gestorD
-            Container(
-              height: 56,
-              width: 340,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: Color(0xFF0F0E0E),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withAlpha(64), // 25%
-                    offset: Offset(0, 4),
-                    blurRadius: 4,
-                  ),
-                ],
-              ),
-              child: Center(
-                child: Text(
-                  'login',
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    fontSize: 20,
-                    color: Colors.white,
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
+              },
+              child: Container(
+                height: 56,
+                width: 340,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: Color(0xFF0F0E0E),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withAlpha(64), // 25%
+                      offset: Offset(0, 4),
+                      blurRadius: 4,
+                    ),
+                  ],
+                ),
+                child: Center(
+                  child: Text(
+                    'login',
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
             ),
             SizedBox(height: 20),
             // sign up button: add inkwell or gestorD
-            Container(
-              height: 56,
-              width: 340,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: Color(0xFFE8E8E8),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withAlpha(64), //25%
-                    offset: Offset(0, 4),
-                    blurRadius: 4,
-                  ),
-                ],
-              ),
-              child: Center(
-                child: Text(
-                  'sign up',
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    fontSize: 20,
-                    color: Colors.black,
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignUpPage()),
+                );
+              },
+              child: Container(
+                height: 56,
+                width: 340,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: Color(0xFFE8E8E8),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withAlpha(64), //25%
+                      offset: Offset(0, 4),
+                      blurRadius: 4,
+                    ),
+                  ],
+                ),
+                child: Center(
+                  child: Text(
+                    'sign up',
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      fontSize: 20,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ),

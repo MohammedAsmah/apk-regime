@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFFF7F3EB)),
       ),
-      home: LoginPage(),
+      home: WelcomePage(),
     );
   }
 }
