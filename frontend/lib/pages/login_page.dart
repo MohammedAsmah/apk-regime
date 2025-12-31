@@ -99,26 +99,31 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 36),
                 // login button: add inkwell or gestorD
-                Container(
-                  height: 56,
-                  width: 340,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Color(0xFFE8E8E8),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withAlpha(64), // 25%
-                        offset: Offset(0, 4),
-                        blurRadius: 4,
+                GestureDetector(
+                  onTap: () {
+                    // todo
+                  },
+                  child: Container(
+                    height: 56,
+                    width: 340,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Color(0xFFE8E8E8),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withAlpha(64), // 25%
+                          offset: Offset(0, 4),
+                          blurRadius: 4,
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Text(
+                        'login',
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodyLarge!.copyWith(fontSize: 20),
                       ),
-                    ],
-                  ),
-                  child: Center(
-                    child: Text(
-                      'login',
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodyLarge!.copyWith(fontSize: 20),
                     ),
                   ),
                 ),

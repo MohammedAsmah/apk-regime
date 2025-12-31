@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_trnx_project/pages/login_page.dart';
+import 'package:flutter_trnx_project/pages/more_info_page.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -163,26 +164,35 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 const SizedBox(height: 24),
                 // create account button
-                Container(
-                  height: 56,
-                  width: 340,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: const Color(0xFFE8E8E8),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withAlpha(64),
-                        offset: const Offset(0, 4),
-                        blurRadius: 4,
-                      ),
-                    ],
-                  ),
-                  child: Center(
-                    child: Text(
-                      'create account',
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        fontSize: 20,
-                        color: Colors.black,
+                GestureDetector(
+                  onTap: () {
+                    // to gathering more info
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (ctx) => MoreInfoPage()),
+                    );
+                  },
+                  child: Container(
+                    height: 56,
+                    width: 340,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: const Color(0xFFE8E8E8),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withAlpha(64),
+                          offset: const Offset(0, 4),
+                          blurRadius: 4,
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Text(
+                        'create account',
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          fontSize: 20,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                   ),
