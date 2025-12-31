@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_trnx_project/pages/login_page.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -42,7 +43,12 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            //  todo
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginPage(),
+                              ),
+                            );
                           },
                       ),
                     ],
@@ -184,7 +190,10 @@ class _SignUpPageState extends State<SignUpPage> {
                 const SizedBox(height: 15),
                 GestureDetector(
                   onTap: () {
-                    // todo
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                    );
                   },
                   child: Text(
                     'log in instead',

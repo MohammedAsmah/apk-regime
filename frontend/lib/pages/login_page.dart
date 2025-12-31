@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_trnx_project/pages/sign_up_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -212,7 +213,12 @@ class _LoginPageState extends State<LoginPage> {
                   height: 50,
                   child: OutlinedButton(
                     style: ButtonStyle(),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignUpPage()),
+                      );
+                    },
                     child: Text(
                       'Create an account',
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
