@@ -13,10 +13,11 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 31),
-          child: Center(
+          child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -47,8 +48,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ],
                   ),
                 ),
-                SizedBox(height: 20),
-                // first name textFiled
+                const SizedBox(height: 20),
                 SizedBox(
                   width: 340,
                   child: Text(
@@ -58,7 +58,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 SizedBox(
                   width: 340,
                   child: TextField(
@@ -69,7 +69,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 26), // spacing between fields
+                const SizedBox(height: 26),
                 // last name textFiled
                 SizedBox(
                   width: 340,
@@ -80,7 +80,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 SizedBox(
                   width: 340,
                   child: TextField(
@@ -91,7 +91,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 26), // spacing between fields
+                const SizedBox(height: 26),
                 // email adress textFiled
                 SizedBox(
                   width: 340,
@@ -102,7 +102,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 SizedBox(
                   width: 340,
                   child: TextField(
@@ -113,7 +113,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 26), // spacing between fields
+                const SizedBox(height: 26),
                 SizedBox(
                   width: 340,
                   child: Text(
@@ -123,7 +123,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 SizedBox(
                   width: 340,
                   child: TextField(
@@ -155,18 +155,18 @@ class _SignUpPageState extends State<SignUpPage> {
                     ],
                   ),
                 ),
-                Spacer(),
+                const SizedBox(height: 24),
                 // create account button
                 Container(
                   height: 56,
                   width: 340,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: Color(0xFFE8E8E8),
+                    color: const Color(0xFFE8E8E8),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withAlpha(64), //25%
-                        offset: Offset(0, 4),
+                        color: Colors.black.withAlpha(64),
+                        offset: const Offset(0, 4),
                         blurRadius: 4,
                       ),
                     ],
@@ -181,7 +181,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 GestureDetector(
                   onTap: () {
                     // todo

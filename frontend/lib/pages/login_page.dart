@@ -13,11 +13,13 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 31),
-          child: Center(
+          child: SingleChildScrollView(
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   'login',
@@ -185,7 +187,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ],
                 ),
-                Spacer(),
+                SizedBox(height: 40),
                 // info
                 Row(
                   children: [
