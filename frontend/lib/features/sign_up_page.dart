@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter_trnx_project/pages/login_page.dart';
-import 'package:flutter_trnx_project/pages/more_info_page.dart';
+part of index;
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});

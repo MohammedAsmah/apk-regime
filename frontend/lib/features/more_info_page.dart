@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of index;
 
 class MoreInfoPage extends StatefulWidget {
   const MoreInfoPage({super.key});
