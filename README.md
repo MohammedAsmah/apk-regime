@@ -1,4 +1,4 @@
-# 🥗 APK-Regime / Beauté Naturelle
+# 🥗 APK-Regime 
 
 ![Django](https://img.shields.io/badge/Django-5.2.8-092E20?style=for-the-badge&logo=django&logoColor=white)
 ![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?style=for-the-badge&logo=flutter&logoColor=white)
