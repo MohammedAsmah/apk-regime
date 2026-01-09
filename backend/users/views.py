@@ -48,6 +48,9 @@ class ChangePasswordView(generics.UpdateAPIView):
     
     def get_object(self):
         return self.request.user
+    def update(self, request, *args, **kwargs):
+        super().update(request, *args, **kwargs)
+        return Response({"detail": "password chnaged "})
 
 # ==========================================
 # 2. USER PROFILE
