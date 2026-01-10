@@ -6,6 +6,9 @@ export 'package:provider/provider.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
 export 'package:google_fonts/google_fonts.dart';
 export 'package:flutter_localization/flutter_localization.dart';
+export 'package:flutter/foundation.dart';
+
+
 
 export './l10n/index.dart';
 

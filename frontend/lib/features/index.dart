@@ -6,7 +6,8 @@ import 'package:flutter_trnx_project/imports.dart';
 import 'package:flutter_trnx_project/l10n/app_localizations.dart';
 
 
+export 'auth/index.dart';
+
 part 'login_page.dart';
 part 'more_info_page.dart';
 part 'sign_up_page.dart';
-part 'welcome_page.dart';

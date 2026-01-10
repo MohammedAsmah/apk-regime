@@ -6,7 +6,7 @@ ThemeData getDarkTheme() {
     brightness: Brightness.dark,
     
     colorScheme: const ColorScheme.dark(
-      primary: Color(0xFF6FD82C),  // Lighter green for dark mode
+      primary: AppColors.lightSurface,  // Lighter green for dark mode
       secondary: Color(0xFF3DC0FF), // Lighter blue for dark mode
       error: Color(0xFFFF5555),
       background: AppColors.darkBackground,
