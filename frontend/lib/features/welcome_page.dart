@@ -5,6 +5,8 @@ class WelcomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -22,7 +24,7 @@ class WelcomePage extends StatelessWidget {
             SizedBox(height: 20),
 
             Text(
-              'Start your journey now',
+              l10n.startJourney,
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
                 fontWeight: FontWeight.w600,
                 fontSize: 27,
@@ -54,7 +56,7 @@ class WelcomePage extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    'login',
+                    l10n.login,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       fontSize: 20,
                       color: Colors.white,
@@ -88,7 +90,7 @@ class WelcomePage extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    'sign up',
+                    l10n.signup,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       fontSize: 20,
                       color: Colors.black,

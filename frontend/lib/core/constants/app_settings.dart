@@ -4,6 +4,7 @@ part of index;
 class SettingsState {
   final bool isLoading;
   final ThemeMode themeMode;
+  final String localeCode;
   final String? error;
   final bool hasMore;
   final int currentPage;
@@ -12,6 +13,7 @@ class SettingsState {
     this.isLoading = false,
     this.error,
     this.themeMode = ThemeMode.light,
+    this.localeCode = 'ar',
     this.hasMore = true,
     this.currentPage = 1,
   });
