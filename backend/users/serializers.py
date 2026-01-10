@@ -1,6 +1,9 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
+from django.core.validators import MinLengthValidator, MaxLengthValidator
+
+from django.contrib.auth.password_validation import validate_password
 
 User = get_user_model()
 
@@ -33,6 +36,15 @@ class RegisterSerializer(serializers.ModelSerializer):
 # 2. USER PROFILE SERIALIZER
 # ==========================================
 class UserProfileSerializer(serializers.ModelSerializer):
+    language = serializers.CharField(
+        required=True,
+        allow_blank=False,
+        max_length=20,
+        validators=[
+            MinLengthValidator(5),
+            MaxLengthValidator(20),
+        ]
+    )
     class Meta:
         model = User
         fields = [
@@ -45,18 +57,26 @@ class UserProfileSerializer(serializers.ModelSerializer):
         ]
         
         read_only_fields = ["id", "username", "email", "is_premium", "daily_calorie_goal"]
+    def validate_language(self, value):
+        if any(char.isdigit() for char in value):
+            raise serializers.ValidationError(
+                "in language  should not contain numbers."
+            )
+        return value
+
 
 # ==========================================
 # 3. CHANGE PASSWORD SERIALIZER
 # ==========================================
 
 # old code 
-class ChangePasswordSerializer(serializers.Serializer):
-    old_password = serializers.CharField(required=True)
-    new_password = serializers.CharField(required=True)
+# class ChangePasswordSerializer(serializers.Serializer):
+#     old_password = serializers.CharField(required=True)
+#     new_password = serializers.CharField(required=True)
+
+
 # after debugging code 
-from rest_framework import serializers
-from django.contrib.auth.password_validation import validate_password
+
 
 class ChangePasswordSerializer(serializers.Serializer):
     old_password = serializers.CharField(write_only=True, required=True)
@@ -65,7 +85,7 @@ class ChangePasswordSerializer(serializers.Serializer):
     def validate_old_password(self, value):
         user = self.context['request'].user
         if not user.check_password(value):
-            raise serializers.ValidationError("كلمة المرور القديمة غير صحيحة")
+            raise serializers.ValidationError("Old password is not correct.")
         return value
 
     def validate_new_password(self, value):
@@ -85,6 +105,15 @@ class OnboardingSerializer(serializers.ModelSerializer):
     """
     Utilisé uniquement lors de l'inscription pour collecter les données santé.
     """
+    language = serializers.CharField(
+        required=True,
+        allow_blank=False,
+        max_length=20,
+        validators=[
+            MinLengthValidator(5),
+            MaxLengthValidator(20),
+        ]
+    )
     class Meta:
         model = User
         fields = [
@@ -92,6 +121,12 @@ class OnboardingSerializer(serializers.ModelSerializer):
             "current_weight_kg", "target_weight_kg", "activity_level",
             "language", "timezone"
         ]
+    def validate_language(self, value):
+        if any(char.isdigit() for char in value):
+            raise serializers.ValidationError(
+                "in language  should not contain numbers."
+            )
+        return value        
     
     def validate_date_of_birth(self, value):
         from datetime import date
