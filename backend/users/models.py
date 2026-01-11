@@ -29,7 +29,7 @@ class User(AbstractUser):
 
 
     currency = models.CharField(max_length=3, default="EUR")
-    language = models.CharField(max_length=5, default="en") 
+    language = models.CharField(max_length=20, default="en") 
     timezone = models.CharField(max_length=50, default="Europe/Paris")
     is_premium = models.BooleanField(default=False)
     premium_until = models.DateTimeField(null=True, blank=True)
