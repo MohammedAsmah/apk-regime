@@ -57,5 +57,20 @@ class AppLocalizationsFr extends AppLocalizations {
   String get forgotPassword => 'Forget your password?';
 
   @override
+  String get byContinuingYouAgreeToThe => 'By continuing, you agree to the ';
+
+  @override
+  String get termsOfUse => 'Terms of use';
+
+  @override
+  String get and => ' and ';
+
+  @override
+  String get privacyPolicy => 'Privacy Policy';
+
+  @override
   String get hide => 'Hide';
+
+  @override
+  String get show => 'Show';
 }

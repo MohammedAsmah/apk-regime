@@ -1,6 +1,8 @@
 library index;
 
 
+import 'dart:math';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter_trnx_project/imports.dart';
 

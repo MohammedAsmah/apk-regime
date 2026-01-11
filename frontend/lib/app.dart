@@ -16,6 +16,7 @@ class TRNX extends StatelessWidget {
 
     return GestureDetector(
       onTap: _focusOut,
+
       child: ScreenUtilInit(
         // designSize: const Size(375, 812),
         designSize: const Size(393, 852),
@@ -26,16 +27,18 @@ class TRNX extends StatelessWidget {
             title: 'TRNX',
             debugShowCheckedModeBanner: false,
             locale: locale,
-            localizationsDelegates: const [
+            localizationsDelegates: [
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
+              if (settingsProvider.state.localeCode == 'ar')
+                GlobalWidgetsLocalizations.delegate,
             ],
             supportedLocales: const [Locale('en'), Locale('ar'), Locale('fr')],
             theme: getLightTheme(),
             darkTheme: getDarkTheme(),
-            themeMode: settingsProvider.state.themeMode,
+            // themeMode: settingsProvider.state.themeMode,
+            themeMode: ThemeMode.light,
             routerConfig: goRouter,
           );
         },

@@ -15,5 +15,10 @@
   "logInInstead": "log in instead",
   "otherIssueWithLogin": "Other issue with login",
   "forgotPassword": "Forget your password?",
-  "hide": "Hide"
+  "byContinuingYouAgreeToThe": "By continuing, you agree to the ",
+  "termsOfUse": "Terms of use",
+  "and": " and ",
+  "privacyPolicy": "Privacy Policy",
+  "hide": "Hide",
+  "show": "Show"
 }

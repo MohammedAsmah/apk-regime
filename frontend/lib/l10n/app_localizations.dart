@@ -196,11 +196,41 @@ abstract class AppLocalizations {
   /// **'Forget your password?'**
   String get forgotPassword;
 
+  /// No description provided for @byContinuingYouAgreeToThe.
+  ///
+  /// In en, this message translates to:
+  /// **'By continuing, you agree to the '**
+  String get byContinuingYouAgreeToThe;
+
+  /// No description provided for @termsOfUse.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of use'**
+  String get termsOfUse;
+
+  /// No description provided for @and.
+  ///
+  /// In en, this message translates to:
+  /// **' and '**
+  String get and;
+
+  /// No description provided for @privacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacyPolicy;
+
   /// No description provided for @hide.
   ///
   /// In en, this message translates to:
   /// **'Hide'**
   String get hide;
+
+  /// No description provided for @show.
+  ///
+  /// In en, this message translates to:
+  /// **'Show'**
+  String get show;
 }
 
 class _AppLocalizationsDelegate

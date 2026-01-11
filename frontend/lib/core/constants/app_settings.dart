@@ -12,8 +12,8 @@ class SettingsState {
   const SettingsState({
     this.isLoading = false,
     this.error,
-    this.themeMode = ThemeMode.light,
-    this.localeCode = 'ar',
+    this.themeMode = ThemeMode.dark,
+    this.localeCode = 'en',
     this.hasMore = true,
     this.currentPage = 1,
   });

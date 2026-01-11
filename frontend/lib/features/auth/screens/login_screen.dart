@@ -1,6 +1,5 @@
 part of index;
 
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -9,230 +8,237 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool _obscureText = true;
+  late bool _obscureText = true;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 31),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'login',
-                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                SizedBox(height: 50),
-                // email textFiled
-                SizedBox(
-                  width: 340,
-                  child: Text(
-                    'Email or mobile phone number',
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      color: Theme.of(context).hintColor,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 12),
-                SizedBox(
-                  width: 340,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                  ),
-                ),
+    var l10n = AppLocalizations.of(context)!;
 
-                SizedBox(height: 26), // spacing between fields
-
-                SizedBox(
-                  width: 340,
-                  child: Row(
-                    children: [
-                      // password textFiled
-                      Text(
-                        'Password',
-                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          color: Theme.of(context).hintColor,
-                        ),
-                      ),
-                      Spacer(),
-                      IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _obscureText = !_obscureText;
-                          });
-                        },
-                        icon: _obscureText
-                            ? Icon(Icons.visibility_off)
-                            : Icon(Icons.visibility),
-                        color: Theme.of(context).hintColor,
-                        iconSize: 20,
-                      ),
-                      Text(
-                        _obscureText ? 'Show' : 'Hide',
-                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          color: Theme.of(context).hintColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: 340,
-                  child: TextField(
-                    obscureText: _obscureText,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
+    return Consumer<AuthProvider>(
+      builder: (context, authProvider, child) {
+        return Scaffold(
+          backgroundColor: ColorScheme.of(context).background,
+          body: SafeArea(
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: AppDimensions.screenPaddingHorizontal,
+                vertical: AppDimensions.screenPaddingVertical,
+              ),
+              alignment: AlignmentGeometry.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    l10n.login,
+                    style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                      fontWeight: FontWeight.w500,
+                      fontFamily: 'Poppins',
                     ),
                   ),
-                ),
-                SizedBox(height: 36),
-                // login button: add inkwell or gestorD
-                GestureDetector(
-                  onTap: () {
-                    // todo
-                  },
-                  child: Container(
-                    height: 56,
-                    width: 340,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Color(0xFFE8E8E8),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withAlpha(64), // 25%
-                          offset: Offset(0, 4),
-                          blurRadius: 4,
+                  SizedBox(height: 50.h),
+
+                  // email textFiled
+                  SizedBox(
+                    width: 340.w,
+                    child: Wrap(
+                      children: [
+                        Text(
+                          l10n.emailOrMobile,
+                          style: Theme.of(context).textTheme.bodyLarge!
+                              .copyWith(color: Theme.of(context).hintColor),
+                        ),
+                        TextField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(
+                                AppDimensions.radiusS,
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),
-                    child: Center(
-                      child: Text(
-                        'login',
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodyLarge!.copyWith(fontSize: 20),
-                      ),
+                  ),
+
+                  SizedBox(height: AppDimensions.xs),
+
+                  // Password textFiled
+                  SizedBox(
+                    width: 340.w,
+                    child: Wrap(
+                      children: [
+                        Row(
+                          children: [
+                            // password textFiled
+                            Text(
+                              l10n.password,
+                              style: Theme.of(context).textTheme.bodyLarge!
+                                  .copyWith(color: Theme.of(context).hintColor),
+                            ),
+                            Spacer(),
+                            IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _obscureText = !_obscureText;
+                                });
+                              },
+                              icon: Row(
+                                children: [
+                                  Icon(
+                                    _obscureText
+                                        ? Icons.visibility_off
+                                        : Icons.visibility,
+                                  ),
+                                  SizedBox(width: 4.w),
+                                  Text(
+                                    _obscureText ? l10n.show : l10n.hide,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(
+                                          color: Theme.of(context).hintColor,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                              color: Theme.of(context).hintColor,
+                              iconSize: AppDimensions.iconM,
+                            ),
+                          ],
+                        ),
+                        TextField(
+                          obscureText: _obscureText,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(
+                                AppDimensions.radiusS,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-                SizedBox(height: 12),
-                // terms of use / privacy policy
-                RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodyMedium!.copyWith(fontSize: 13),
+
+                  SizedBox(height: AppDimensions.xl),
+
+                  OutlinedButton(
+                    onPressed: () {
+                      // #TODO: implement login functionality
+                    },
+                    child: Text(l10n.login, style: TextStyle(fontSize: 20.sp)),
+                  ),
+
+                  RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyMedium!.copyWith(fontSize: 11.sp),
+                      children: [
+                        TextSpan(text: l10n.byContinuingYouAgreeToThe),
+                        TextSpan(
+                          text: l10n.termsOfUse,
+                          style: const TextStyle(
+                            decoration: TextDecoration.underline,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              // #TODO: implement terms of use navigation
+                            },
+                        ),
+                        TextSpan(text: l10n.and),
+                        TextSpan(
+                          text: l10n.privacyPolicy,
+                          style: const TextStyle(
+                            decoration: TextDecoration.underline,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              // #TODO: implement privacy policy navigation
+                            },
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: AppDimensions.m),
+
+                  Row(
                     children: [
-                      const TextSpan(text: 'By continuing, you agree to the '),
-                      TextSpan(
-                        text: 'Terms of use',
-                        style: const TextStyle(
-                          decoration: TextDecoration.underline,
-                          fontWeight: FontWeight.w500,
+                      GestureDetector(
+                        onTap: () {
+                          // todo
+                        },
+                        child: Text(
+                          l10n.otherIssueWithLogin,
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(
+                                decoration: TextDecoration.underline,
+                                fontWeight: FontWeight.w500,
+                              ),
                         ),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            // todo
-                          },
                       ),
-                      const TextSpan(text: ' and '),
-                      TextSpan(
-                        text: 'Privacy Policy.',
-                        style: const TextStyle(
-                          decoration: TextDecoration.underline,
-                          fontWeight: FontWeight.w500,
+                      Spacer(),
+                      GestureDetector(
+                        onTap: () {
+                          // todo
+                        },
+                        child: Text(
+                          l10n.forgotPassword,
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(
+                                decoration: TextDecoration.underline,
+                                fontWeight: FontWeight.w500,
+                              ),
                         ),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            // todo
-                          },
                       ),
                     ],
                   ),
-                ),
-                SizedBox(height: 40),
-                Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        // todo
-                      },
-                      child: Text(
-                        'Other issue with login',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          decoration: TextDecoration.underline,
-                          fontWeight: FontWeight.w500,
+                  Expanded(child: Container()),
+
+                  // info
+                  Row(
+                    children: [
+                      Expanded(child: Divider(thickness: 2, color: AppColors.black.withOpacity(0.3))),
+                      SizedBox(width: AppDimensions.m),
+
+                      Text(
+                        l10n.newToOurCommunity,
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          color: Theme.of(context).hintColor,
+                          fontFamily: 'Avenir',
+                          fontSize: 22.sp,
+                          fontStyle: FontStyle.italic,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
-                    ),
-                    Spacer(),
-                    GestureDetector(
-                      onTap: () {
-                        // todo
-                      },
-                      child: Text(
-                        'Forget your password',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          decoration: TextDecoration.underline,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 40),
-                // info
-                Row(
-                  children: [
-                    Expanded(child: Divider(thickness: 2)),
-                    Spacer(),
+                      SizedBox(width: AppDimensions.m),
 
-                    Text(
-                      "New to our community",
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: Theme.of(context).hintColor,
-                      ),
-                    ),
-                    Spacer(),
+                      Expanded(child: Divider(thickness: 2, color: AppColors.black.withOpacity(0.3))),
+                    ],
+                  ),
 
-                    Expanded(child: Divider(thickness: 2)),
-                  ],
-                ),
-                SizedBox(height: 15),
-                // create account button
-                SizedBox(
-                  width: 310,
-                  height: 50,
-                  child: OutlinedButton(
-                    style: ButtonStyle(),
+                  SizedBox(height: AppDimensions.l),
+
+                  // create account button
+                  OutlinedButton(
                     onPressed: () {
                       context.push('/auth/signup');
                     },
                     child: Text(
-                      'Create an account',
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
+                      l10n.createAccount,
+                      style: TextStyle(fontSize: 20.sp),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

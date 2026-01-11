@@ -12,8 +12,6 @@ export 'package:flutter/foundation.dart';
 
 export './l10n/index.dart';
 
-
-import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_trnx_project/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
