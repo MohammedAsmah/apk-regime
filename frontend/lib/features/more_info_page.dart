@@ -43,6 +43,7 @@ class _MoreInfoPageState extends State<MoreInfoPage> {
 
   @override
   Widget build(BuildContext context) {
+    var l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -274,10 +275,7 @@ class _MoreInfoPageState extends State<MoreInfoPage> {
                   child: GestureDetector(
                     onTap: () {
                       // to HOME
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (ctx) => Placeholder()),
-                      );
+                      context.pushReplacement('/home');
                     },
                     child: Container(
                       height: 56,
@@ -295,7 +293,7 @@ class _MoreInfoPageState extends State<MoreInfoPage> {
                       ),
                       child: Center(
                         child: Text(
-                          'Continue',
+                          l10n.continueText,
                           style: Theme.of(context).textTheme.bodyLarge!
                               .copyWith(fontSize: 20, color: Colors.black),
                         ),

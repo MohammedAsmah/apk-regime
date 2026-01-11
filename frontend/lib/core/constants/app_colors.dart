@@ -1,8 +1,10 @@
 part of index;
 
 class AppColors {
+  static const black = Color(0xFF000000);
+  static const white = Color(0xFFFFFFFF);
   // Brand Colors (Duolingo-inspired)
-  static const brandGreen = Color(0xFF58CC02);
+  // static const brandGreen = Color(0xFF58CC02);
   static const brandBlue = Color(0xFF1CB0F6);
   
   // Semantic Colors

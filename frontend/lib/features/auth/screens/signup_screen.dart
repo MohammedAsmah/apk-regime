@@ -1,13 +1,14 @@
 part of index;
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignUpScreenState extends State<SignUpScreen> {
   bool _obscureText = true;
   @override
   Widget build(BuildContext context) {
@@ -41,12 +42,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => LoginPage(),
-                              ),
-                            );
+                            context.push('/auth/login');
                           },
                       ),
                     ],
@@ -197,10 +193,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 const SizedBox(height: 15),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginPage()),
-                    );
+                    context.push('/auth/login');
                   },
                   child: Text(
                     'log in instead',

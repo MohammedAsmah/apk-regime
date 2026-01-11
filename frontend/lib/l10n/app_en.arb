@@ -1,5 +1,19 @@
 {
-  "startJourney":"Start your journey Now",
-  "login":"Login",
-  "signup":"Sign Up"
+  "startJourney": "Start your journey Now",
+  "login": "Login",
+  "signup": "Sign Up",
+  "continueText": "Continue",
+  "createAccount": "create account",
+  "newToOurCommunity": "New to our community",
+  "emailOrMobile": "Email or mobile phone number",
+  "password": "Password",
+  "confirmPassword": "Confirm Password",
+  "firstName": "First name",
+  "lastName": "Last name",
+  "emailAddress": "Email address",
+  "showPassword": "Show password",
+  "logInInstead": "log in instead",
+  "otherIssueWithLogin": "Other issue with login",
+  "forgotPassword": "Forget your password?",
+  "hide": "Hide"
 }

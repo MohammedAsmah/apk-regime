@@ -1,14 +1,14 @@
 part of index;
 
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginScreenState extends State<LoginScreen> {
   bool _obscureText = true;
   @override
   Widget build(BuildContext context) {
@@ -218,10 +218,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: OutlinedButton(
                     style: ButtonStyle(),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SignUpPage()),
-                      );
+                      context.push('/auth/signup');
                     },
                     child: Text(
                       'Create an account',

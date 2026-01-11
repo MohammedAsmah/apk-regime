@@ -13,55 +13,81 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return Consumer<AuthProvider>(
       builder: (context, authProvider, child) {
         var l10n = AppLocalizations.of(context)!;
-        final isLoading = true; //authProvider.state.isLoading;
-
         return Scaffold(
+          backgroundColor: ColorScheme.of(context).background,
           body: SafeArea(
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/ellipse-1.png'),
-                  alignment: Alignment.centerRight,
+            child: Stack(
+              children: [
+                Positioned(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: EdgeInsets.only(bottom: 100.h),
+                      child: Image.asset(
+                        'assets/images/ellipse-1.png',
+                        width: 300.w,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              padding: EdgeInsets.symmetric(
-                horizontal: AppDimensions.screenPaddingHorizontal.w,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  SizedBox(height: 48.h),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Image.asset(
-                      'assets/images/vector.png',
-                      width: 250.w,
+
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: AppDimensions.screenPaddingHorizontal.w,
+                    ),
+                    alignment: AlignmentGeometry.center,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 48.h),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Image.asset(
+                            'assets/images/vector.png',
+                            width: 192.w,
+                          ),
+                        ),
+                        Expanded(child: Container()),
+                        SizedBox(height: 48.h),
+                        Text(
+                          l10n.startJourney,
+                          style: TextStyle(fontSize: 24.sp),
+                        ),
+                        SizedBox(height: 12.h),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: Size(double.infinity, 48.h),
+                            backgroundColor: AppColors.darkSurface,
+                          ),
+                          onPressed: () {
+                            context.push('/auth/login');
+                          },
+                          child: Text(
+                            l10n.login,
+                            style: TextStyle(fontSize: 20.sp),
+                          ),
+                        ),
+                        SizedBox(height: 12.h),
+                        OutlinedButton(
+                          onPressed: () {
+                            context.push('/auth/signup');
+                          },
+                          style: OutlinedButton.styleFrom(
+                            minimumSize: Size(double.infinity, 48.h),
+                          ),
+                          child: Text(
+                            l10n.signup,
+                            style: TextStyle(fontSize: 20.sp),
+                          ),
+                        ),
+                        SizedBox(height: 48.h),
+                      ],
                     ),
                   ),
-                  Expanded(child: Container()),
-                  SizedBox(height: 48.h),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: Size(double.infinity, 48.h),
-                      backgroundColor: AppColors.darkSurface,
-                    ),
-                    onPressed: () {
-                      context.push('/login');
-                    },
-                    child: Text(l10n.login),
-                  ),
-                  SizedBox(height: 12.h),
-                  OutlinedButton(
-                    onPressed: isLoading ? null : null,
-                    style: OutlinedButton.styleFrom(
-                      minimumSize: Size(double.infinity, 48.h),
-                    ),
-                    child: Text(l10n.signup),
-                  ),
-                  SizedBox(height: 48.h),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         );

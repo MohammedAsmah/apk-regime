@@ -4,12 +4,13 @@ ThemeData getLightTheme() {
   return ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
+    fontFamily: GoogleFonts.manrope().fontFamily,
     
     colorScheme: const ColorScheme.light(
-      primary: AppColors.brandGreen,
+      primary: AppColors.white,
       secondary: AppColors.brandBlue,
       error: AppColors.errorRed,
-      background: AppColors.lightBackground,
+      background: Color(0xFFF7F3EB),
       surface: AppColors.lightSurface,
       onPrimary: Colors.white,
       onSecondary: Colors.white,
@@ -52,7 +53,7 @@ ThemeData getLightTheme() {
     
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.brandGreen,
+        backgroundColor: AppColors.white,
         foregroundColor: Colors.white,
         minimumSize: const Size(double.infinity, AppDimensions.buttonHeight),
         padding: const EdgeInsets.symmetric(
@@ -60,7 +61,7 @@ ThemeData getLightTheme() {
           vertical: AppDimensions.s,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppDimensions.radiusM),
+          borderRadius: BorderRadius.circular(AppDimensions.radiusFull),
         ),
         elevation: 2,
         textStyle: const TextStyle(
@@ -71,6 +72,27 @@ ThemeData getLightTheme() {
       ),
     ),
     
+
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        foregroundColor: AppColors.black,
+        side: const BorderSide(color: AppColors.black),
+        minimumSize: const Size(double.infinity, AppDimensions.buttonHeight),
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppDimensions.l,
+          vertical: AppDimensions.s,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppDimensions.radiusFull),
+        ),
+        textStyle: const TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.5,
+        ),
+      ),
+    ),
+
     cardTheme: CardThemeData(
       elevation: 1,
       shape: RoundedRectangleBorder(

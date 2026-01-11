@@ -117,6 +117,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sign Up'**
   String get signup;
+
+  /// No description provided for @continueText.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continueText;
+
+  /// No description provided for @createAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'create account'**
+  String get createAccount;
+
+  /// No description provided for @newToOurCommunity.
+  ///
+  /// In en, this message translates to:
+  /// **'New to our community'**
+  String get newToOurCommunity;
+
+  /// No description provided for @emailOrMobile.
+  ///
+  /// In en, this message translates to:
+  /// **'Email or mobile phone number'**
+  String get emailOrMobile;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @confirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Password'**
+  String get confirmPassword;
+
+  /// No description provided for @firstName.
+  ///
+  /// In en, this message translates to:
+  /// **'First name'**
+  String get firstName;
+
+  /// No description provided for @lastName.
+  ///
+  /// In en, this message translates to:
+  /// **'Last name'**
+  String get lastName;
+
+  /// No description provided for @emailAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Email address'**
+  String get emailAddress;
+
+  /// No description provided for @showPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Show password'**
+  String get showPassword;
+
+  /// No description provided for @logInInstead.
+  ///
+  /// In en, this message translates to:
+  /// **'log in instead'**
+  String get logInInstead;
+
+  /// No description provided for @otherIssueWithLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Other issue with login'**
+  String get otherIssueWithLogin;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget your password?'**
+  String get forgotPassword;
+
+  /// No description provided for @hide.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide'**
+  String get hide;
 }
 
 class _AppLocalizationsDelegate

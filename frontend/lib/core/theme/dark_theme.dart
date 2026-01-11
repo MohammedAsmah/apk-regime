@@ -4,6 +4,7 @@ ThemeData getDarkTheme() {
   return ThemeData(
     useMaterial3: true,
     brightness: Brightness.dark,
+    fontFamily: GoogleFonts.manrope().fontFamily,
     
     colorScheme: const ColorScheme.dark(
       primary: AppColors.lightSurface,  // Lighter green for dark mode
