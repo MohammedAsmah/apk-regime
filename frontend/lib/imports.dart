@@ -4,7 +4,18 @@ export 'package:flutter/material.dart';
 export 'package:go_router/go_router.dart';
 export 'package:provider/provider.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
+export 'package:google_fonts/google_fonts.dart';
+export 'package:flutter_localization/flutter_localization.dart';
+export 'package:flutter/foundation.dart';
 
+
+
+export './l10n/index.dart';
+
+
+import 'package:flutter_localization/flutter_localization.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_trnx_project/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter/material.dart';

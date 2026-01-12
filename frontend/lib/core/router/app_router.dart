@@ -9,7 +9,7 @@ final goRouter = GoRouter(
       name: 'Welcome',
       pageBuilder: (context, state) => CustomTransitionPage(
         key: state.pageKey,
-        child: const WelcomePage(),
+        child: const WelcomeScreen(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return FadeTransition(opacity: animation, child: child);
         },
