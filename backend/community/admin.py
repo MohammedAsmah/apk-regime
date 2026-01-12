@@ -15,4 +15,4 @@ class ChallengeAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description')
 
     def participants_count(self, obj):
-        return obj.participants.count()
+        return obj.participants.count() 

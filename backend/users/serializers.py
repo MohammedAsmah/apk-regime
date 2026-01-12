@@ -12,7 +12,15 @@ User = get_user_model()
 # ==========================================
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
-
+    language = serializers.CharField(
+        required=True,  
+        allow_blank=False,
+        max_length=20,
+        validators=[                                                        
+            MinLengthValidator(5),
+            MaxLengthValidator(20),
+        ]   
+    )
     class Meta:
         model = User
         fields = [
@@ -31,6 +39,12 @@ class RegisterSerializer(serializers.ModelSerializer):
         
         validated_data["password"] = make_password(validated_data["password"])
         return User.objects.create(**validated_data)
+    def validate_language(self, value):
+        if any(char.isdigit() for char in value):
+            raise serializers.ValidationError(
+                "in language  should not contain numbers."
+            )
+        return value
 
 # ==========================================
 # 2. USER PROFILE SERIALIZER
