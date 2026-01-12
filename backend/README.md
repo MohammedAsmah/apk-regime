@@ -1,59 +1,95 @@
-# 🥗 Beauté Naturelle - Backend Assistant IA Nutritionnel
+# 🥗 Beauté Naturelle – Backend Assistant Nutritionnel (Mobile API)
 
 ![Django](https://img.shields.io/badge/Django-5.2.8-092E20?style=for-the-badge&logo=django&logoColor=white)
-![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white)
+![DjangoREST](https://img.shields.io/badge/Django-REST-ff1709?style=for-the-badge&logo=django&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
 
+---
+
 ## 📋 Présentation du Projet
-Ce dépôt contient le moteur central (Backend) de l'application **Beauté Naturelle**, un écosystème intelligent dédié à l'accompagnement personnalisé pour la perte de poids. Développé avec **Django REST Framework**, ce système intègre des algorithmes de calcul métabolique et une architecture temps réel pour un coaching interactif.
+
+**Beauté Naturelle** est le backend officiel d’une application **mobile** dédiée au coaching nutritionnel intelligent et à la perte de poids personnalisée.
+
+Cette API REST, développée avec **Django REST Framework**, fournit :
+- La gestion des utilisateurs
+- L’authentification sécurisée (JWT)
+- Le calcul des besoins nutritionnels
+- La communication temps réel avec l’application mobile
 
 ---
 
-## 🧠 Intelligence Artificielle & Nutrition
-
-Le backend repose sur des protocoles scientifiques rigoureux pour garantir des résultats optimaux :
-
-### 1. Métabolisme Prédictif (Équation de Mifflin-St Jeor)
-Le système calcule dynamiquement le **BMR** (Basal Metabolic Rate) pour définir les besoins caloriques journaliers en fonction du profil utilisateur.
-$$BMR = 10 \times \text{poids (kg)} + 6.25 \times \text{taille (cm)} - 5 \times \text{âge (ans)} + s$$
-
-### 2. Analyse des Macronutriments
-Intégration d'une base de données exhaustive permettant de décomposer chaque aliment en :
-* **Protéines** : Maintien de la masse musculaire.
-* **Lipides** : Équilibre hormonal et vitamines liposolubles.
-* **Glucides** : Gestion de l'index glycémique et de l'énergie.
-
-
-
-### 3. Coaching Interactif via WebSockets
-Utilisation de **Daphne** et **Django Channels** pour assurer une communication bidirectionnelle asynchrone, permettant à l'assistant IA de fournir un feedback instantané sur les repas saisis.
-
-
+## 🎯 Objectif du Backend
+- Servir de **backend mobile (Flutter / React Native)**
+- Fournir des calculs nutritionnels fiables
+- Assurer un échange rapide et sécurisé via API REST
+- Supporter la montée en charge en production
 
 ---
 
-## 🛠️ Stack Technique
+## 🧠 Calcul Nutritionnel
 
-* **Langage** : Python 3.14+
-* **Framework Web** : Django 5.2.8 / DRF
-* **Serveur ASGI** : Daphne (Gestion des WebSockets)
-* **Base de Données** : PostgreSQL
-* **Stockage Cloud** : AWS S3 / MinIO (Gestion des photos de repas et rapports)
-* **Sécurité** : SimpleJWT (Rotation de tokens) & Python-Dotenv
+### Métabolisme de Base (Mifflin-St Jeor)
+Le backend calcule le **BMR (Basal Metabolic Rate)** afin d’estimer les besoins énergétiques journaliers 
+
+
+
+*s dépend du sexe biologique.*
 
 ---
 
-## 🚀 Installation et Démarrage
+## ⚙️ Stack Technique
+
+- **Langage** : Python 3.10+
+- **Framework** : Django 5.2.8
+- **API** : Django REST Framework
+- **Base de données** :
+  - SQLite (développement & tests)
+  - PostgreSQL (production)
+- **Authentification** : JWT (SimpleJWT)
+- **Temps réel** : Django Channels + Daphne
+- **Stockage** : AWS S3 / MinIO (optionnel)
+
+---
+
+## 🗄️ Environnements & Base de Données
+
+### 🔹 Développement / Tests
+- Base de données : **SQLite**
+- Configuration simple pour développement mobile rapide
+
+### 🔹 Production
+- Base de données : **PostgreSQL**
+- Configuration via variables d’environnement
+
+---
+
+## 🚀 Installation & Démarrage
 
 ### 1. Prérequis
-- Python 3.10 ou supérieur
-- PostgreSQL installé et configuré
+- Python 3.10+
+- pip
+- virtualenv
+- PostgreSQL (pour production)
 
-### 2. Configuration de l'environnement
+---
+
+### 2. Installation
+
 ```bash
-# Activer l'environnement virtuel
-".\venv\Scripts\activate"
+git clone https://github.com/AGH-Data-Agency-Holding/APK-Regimes-Perte-de-Poids.git
+cd APK-Regimes-Perte-de-Poids
 
-# Installer les dépendances
+python -m venv venv
+source venv/bin/activate  # Linux / Mac
+venv\Scripts\activate     # Windows
+
 pip install -r requirements.txt
+
+### 3.  migrations 
+python manage.py makemigrations
+python manage.py migrate
+
+
+### 4. demarrage 
+python manage.py runserver
