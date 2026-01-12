@@ -117,6 +117,348 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sign Up'**
   String get signup;
+
+  /// No description provided for @continueText.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continueText;
+
+  /// No description provided for @createAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'create account'**
+  String get createAccount;
+
+  /// No description provided for @newToOurCommunity.
+  ///
+  /// In en, this message translates to:
+  /// **'New to our community'**
+  String get newToOurCommunity;
+
+  /// No description provided for @emailOrMobile.
+  ///
+  /// In en, this message translates to:
+  /// **'Email or mobile phone number'**
+  String get emailOrMobile;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @confirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Password'**
+  String get confirmPassword;
+
+  /// No description provided for @firstName.
+  ///
+  /// In en, this message translates to:
+  /// **'First name'**
+  String get firstName;
+
+  /// No description provided for @lastName.
+  ///
+  /// In en, this message translates to:
+  /// **'Last name'**
+  String get lastName;
+
+  /// No description provided for @emailAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Email address'**
+  String get emailAddress;
+
+  /// No description provided for @showPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Show password'**
+  String get showPassword;
+
+  /// No description provided for @logInInstead.
+  ///
+  /// In en, this message translates to:
+  /// **'log in instead'**
+  String get logInInstead;
+
+  /// No description provided for @alreadyHaveAnAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account? '**
+  String get alreadyHaveAnAccount;
+
+  /// No description provided for @logIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in'**
+  String get logIn;
+
+  /// No description provided for @otherIssueWithLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Other issue with login'**
+  String get otherIssueWithLogin;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget your password?'**
+  String get forgotPassword;
+
+  /// No description provided for @byContinuingYouAgreeToThe.
+  ///
+  /// In en, this message translates to:
+  /// **'By continuing, you agree to the '**
+  String get byContinuingYouAgreeToThe;
+
+  /// No description provided for @termsOfUse.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of use'**
+  String get termsOfUse;
+
+  /// No description provided for @and.
+  ///
+  /// In en, this message translates to:
+  /// **' and '**
+  String get and;
+
+  /// No description provided for @privacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacyPolicy;
+
+  /// No description provided for @hide.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide'**
+  String get hide;
+
+  /// No description provided for @show.
+  ///
+  /// In en, this message translates to:
+  /// **'Show'**
+  String get show;
+
+  /// No description provided for @tellUsMoreAboutYourself.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us more about yourself'**
+  String get tellUsMoreAboutYourself;
+
+  /// No description provided for @gender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get gender;
+
+  /// No description provided for @male.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get male;
+
+  /// No description provided for @female.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get female;
+
+  /// No description provided for @other.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get other;
+
+  /// No description provided for @age.
+  ///
+  /// In en, this message translates to:
+  /// **'Age'**
+  String get age;
+
+  /// No description provided for @under18.
+  ///
+  /// In en, this message translates to:
+  /// **'Under 18'**
+  String get under18;
+
+  /// No description provided for @age18to24.
+  ///
+  /// In en, this message translates to:
+  /// **'18-24'**
+  String get age18to24;
+
+  /// No description provided for @age25to34.
+  ///
+  /// In en, this message translates to:
+  /// **'25-34'**
+  String get age25to34;
+
+  /// No description provided for @age35to44.
+  ///
+  /// In en, this message translates to:
+  /// **'35-44'**
+  String get age35to44;
+
+  /// No description provided for @age45to54.
+  ///
+  /// In en, this message translates to:
+  /// **'45-54'**
+  String get age45to54;
+
+  /// No description provided for @age55to64.
+  ///
+  /// In en, this message translates to:
+  /// **'55-64'**
+  String get age55to64;
+
+  /// No description provided for @age65plus.
+  ///
+  /// In en, this message translates to:
+  /// **'65+'**
+  String get age65plus;
+
+  /// No description provided for @weight.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight'**
+  String get weight;
+
+  /// No description provided for @height.
+  ///
+  /// In en, this message translates to:
+  /// **'Height'**
+  String get height;
+
+  /// No description provided for @goodMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Good Morning'**
+  String get goodMorning;
+
+  /// No description provided for @goodAfternoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Good Afternoon'**
+  String get goodAfternoon;
+
+  /// No description provided for @goodEvening.
+  ///
+  /// In en, this message translates to:
+  /// **'Good Evening'**
+  String get goodEvening;
+
+  /// No description provided for @stepsWalked.
+  ///
+  /// In en, this message translates to:
+  /// **'Steps Walked'**
+  String get stepsWalked;
+
+  /// No description provided for @steps.
+  ///
+  /// In en, this message translates to:
+  /// **'Steps'**
+  String get steps;
+
+  /// No description provided for @km.
+  ///
+  /// In en, this message translates to:
+  /// **'km'**
+  String get km;
+
+  /// No description provided for @kcal.
+  ///
+  /// In en, this message translates to:
+  /// **'kcal'**
+  String get kcal;
+
+  /// No description provided for @caloriesBurned.
+  ///
+  /// In en, this message translates to:
+  /// **'Calories Burned'**
+  String get caloriesBurned;
+
+  /// No description provided for @updateGoal.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Goal'**
+  String get updateGoal;
+
+  /// No description provided for @waterIntake.
+  ///
+  /// In en, this message translates to:
+  /// **'Water Intake'**
+  String get waterIntake;
+
+  /// No description provided for @ml.
+  ///
+  /// In en, this message translates to:
+  /// **'ml'**
+  String get ml;
+
+  /// No description provided for @cup.
+  ///
+  /// In en, this message translates to:
+  /// **'cup'**
+  String get cup;
+
+  /// No description provided for @aiAssistant.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Assistant'**
+  String get aiAssistant;
+
+  /// No description provided for @howCanIHelpYouToday.
+  ///
+  /// In en, this message translates to:
+  /// **'How can I help you today'**
+  String get howCanIHelpYouToday;
+
+  /// No description provided for @foodIdeas.
+  ///
+  /// In en, this message translates to:
+  /// **'Food ideas'**
+  String get foodIdeas;
+
+  /// No description provided for @howToReduce.
+  ///
+  /// In en, this message translates to:
+  /// **'how to reduc...'**
+  String get howToReduce;
+
+  /// No description provided for @workoutRoutines.
+  ///
+  /// In en, this message translates to:
+  /// **'Workout routines'**
+  String get workoutRoutines;
+
+  /// No description provided for @whatsOnYourMind.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s on your mind'**
+  String get whatsOnYourMind;
+
+  /// No description provided for @weightLossJourney.
+  ///
+  /// In en, this message translates to:
+  /// **'weight loss journey'**
+  String get weightLossJourney;
+
+  /// No description provided for @lastMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Month'**
+  String get lastMonth;
+
+  /// No description provided for @currentMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Month'**
+  String get currentMonth;
 }
 
 class _AppLocalizationsDelegate

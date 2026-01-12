@@ -183,10 +183,12 @@
 import os
 from pathlib import Path
 from datetime import timedelta
-from dotenv import load_dotenv
 
-# Charger les variables d'environnement
-load_dotenv()
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
 # BASE DIR
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -337,3 +339,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+SECRET_KEY = 'django-insecure-vg7_ir2cw@!bbdb2pz5-ar%h@6^*a&b7!sl!8!*p7_r=n2=#_&'
