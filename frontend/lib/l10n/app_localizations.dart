@@ -333,6 +333,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Height'**
   String get height;
+
+  /// No description provided for @goodMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Good Morning'**
+  String get goodMorning;
+
+  /// No description provided for @goodAfternoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Good Afternoon'**
+  String get goodAfternoon;
+
+  /// No description provided for @goodEvening.
+  ///
+  /// In en, this message translates to:
+  /// **'Good Evening'**
+  String get goodEvening;
+
+  /// No description provided for @stepsWalked.
+  ///
+  /// In en, this message translates to:
+  /// **'Steps Walked'**
+  String get stepsWalked;
+
+  /// No description provided for @steps.
+  ///
+  /// In en, this message translates to:
+  /// **'Steps'**
+  String get steps;
+
+  /// No description provided for @km.
+  ///
+  /// In en, this message translates to:
+  /// **'km'**
+  String get km;
+
+  /// No description provided for @kcal.
+  ///
+  /// In en, this message translates to:
+  /// **'kcal'**
+  String get kcal;
+
+  /// No description provided for @caloriesBurned.
+  ///
+  /// In en, this message translates to:
+  /// **'Calories Burned'**
+  String get caloriesBurned;
+
+  /// No description provided for @updateGoal.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Goal'**
+  String get updateGoal;
+
+  /// No description provided for @waterIntake.
+  ///
+  /// In en, this message translates to:
+  /// **'Water Intake'**
+  String get waterIntake;
+
+  /// No description provided for @ml.
+  ///
+  /// In en, this message translates to:
+  /// **'ml'**
+  String get ml;
+
+  /// No description provided for @cup.
+  ///
+  /// In en, this message translates to:
+  /// **'cup'**
+  String get cup;
+
+  /// No description provided for @aiAssistant.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Assistant'**
+  String get aiAssistant;
+
+  /// No description provided for @howCanIHelpYouToday.
+  ///
+  /// In en, this message translates to:
+  /// **'How can I help you today'**
+  String get howCanIHelpYouToday;
+
+  /// No description provided for @foodIdeas.
+  ///
+  /// In en, this message translates to:
+  /// **'Food ideas'**
+  String get foodIdeas;
+
+  /// No description provided for @howToReduce.
+  ///
+  /// In en, this message translates to:
+  /// **'how to reduc...'**
+  String get howToReduce;
+
+  /// No description provided for @workoutRoutines.
+  ///
+  /// In en, this message translates to:
+  /// **'Workout routines'**
+  String get workoutRoutines;
+
+  /// No description provided for @whatsOnYourMind.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s on your mind'**
+  String get whatsOnYourMind;
+
+  /// No description provided for @weightLossJourney.
+  ///
+  /// In en, this message translates to:
+  /// **'weight loss journey'**
+  String get weightLossJourney;
+
+  /// No description provided for @lastMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Month'**
+  String get lastMonth;
+
+  /// No description provided for @currentMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Month'**
+  String get currentMonth;
 }
 
 class _AppLocalizationsDelegate

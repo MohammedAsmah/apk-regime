@@ -124,4 +124,67 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get height => 'Taille';
+
+  @override
+  String get goodMorning => 'Bonjour';
+
+  @override
+  String get goodAfternoon => 'Bon après-midi';
+
+  @override
+  String get goodEvening => 'Bonsoir';
+
+  @override
+  String get stepsWalked => 'Pas effectués';
+
+  @override
+  String get steps => 'Pas';
+
+  @override
+  String get km => 'km';
+
+  @override
+  String get kcal => 'kcal';
+
+  @override
+  String get caloriesBurned => 'Calories brûlées';
+
+  @override
+  String get updateGoal => 'Mettre à jour l\'objectif';
+
+  @override
+  String get waterIntake => 'Consommation d\'eau';
+
+  @override
+  String get ml => 'ml';
+
+  @override
+  String get cup => 'tasse';
+
+  @override
+  String get aiAssistant => 'Assistant IA';
+
+  @override
+  String get howCanIHelpYouToday => 'Comment puis-je vous aider aujourd\'hui';
+
+  @override
+  String get foodIdeas => 'Idées de repas';
+
+  @override
+  String get howToReduce => 'comment réduire...';
+
+  @override
+  String get workoutRoutines => 'Routines d\'entraînement';
+
+  @override
+  String get whatsOnYourMind => 'À quoi pensez-vous';
+
+  @override
+  String get weightLossJourney => 'parcours de perte de poids';
+
+  @override
+  String get lastMonth => 'Mois dernier';
+
+  @override
+  String get currentMonth => 'Mois actuel';
 }

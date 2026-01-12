@@ -124,4 +124,67 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get height => 'Height';
+
+  @override
+  String get goodMorning => 'Good Morning';
+
+  @override
+  String get goodAfternoon => 'Good Afternoon';
+
+  @override
+  String get goodEvening => 'Good Evening';
+
+  @override
+  String get stepsWalked => 'Steps Walked';
+
+  @override
+  String get steps => 'Steps';
+
+  @override
+  String get km => 'km';
+
+  @override
+  String get kcal => 'kcal';
+
+  @override
+  String get caloriesBurned => 'Calories Burned';
+
+  @override
+  String get updateGoal => 'Update Goal';
+
+  @override
+  String get waterIntake => 'Water Intake';
+
+  @override
+  String get ml => 'ml';
+
+  @override
+  String get cup => 'cup';
+
+  @override
+  String get aiAssistant => 'AI Assistant';
+
+  @override
+  String get howCanIHelpYouToday => 'How can I help you today';
+
+  @override
+  String get foodIdeas => 'Food ideas';
+
+  @override
+  String get howToReduce => 'how to reduc...';
+
+  @override
+  String get workoutRoutines => 'Workout routines';
+
+  @override
+  String get whatsOnYourMind => 'What\'s on your mind';
+
+  @override
+  String get weightLossJourney => 'weight loss journey';
+
+  @override
+  String get lastMonth => 'Last Month';
+
+  @override
+  String get currentMonth => 'Current Month';
 }

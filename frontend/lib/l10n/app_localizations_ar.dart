@@ -124,4 +124,67 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get height => 'الطول';
+
+  @override
+  String get goodMorning => 'صباح الخير';
+
+  @override
+  String get goodAfternoon => 'مساء الخير';
+
+  @override
+  String get goodEvening => 'مساء الخير';
+
+  @override
+  String get stepsWalked => 'الخطوات المقطوعة';
+
+  @override
+  String get steps => 'خطوات';
+
+  @override
+  String get km => 'كم';
+
+  @override
+  String get kcal => 'سعرة حرارية';
+
+  @override
+  String get caloriesBurned => 'السعرات المحروقة';
+
+  @override
+  String get updateGoal => 'تحديث الهدف';
+
+  @override
+  String get waterIntake => 'استهلاك الماء';
+
+  @override
+  String get ml => 'مل';
+
+  @override
+  String get cup => 'كوب';
+
+  @override
+  String get aiAssistant => 'المساعد الذكي';
+
+  @override
+  String get howCanIHelpYouToday => 'كيف يمكنني مساعدتك اليوم';
+
+  @override
+  String get foodIdeas => 'أفكار الطعام';
+
+  @override
+  String get howToReduce => 'كيفية التقليل...';
+
+  @override
+  String get workoutRoutines => 'روتينات التمرين';
+
+  @override
+  String get whatsOnYourMind => 'ما الذي يدور في ذهنك';
+
+  @override
+  String get weightLossJourney => 'رحلة فقدان الوزن';
+
+  @override
+  String get lastMonth => 'الشهر الماضي';
+
+  @override
+  String get currentMonth => 'الشهر الحالي';
 }
