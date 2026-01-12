@@ -184,6 +184,18 @@ abstract class AppLocalizations {
   /// **'log in instead'**
   String get logInInstead;
 
+  /// No description provided for @alreadyHaveAnAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account? '**
+  String get alreadyHaveAnAccount;
+
+  /// No description provided for @logIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in'**
+  String get logIn;
+
   /// No description provided for @otherIssueWithLogin.
   ///
   /// In en, this message translates to:
@@ -231,6 +243,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Show'**
   String get show;
+
+  /// No description provided for @tellUsMoreAboutYourself.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us more about yourself'**
+  String get tellUsMoreAboutYourself;
+
+  /// No description provided for @gender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get gender;
+
+  /// No description provided for @male.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get male;
+
+  /// No description provided for @female.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get female;
+
+  /// No description provided for @other.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get other;
+
+  /// No description provided for @age.
+  ///
+  /// In en, this message translates to:
+  /// **'Age'**
+  String get age;
+
+  /// No description provided for @under18.
+  ///
+  /// In en, this message translates to:
+  /// **'Under 18'**
+  String get under18;
+
+  /// No description provided for @age18to24.
+  ///
+  /// In en, this message translates to:
+  /// **'18-24'**
+  String get age18to24;
+
+  /// No description provided for @age25to34.
+  ///
+  /// In en, this message translates to:
+  /// **'25-34'**
+  String get age25to34;
+
+  /// No description provided for @age35to44.
+  ///
+  /// In en, this message translates to:
+  /// **'35-44'**
+  String get age35to44;
+
+  /// No description provided for @age45to54.
+  ///
+  /// In en, this message translates to:
+  /// **'45-54'**
+  String get age45to54;
+
+  /// No description provided for @age55to64.
+  ///
+  /// In en, this message translates to:
+  /// **'55-64'**
+  String get age55to64;
+
+  /// No description provided for @age65plus.
+  ///
+  /// In en, this message translates to:
+  /// **'65+'**
+  String get age65plus;
+
+  /// No description provided for @weight.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight'**
+  String get weight;
+
+  /// No description provided for @height.
+  ///
+  /// In en, this message translates to:
+  /// **'Height'**
+  String get height;
 }
 
 class _AppLocalizationsDelegate

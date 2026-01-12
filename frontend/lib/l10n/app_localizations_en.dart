@@ -51,6 +51,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get logInInstead => 'log in instead';
 
   @override
+  String get alreadyHaveAnAccount => 'Already have an account? ';
+
+  @override
+  String get logIn => 'Log in';
+
+  @override
   String get otherIssueWithLogin => 'Other issue with login';
 
   @override
@@ -73,4 +79,49 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get show => 'Show';
+
+  @override
+  String get tellUsMoreAboutYourself => 'Tell us more about yourself';
+
+  @override
+  String get gender => 'Gender';
+
+  @override
+  String get male => 'Male';
+
+  @override
+  String get female => 'Female';
+
+  @override
+  String get other => 'Other';
+
+  @override
+  String get age => 'Age';
+
+  @override
+  String get under18 => 'Under 18';
+
+  @override
+  String get age18to24 => '18-24';
+
+  @override
+  String get age25to34 => '25-34';
+
+  @override
+  String get age35to44 => '35-44';
+
+  @override
+  String get age45to54 => '45-54';
+
+  @override
+  String get age55to64 => '55-64';
+
+  @override
+  String get age65plus => '65+';
+
+  @override
+  String get weight => 'Weight';
+
+  @override
+  String get height => 'Height';
 }

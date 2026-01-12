@@ -10,4 +10,3 @@ export 'auth/index.dart';
 export 'home/index.dart';
 
 
-part 'more_info_page.dart';
