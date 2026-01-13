@@ -3,7 +3,7 @@ part of 'index.dart';
 class CustomBottomNavBar extends StatelessWidget {
   final int currentIndex;
   final ValueChanged<int> onTap;
-  
+
   const CustomBottomNavBar({
     super.key,
     required this.currentIndex,
@@ -13,11 +13,11 @@ class CustomBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(horizontal: AppDimensions.m),
       decoration: BoxDecoration(
         color: AppColors.black,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(AppDimensions.radiusXL),
-          topRight: Radius.circular(AppDimensions.radiusXL),
+        borderRadius: BorderRadius.all(
+          Radius.circular(AppDimensions.radiusXL),
         ),
       ),
       child: SafeArea(
@@ -32,11 +32,11 @@ class CustomBottomNavBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              _buildNavItem(Icons.home_filled, 0),
-              _buildNavItem(Icons.self_improvement, 1),
+              _buildNavItem(context, Icons.home_filled, 0, '/home'),
+              _buildNavItem(context, Icons.self_improvement, 1, '/progress'),
               _buildCenterNavItem(),
-              _buildNavItem(Icons.fitness_center, 3),
-              _buildNavItem(Icons.person, 4),
+              _buildNavItem(context, Icons.fitness_center, 3, '/progress'),
+              _buildNavItem(context, Icons.person, 4, '/profile'),
             ],
           ),
         ),
@@ -44,20 +44,22 @@ class CustomBottomNavBar extends StatelessWidget {
     );
   }
 
-  Widget _buildNavItem(IconData icon, int index) {
+  Widget _buildNavItem(BuildContext context, IconData icon, int index, String route) {
     final isSelected = currentIndex == index;
     return IconButton(
-      onPressed: () => onTap(index),
+      onPressed: () {
+        context.go(route);
+        onTap(index);
+      },
       icon: Icon(
         icon,
-        color: isSelected ? AppColors.white : AppColors.white.withValues(alpha: 0.4),
+        color: isSelected
+            ? AppColors.white
+            : AppColors.white.withValues(alpha: 0.4),
         size: 28.sp,
       ),
       padding: EdgeInsets.zero,
-      constraints: BoxConstraints(
-        minWidth: 48.w,
-        minHeight: 48.h,
-      ),
+      constraints: BoxConstraints(minWidth: 48.w, minHeight: 48.h),
     );
   }
 
@@ -75,11 +77,7 @@ class CustomBottomNavBar extends StatelessWidget {
       ),
       child: IconButton(
         onPressed: () => onTap(2),
-        icon: Icon(
-          Icons.add,
-          color: AppColors.white,
-          size: 32.sp,
-        ),
+        icon: Icon(Icons.add, color: AppColors.white, size: 32.sp),
         padding: EdgeInsets.zero,
       ),
     );

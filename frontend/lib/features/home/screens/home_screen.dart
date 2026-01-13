@@ -101,7 +101,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: CustomBottomNavBar(
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: CustomBottomNavBar(
         currentIndex: _currentBottomNavIndex,
         onTap: _handleBottomNavTap,
       ),
