@@ -82,20 +82,55 @@ final goRouter = GoRouter(
         ),
       ],
     ),
-  
 
-GoRoute(
+    GoRoute(
       path: '/home',
       name: 'Home',
       pageBuilder: (context, state) => CustomTransitionPage(
         key: state.pageKey,
+        barrierColor: Colors.transparent,
         child: const HomeScreen(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return FadeTransition(opacity: animation, child: child);
         },
       ),
     ),
-  
+
+    GoRoute(
+      path: '/progress',
+      name: 'Progress',
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: const ProgressScreen(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return FadeTransition(opacity: animation, child: child);
+        },
+      ),
+    ),
+
+    GoRoute(
+      path: '/challenges',
+      name: 'Challenges',
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: const ChallengesScreen(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return SlideTransition(
+            position:
+                Tween<Offset>(
+                  begin: const Offset(1.0, 0.0),
+                  end: Offset.zero,
+                ).animate(
+                  CurvedAnimation(
+                    parent: animation,
+                    curve: Curves.easeOutCubic,
+                  ),
+                ),
+            child: child,
+          );
+        },
+      ),
+    ),
   ],
   errorBuilder: (context, state) =>
       Scaffold(body: Center(child: Text('Page not found: ${state.uri}'))),

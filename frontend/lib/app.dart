@@ -27,6 +27,7 @@ class TRNX extends StatelessWidget {
             title: 'TRNX',
             debugShowCheckedModeBanner: false,
             locale: locale,
+            color: Colors.transparent,
             localizationsDelegates: [
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
