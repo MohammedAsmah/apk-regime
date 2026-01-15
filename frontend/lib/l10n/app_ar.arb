@@ -74,5 +74,10 @@
   "conditionsOfUse": "شروط الاستخدام",
   "cancelMembership": "إلغاء العضوية",
   "privacyPolicyTitle": "سياسة الخصوصية",
-  "name": "الاسم"
+  "name": "الاسم",
+  "coach": "المدرب",
+  "aiAssistantIsOffline": "المساعد الذكي غير متصل",
+  "pleaseConnectWifiOrData": "يرجى توصيل الواي فاي أو البيانات!",
+  "useOfflineAi": "استخدام الذكاء الاصطناعي دون اتصال",
+  "introduceYourself": "قدم نفسك من فضلك"
 }

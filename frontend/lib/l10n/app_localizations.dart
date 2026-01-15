@@ -555,6 +555,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Name'**
   String get name;
+
+  /// No description provided for @coach.
+  ///
+  /// In en, this message translates to:
+  /// **'Coach'**
+  String get coach;
+
+  /// No description provided for @aiAssistantIsOffline.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Assistant is offline'**
+  String get aiAssistantIsOffline;
+
+  /// No description provided for @pleaseConnectWifiOrData.
+  ///
+  /// In en, this message translates to:
+  /// **'please connect your wifi or data!'**
+  String get pleaseConnectWifiOrData;
+
+  /// No description provided for @useOfflineAi.
+  ///
+  /// In en, this message translates to:
+  /// **'use offline ai'**
+  String get useOfflineAi;
+
+  /// No description provided for @introduceYourself.
+  ///
+  /// In en, this message translates to:
+  /// **'Introduce yourself for me please'**
+  String get introduceYourself;
 }
 
 class _AppLocalizationsDelegate

@@ -16,9 +16,7 @@ class CustomBottomNavBar extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: AppDimensions.m),
       decoration: BoxDecoration(
         color: AppColors.black,
-        borderRadius: BorderRadius.all(
-          Radius.circular(AppDimensions.radiusXL),
-        ),
+        borderRadius: BorderRadius.all(Radius.circular(AppDimensions.radiusXL)),
       ),
       child: SafeArea(
         top: false,
@@ -32,11 +30,11 @@ class CustomBottomNavBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              _buildNavItem(context, Icons.home_filled, 0, '/home'),
-              _buildNavItem(context, Icons.self_improvement, 1, '/progress'),
+              _buildNavItem(context, TRNXIcons.homeIcon, 0, '/home'),
+              _buildNavItem(context, TRNXIcons.coachIcon, 1, '/coach'),
               _buildCenterNavItem(),
-              _buildNavItem(context, Icons.fitness_center, 3, '/progress'),
-              _buildNavItem(context, Icons.person, 4, '/profile'),
+              _buildNavItem(context, TRNXIcons.exerciseBikeIcon ,3 ,'/progress'),
+              _buildNavItem(context, TRNXIcons.profileIcon, 4, '/profile'),
             ],
           ),
         ),
@@ -44,20 +42,28 @@ class CustomBottomNavBar extends StatelessWidget {
     );
   }
 
-  Widget _buildNavItem(BuildContext context, IconData icon, int index, String route) {
+  Widget _buildNavItem(
+    BuildContext context,
+    TRNXIcons icon,
+    int index,
+    String route,
+  ) {
     final isSelected = currentIndex == index;
     return IconButton(
       onPressed: () {
         context.go(route);
         onTap(index);
+        
       },
-      icon: Icon(
-        icon,
-        color: isSelected
-            ? AppColors.white
-            : AppColors.white.withValues(alpha: 0.4),
-        size: 28.sp,
-      ),
+      icon: SvgPicture.string(
+              icon.svg,
+              // colorMapper: const _MyColorMapper(),
+              color: isSelected
+                  ? AppColors.white
+                  : AppColors.white.withValues(alpha: 0.4),
+              width: 24.sp,
+              height: 24.sp,
+            ),
       padding: EdgeInsets.zero,
       constraints: BoxConstraints(minWidth: 48.w, minHeight: 48.h),
     );
@@ -65,8 +71,8 @@ class CustomBottomNavBar extends StatelessWidget {
 
   Widget _buildCenterNavItem() {
     return Container(
-      width: 60.w,
-      height: 60.h,
+      width: 48.w,
+      height: 48.h,
       decoration: BoxDecoration(
         color: AppColors.white.withValues(alpha: 0.15),
         shape: BoxShape.circle,
@@ -77,9 +83,33 @@ class CustomBottomNavBar extends StatelessWidget {
       ),
       child: IconButton(
         onPressed: () => onTap(2),
-        icon: Icon(Icons.add, color: AppColors.white, size: 32.sp),
+        icon: SvgPicture.string(
+          TRNXIcons.scaneIcon.svg,
+          color: AppColors.white,
+          width: 32.sp,
+        ),
         padding: EdgeInsets.zero,
       ),
     );
+  }
+}
+
+class _MyColorMapper extends ColorMapper {
+  const _MyColorMapper();
+
+  @override
+  Color substitute(
+    String? id,
+    String elementName,
+    String attributeName,
+    Color color,
+  ) {
+    if (color == const Color(0xFFFF0000)) {
+      return Colors.blue;
+    }
+    if (color == const Color(0xFF00FF00)) {
+      return Colors.yellow;
+    }
+    return color;
   }
 }

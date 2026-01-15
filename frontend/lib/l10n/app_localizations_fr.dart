@@ -236,4 +236,20 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get name => 'Nom';
+
+  @override
+  String get coach => 'Coach';
+
+  @override
+  String get aiAssistantIsOffline => 'L\'assistant IA est hors ligne';
+
+  @override
+  String get pleaseConnectWifiOrData =>
+      'veuillez connecter votre wifi ou vos données!';
+
+  @override
+  String get useOfflineAi => 'utiliser l\'IA hors ligne';
+
+  @override
+  String get introduceYourself => 'Présentez-vous s\'il vous plaît';
 }

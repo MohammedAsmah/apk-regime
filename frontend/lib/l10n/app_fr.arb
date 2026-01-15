@@ -74,5 +74,10 @@
   "conditionsOfUse": "Conditions d'utilisation",
   "cancelMembership": "Annuler mon abonnement",
   "privacyPolicyTitle": "Politique de confidentialité",
-  "name": "Nom"
+  "name": "Nom",
+  "coach": "Coach",
+  "aiAssistantIsOffline": "L'assistant IA est hors ligne",
+  "pleaseConnectWifiOrData": "veuillez connecter votre wifi ou vos données!",
+  "useOfflineAi": "utiliser l'IA hors ligne",
+  "introduceYourself": "Présentez-vous s'il vous plaît"
 }

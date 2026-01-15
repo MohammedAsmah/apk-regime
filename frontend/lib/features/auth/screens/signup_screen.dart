@@ -19,22 +19,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
         return Scaffold(
           backgroundColor: ColorScheme.of(context).background,
           body: SafeArea(
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: AppDimensions.screenPaddingHorizontal,
-                vertical: AppDimensions.screenPaddingVertical,
-              ),
-              child: SingleChildScrollView(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppDimensions.screenPaddingHorizontal,
+                  vertical: AppDimensions.screenPaddingVertical,
+                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       l10n.createAccount,
-                      style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                        fontWeight: FontWeight.w500,
-                        fontFamily: 'Poppins',
-                      ),
+                      style: Theme.of(context).textTheme.headlineLarge!
+                          .copyWith(
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'Poppins',
+                          ),
                     ),
                     SizedBox(height: 10.h),
 
@@ -45,10 +46,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           TextSpan(text: l10n.alreadyHaveAnAccount),
                           TextSpan(
                             text: l10n.logIn,
-                            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                              decoration: TextDecoration.underline,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            style: Theme.of(context).textTheme.bodyLarge!
+                                .copyWith(
+                                  decoration: TextDecoration.underline,
+                                  fontWeight: FontWeight.w500,
+                                ),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 context.push('/auth/login');
@@ -141,7 +143,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               Text(
                                 l10n.password,
                                 style: Theme.of(context).textTheme.bodyLarge!
-                                    .copyWith(color: Theme.of(context).hintColor),
+                                    .copyWith(
+                                      color: Theme.of(context).hintColor,
+                                    ),
                               ),
                               Spacer(),
                               IconButton(
@@ -197,7 +201,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           MaterialPageRoute(builder: (ctx) => MoreInfoPage()),
                         );
                       },
-                      child: Text(l10n.createAccount, style: TextStyle(fontSize: 20.sp)),
+                      child: Text(
+                        l10n.createAccount,
+                        style: TextStyle(fontSize: 20.sp),
+                      ),
                     ),
 
                     SizedBox(height: AppDimensions.m),
@@ -208,11 +215,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       },
                       child: Text(
                         l10n.logInInstead,
-                        style: Theme.of(context).textTheme.bodyMedium
-                            ?.copyWith(
-                              decoration: TextDecoration.underline,
-                              fontWeight: FontWeight.w500,
-                            ),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          decoration: TextDecoration.underline,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                   ],

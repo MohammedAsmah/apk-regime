@@ -19,16 +19,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
       return const Center(child: CircularProgressIndicator());
     }
 
-    return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: AppDimensions.screenPaddingHorizontal,
-          vertical: AppDimensions.m,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: AppDimensions.l),
+    return Scaffold(
+      backgroundColor: ColorScheme.of(context).background,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: AppDimensions.screenPaddingHorizontal,
+              // vertical: AppDimensions.m,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 Center(
                   child: Stack(
                     children: [
@@ -111,7 +113,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Icon(
                       Icons.chat_bubble_outline,
                       size: 20.sp,
-                      color: theme.colorScheme.onBackground.withValues(alpha: 0.6),
+                      color: theme.colorScheme.onBackground.withValues(
+                        alpha: 0.6,
+                      ),
                     ),
                     SizedBox(width: AppDimensions.xs),
                     Text(
@@ -141,7 +145,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Icon(
                       Icons.description_outlined,
                       size: 20.sp,
-                      color: theme.colorScheme.onBackground.withValues(alpha: 0.6),
+                      color: theme.colorScheme.onBackground.withValues(
+                        alpha: 0.6,
+                      ),
                     ),
                     SizedBox(width: AppDimensions.xs),
                     Text(
@@ -171,8 +177,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   title: l10n.privacyPolicyTitle,
                   onTap: () {},
                 ),
-            SizedBox(height: AppDimensions.xxl),
-          ],
+                  SizedBox(height: AppDimensions.l,)
+              ],
+            ),
+          ),
         ),
       ),
     );

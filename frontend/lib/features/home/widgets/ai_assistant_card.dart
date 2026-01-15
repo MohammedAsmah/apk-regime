@@ -17,12 +17,14 @@ class AIAssistantCard extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
 
-    return Container(
-      padding: EdgeInsets.all(AppDimensions.l),
-      decoration: BoxDecoration(
-        color: AppColors.black,
-        borderRadius: BorderRadius.circular(AppDimensions.radiusL),
-      ),
+    return GestureDetector(
+      onTap: () => context.go('/coach'),
+      child: Container(
+        padding: EdgeInsets.all(AppDimensions.l),
+        decoration: BoxDecoration(
+          color: AppColors.black,
+          borderRadius: BorderRadius.circular(AppDimensions.radiusL),
+        ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -117,6 +119,7 @@ class AIAssistantCard extends StatelessWidget {
             ),
           ),
         ],
+      ),
       ),
     );
   }

@@ -8,12 +8,14 @@ export 'package:google_fonts/google_fonts.dart';
 export 'package:flutter_localization/flutter_localization.dart';
 export 'package:flutter/foundation.dart';
 export 'package:fl_chart/fl_chart.dart';
+export 'package:flutter_svg/flutter_svg.dart';
 
 
 
 export './l10n/index.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter_trnx_project/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
@@ -32,6 +34,7 @@ import './features/index.dart';
 
 
 part 'app.dart';
-part 'app_layout.dart';
+part 'core/router/app_layout.dart';
+part 'core/router/def_header.dart';
 
 

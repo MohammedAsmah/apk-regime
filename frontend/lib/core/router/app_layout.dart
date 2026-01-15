@@ -4,11 +4,7 @@ class AppLayout extends StatefulWidget {
   final Widget child;
   final GoRouterState state;
 
-  const AppLayout({
-    super.key,
-    required this.child,
-    required this.state,
-  });
+  const AppLayout({super.key, required this.child, required this.state});
 
   @override
   State<AppLayout> createState() => _AppLayoutState();
@@ -18,19 +14,23 @@ class _AppLayoutState extends State<AppLayout> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   int _currentBottomNavIndex = 0;
 
+  
+
   final Map<String, int> _routeIndexMap = {
     '/home': 0,
-    '/progress': 1,
-    '/challenges': 3,
+    '/coach': 1,
+    '/progress': 3,
     '/profile': 4,
   };
 
-  final Map<String, String> _routeNameMap = {
-    '/home': 'Home',
-    '/progress': 'Progress',
-    '/profile': 'Profile',
-    '/auth': 'Auth',
-    '/challenges': 'Challenges',
+  final _routeNameMap = {
+    '/home': HomeHeader(userName: 'Mark'),
+    '/coach': CoachHeader(),
+    '/progress': DefHeader(title: 'Progress', icon: TRNXIcons.exerciseBikeIcon),
+    '/profile': DefHeader(title: 'Profile', icon: TRNXIcons.profileIcon),
+
+    '/challenges': DefHeader(title: 'Challenges', icon: TRNXIcons.backIcon),
+    '/auth': DefHeader(title: 'Auth', icon: TRNXIcons.backIcon),
   };
 
   @override
@@ -58,9 +58,9 @@ class _AppLayoutState extends State<AppLayout> {
     });
   }
 
-  String _getScreenTitle() {
+  Widget _getTitleWidget() {
     final location = widget.state.uri.path;
-    return _routeNameMap[location] ?? 'TRNX';
+    return _routeNameMap[location] ?? Text('TRNX');
   }
 
   @override
@@ -90,8 +90,9 @@ class _AppLayoutState extends State<AppLayout> {
 
   Widget _buildHeader(BuildContext context) {
     final theme = Theme.of(context);
-    
+
     return Container(
+      decoration: BoxDecoration(color: ColorScheme.of(context).background),
       padding: EdgeInsets.symmetric(
         horizontal: AppDimensions.screenPaddingHorizontal,
         vertical: AppDimensions.m,
@@ -99,13 +100,7 @@ class _AppLayoutState extends State<AppLayout> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            _getScreenTitle(),
-            style: theme.textTheme.headlineLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-              fontSize: 24.sp,
-            ),
-          ),
+          _getTitleWidget(),
           GestureDetector(
             onTap: () {
               _scaffoldKey.currentState?.openDrawer();
@@ -127,7 +122,7 @@ class _AppLayoutState extends State<AppLayout> {
 
   Widget _buildDrawer(BuildContext context) {
     final theme = Theme.of(context);
-    
+
     return Drawer(
       backgroundColor: theme.colorScheme.surface,
       child: SafeArea(
@@ -160,7 +155,9 @@ class _AppLayoutState extends State<AppLayout> {
                         Text(
                           'mark@example.com',
                           style: theme.textTheme.bodyMedium?.copyWith(
-                            color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                            color: theme.colorScheme.onSurface.withValues(
+                              alpha: 0.6,
+                            ),
                           ),
                         ),
                       ],
@@ -244,13 +241,10 @@ class _AppLayoutState extends State<AppLayout> {
     required VoidCallback onTap,
   }) {
     final theme = Theme.of(context);
-    
+
     return ListTile(
       leading: Icon(icon, color: theme.colorScheme.onSurface),
-      title: Text(
-        title,
-        style: theme.textTheme.bodyLarge,
-      ),
+      title: Text(title, style: theme.textTheme.bodyLarge),
       onTap: onTap,
       contentPadding: EdgeInsets.symmetric(
         horizontal: AppDimensions.l,

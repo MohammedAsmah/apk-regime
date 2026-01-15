@@ -47,8 +47,6 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            HomeHeader(userName: 'Mark'),
-            SizedBox(height: AppDimensions.l),
             StepsCard(
               steps: 5000,
               distance: 4.6,
@@ -83,6 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(height: AppDimensions.m),
             WeightLossChartCard(),
+            SizedBox(height: AppDimensions.xl),
             SizedBox(height: AppDimensions.xxl),
           ],
         ),

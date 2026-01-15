@@ -274,6 +274,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ],
                 ),
               ),
+               SizedBox(height: AppDimensions.xl,),
             ],
           ),
         ),

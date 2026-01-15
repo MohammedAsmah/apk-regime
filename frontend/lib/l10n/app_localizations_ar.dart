@@ -235,4 +235,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get name => 'الاسم';
+
+  @override
+  String get coach => 'المدرب';
+
+  @override
+  String get aiAssistantIsOffline => 'المساعد الذكي غير متصل';
+
+  @override
+  String get pleaseConnectWifiOrData => 'يرجى توصيل الواي فاي أو البيانات!';
+
+  @override
+  String get useOfflineAi => 'استخدام الذكاء الاصطناعي دون اتصال';
+
+  @override
+  String get introduceYourself => 'قدم نفسك من فضلك';
 }

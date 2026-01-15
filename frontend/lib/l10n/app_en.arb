@@ -74,5 +74,10 @@
   "conditionsOfUse": "Conditions d'utilisation",
   "cancelMembership": "Cancel My Membership",
   "privacyPolicyTitle": "Politique de confidentialité",
-  "name": "Name"
+  "name": "Name",
+  "coach": "Coach",
+  "aiAssistantIsOffline": "AI Assistant is offline",
+  "pleaseConnectWifiOrData": "please connect your wifi or data!",
+  "useOfflineAi": "use offline ai",
+  "introduceYourself": "Introduce yourself for me please"
 }

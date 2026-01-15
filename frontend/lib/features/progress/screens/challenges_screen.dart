@@ -12,13 +12,6 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: AppDimensions.screenPaddingHorizontal,
-            vertical: AppDimensions.m,
-          ),
-          child: ChallengesHeader(userName: 'Mark'),
-        ),
         Expanded(
           child: SingleChildScrollView(
             child: Padding(
