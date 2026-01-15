@@ -9,3 +9,4 @@ part 'stock.dart';
 part 'app_dimensions.dart';
 part 'app_colors.dart'; 
 part 'app_settings.dart';
+part 'icons.dart';

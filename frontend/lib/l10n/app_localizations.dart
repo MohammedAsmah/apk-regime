@@ -459,6 +459,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Current Month'**
   String get currentMonth;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile;
+
+  /// No description provided for @changePersonalInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Change personnal infos'**
+  String get changePersonalInfo;
+
+  /// No description provided for @memberSince.
+  ///
+  /// In en, this message translates to:
+  /// **'Membre depuis'**
+  String get memberSince;
+
+  /// No description provided for @daysStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Days Streak'**
+  String get daysStreak;
+
+  /// No description provided for @weightLost.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight lost'**
+  String get weightLost;
+
+  /// No description provided for @actualWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Actual weight'**
+  String get actualWeight;
+
+  /// No description provided for @goal.
+  ///
+  /// In en, this message translates to:
+  /// **'Goal'**
+  String get goal;
+
+  /// No description provided for @progressToGoal.
+  ///
+  /// In en, this message translates to:
+  /// **'Plus que 2kg à perdre • Objectif: septembre 2025'**
+  String get progressToGoal;
+
+  /// No description provided for @aidSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Aide & Support'**
+  String get aidSupport;
+
+  /// No description provided for @helpCenter.
+  ///
+  /// In en, this message translates to:
+  /// **'Centre d\'aide FAQ et tutoriels'**
+  String get helpCenter;
+
+  /// No description provided for @contactSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Contacter le Support'**
+  String get contactSupport;
+
+  /// No description provided for @legal.
+  ///
+  /// In en, this message translates to:
+  /// **'Légal'**
+  String get legal;
+
+  /// No description provided for @conditionsOfUse.
+  ///
+  /// In en, this message translates to:
+  /// **'Conditions d\'utilisation'**
+  String get conditionsOfUse;
+
+  /// No description provided for @cancelMembership.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel My Membership'**
+  String get cancelMembership;
+
+  /// No description provided for @privacyPolicyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Politique de confidentialité'**
+  String get privacyPolicyTitle;
+
+  /// No description provided for @name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get name;
+
+  /// No description provided for @coach.
+  ///
+  /// In en, this message translates to:
+  /// **'Coach'**
+  String get coach;
+
+  /// No description provided for @aiAssistantIsOffline.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Assistant is offline'**
+  String get aiAssistantIsOffline;
+
+  /// No description provided for @pleaseConnectWifiOrData.
+  ///
+  /// In en, this message translates to:
+  /// **'please connect your wifi or data!'**
+  String get pleaseConnectWifiOrData;
+
+  /// No description provided for @useOfflineAi.
+  ///
+  /// In en, this message translates to:
+  /// **'use offline ai'**
+  String get useOfflineAi;
+
+  /// No description provided for @introduceYourself.
+  ///
+  /// In en, this message translates to:
+  /// **'Introduce yourself for me please'**
+  String get introduceYourself;
 }
 
 class _AppLocalizationsDelegate

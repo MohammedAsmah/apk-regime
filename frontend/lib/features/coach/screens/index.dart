@@ -1,8 +1,5 @@
 library index;
 
-import 'dart:convert';
 import 'package:flutter_trnx_project/imports.dart';
 
-
-part 'auth_provider.dart';
-
+part 'coach_screen.dart';

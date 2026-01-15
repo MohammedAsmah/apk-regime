@@ -47,16 +47,16 @@ class _MoreInfoPageState extends State<MoreInfoPage> {
   Widget build(BuildContext context) {
     var l10n = AppLocalizations.of(context)!;
     final ageRanges = _getAgeRanges(l10n);
-    
+
     return Scaffold(
       backgroundColor: ColorScheme.of(context).background,
       body: SafeArea(
-        child: Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: AppDimensions.screenPaddingHorizontal,
-            vertical: AppDimensions.screenPaddingVertical,
-          ),
-          child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsetsGeometry.symmetric(
+              horizontal: AppDimensions.screenPaddingHorizontal,
+              vertical: AppDimensions.screenPaddingVertical,
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -94,7 +94,9 @@ class _MoreInfoPageState extends State<MoreInfoPage> {
                         borderRadius: BorderRadius.all(
                           Radius.circular(AppDimensions.radiusS),
                         ),
-                        selectedBorderColor: Theme.of(context).colorScheme.outline,
+                        selectedBorderColor: Theme.of(
+                          context,
+                        ).colorScheme.outline,
                         fillColor: Theme.of(context).colorScheme.inversePrimary,
                         constraints: BoxConstraints(
                           minHeight: AppDimensions.buttonHeight,
@@ -104,21 +106,18 @@ class _MoreInfoPageState extends State<MoreInfoPage> {
                         children: [
                           Text(
                             l10n.male,
-                            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: Theme.of(context).textTheme.bodyLarge!
+                                .copyWith(fontWeight: FontWeight.bold),
                           ),
                           Text(
                             l10n.female,
-                            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: Theme.of(context).textTheme.bodyLarge!
+                                .copyWith(fontWeight: FontWeight.bold),
                           ),
                           Text(
                             l10n.other,
-                            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: Theme.of(context).textTheme.bodyLarge!
+                                .copyWith(fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
@@ -148,7 +147,11 @@ class _MoreInfoPageState extends State<MoreInfoPage> {
                           return GestureDetector(
                             onTap: () {
                               setState(() {
-                                for (int i = 0; i < _selectedAgeRange.length; i++) {
+                                for (
+                                  int i = 0;
+                                  i < _selectedAgeRange.length;
+                                  i++
+                                ) {
                                   _selectedAgeRange[i] = i == index;
                                 }
                               });
@@ -159,15 +162,21 @@ class _MoreInfoPageState extends State<MoreInfoPage> {
                                 vertical: AppDimensions.s,
                               ),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(AppDimensions.radiusS),
+                                borderRadius: BorderRadius.circular(
+                                  AppDimensions.radiusS,
+                                ),
                                 border: Border.all(
                                   color: _selectedAgeRange[index]
                                       ? Theme.of(context).colorScheme.outline
-                                      : Theme.of(context).colorScheme.outlineVariant,
+                                      : Theme.of(
+                                          context,
+                                        ).colorScheme.outlineVariant,
                                   width: 2,
                                 ),
                                 color: _selectedAgeRange[index]
-                                    ? Theme.of(context).colorScheme.inversePrimary
+                                    ? Theme.of(
+                                        context,
+                                      ).colorScheme.inversePrimary
                                     : Colors.transparent,
                               ),
                               child: Text(
@@ -201,11 +210,14 @@ class _MoreInfoPageState extends State<MoreInfoPage> {
                           Expanded(
                             child: TextField(
                               controller: _weightController,
-                              keyboardType: const TextInputType.numberWithOptions(
-                                decimal: true,
-                              ),
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                    decimal: true,
+                                  ),
                               decoration: InputDecoration(
-                                hintText: _weightUnit == 'kg' ? '0.0 kg' : '0.0 lb',
+                                hintText: _weightUnit == 'kg'
+                                    ? '0.0 kg'
+                                    : '0.0 lb',
                               ),
                             ),
                           ),
@@ -215,8 +227,14 @@ class _MoreInfoPageState extends State<MoreInfoPage> {
                             child: DropdownButtonFormField<String>(
                               value: _weightUnit,
                               items: const [
-                                DropdownMenuItem(value: 'kg', child: Text('kg')),
-                                DropdownMenuItem(value: 'lb', child: Text('lb')),
+                                DropdownMenuItem(
+                                  value: 'kg',
+                                  child: Text('kg'),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'lb',
+                                  child: Text('lb'),
+                                ),
                               ],
                               onChanged: (value) {
                                 setState(() {
@@ -224,7 +242,9 @@ class _MoreInfoPageState extends State<MoreInfoPage> {
                                 });
                               },
                               decoration: const InputDecoration(
-                                contentPadding: EdgeInsets.symmetric(horizontal: 12),
+                                contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                ),
                               ),
                             ),
                           ),
@@ -252,11 +272,14 @@ class _MoreInfoPageState extends State<MoreInfoPage> {
                           Expanded(
                             child: TextField(
                               controller: _heightController,
-                              keyboardType: const TextInputType.numberWithOptions(
-                                decimal: true,
-                              ),
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                    decimal: true,
+                                  ),
                               decoration: InputDecoration(
-                                hintText: _heightUnit == 'cm' ? '0.0 cm' : '0.0 ft',
+                                hintText: _heightUnit == 'cm'
+                                    ? '0.0 cm'
+                                    : '0.0 ft',
                               ),
                             ),
                           ),
@@ -266,8 +289,14 @@ class _MoreInfoPageState extends State<MoreInfoPage> {
                             child: DropdownButtonFormField<String>(
                               value: _heightUnit,
                               items: const [
-                                DropdownMenuItem(value: 'cm', child: Text('cm')),
-                                DropdownMenuItem(value: 'ft', child: Text('ft')),
+                                DropdownMenuItem(
+                                  value: 'cm',
+                                  child: Text('cm'),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'ft',
+                                  child: Text('ft'),
+                                ),
                               ],
                               onChanged: (value) {
                                 setState(() {
@@ -275,7 +304,9 @@ class _MoreInfoPageState extends State<MoreInfoPage> {
                                 });
                               },
                               decoration: const InputDecoration(
-                                contentPadding: EdgeInsets.symmetric(horizontal: 12),
+                                contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                ),
                               ),
                             ),
                           ),
@@ -291,7 +322,10 @@ class _MoreInfoPageState extends State<MoreInfoPage> {
                   onPressed: () {
                     context.pushReplacement('/home');
                   },
-                  child: Text(l10n.continueText, style: TextStyle(fontSize: 20.sp)),
+                  child: Text(
+                    l10n.continueText,
+                    style: TextStyle(fontSize: 20.sp),
+                  ),
                 ),
               ],
             ),

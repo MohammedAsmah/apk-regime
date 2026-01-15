@@ -11,7 +11,6 @@ class _HomeScreenState extends State<HomeScreen> {
   int _waterIntake = 500;
   final int _waterGoal = 2000;
   final TextEditingController _aiInputController = TextEditingController();
-  int _currentBottomNavIndex = 0;
 
   @override
   void dispose() {
@@ -37,75 +36,55 @@ class _HomeScreenState extends State<HomeScreen> {
   void _handleAISubmit() {
   }
 
-  void _handleBottomNavTap(int index) {
-    setState(() {
-      _currentBottomNavIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Scaffold(
-      backgroundColor: theme.colorScheme.background,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: AppDimensions.screenPaddingHorizontal,
-              vertical: AppDimensions.m,
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: AppDimensions.screenPaddingHorizontal,
+          vertical: AppDimensions.m,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            StepsCard(
+              steps: 5000,
+              distance: 4.6,
+              calories: 280,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            SizedBox(height: AppDimensions.m),
+            Row(
               children: [
-                HomeHeader(userName: 'Mark'),
-                SizedBox(height: AppDimensions.l),
-                StepsCard(
-                  steps: 5000,
-                  distance: 4.6,
-                  calories: 280,
+                Expanded(
+                  child: CaloriesCard(
+                    current: 280,
+                    goal: 500,
+                    onUpdateGoal: _handleUpdateGoal,
+                  ),
                 ),
-                SizedBox(height: AppDimensions.m),
-                Row(
-                  children: [
-                    Expanded(
-                      child: CaloriesCard(
-                        current: 280,
-                        goal: 500,
-                        onUpdateGoal: _handleUpdateGoal,
-                      ),
-                    ),
-                    SizedBox(width: AppDimensions.m),
-                    Expanded(
-                      child: WaterIntakeCard(
-                        currentIntake: _waterIntake,
-                        goal: _waterGoal,
-                        onIncrement: _handleWaterIncrement,
-                        onDecrement: _handleWaterDecrement,
-                      ),
-                    ),
-                  ],
+                SizedBox(width: AppDimensions.m),
+                Expanded(
+                  child: WaterIntakeCard(
+                    currentIntake: _waterIntake,
+                    goal: _waterGoal,
+                    onIncrement: _handleWaterIncrement,
+                    onDecrement: _handleWaterDecrement,
+                  ),
                 ),
-                SizedBox(height: AppDimensions.m),
-                AIAssistantCard(
-                  userName: 'Mark',
-                  controller: _aiInputController,
-                  onSubmit: _handleAISubmit,
-                ),
-                SizedBox(height: AppDimensions.m),
-                WeightLossChartCard(),
-                SizedBox(height: AppDimensions.xxl),
               ],
             ),
-          ),
+            SizedBox(height: AppDimensions.m),
+            AIAssistantCard(
+              userName: 'Mark',
+              controller: _aiInputController,
+              onSubmit: _handleAISubmit,
+            ),
+            SizedBox(height: AppDimensions.m),
+            WeightLossChartCard(),
+            SizedBox(height: AppDimensions.xl),
+            SizedBox(height: AppDimensions.xxl),
+          ],
         ),
-      ),
-      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: CustomBottomNavBar(
-        currentIndex: _currentBottomNavIndex,
-        onTap: _handleBottomNavTap,
       ),
     );
   }
