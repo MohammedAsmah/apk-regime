@@ -12,7 +12,8 @@ class TRNX extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final settingsProvider = context.watch<SettingsProvider>();
-    final locale = Locale(settingsProvider.state.localeCode);
+    // final locale = Locale(settingsProvider.state.localeCode);
+    final locale = Locale('ar');
 
     return GestureDetector(
       onTap: _focusOut,

@@ -187,4 +187,52 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get currentMonth => 'الشهر الحالي';
+
+  @override
+  String get profile => 'الملف الشخصي';
+
+  @override
+  String get changePersonalInfo => 'تغيير المعلومات الشخصية';
+
+  @override
+  String get memberSince => 'عضو منذ';
+
+  @override
+  String get daysStreak => 'أيام متتالية';
+
+  @override
+  String get weightLost => 'الوزن المفقود';
+
+  @override
+  String get actualWeight => 'الوزن الحالي';
+
+  @override
+  String get goal => 'الهدف';
+
+  @override
+  String get progressToGoal => '2 كجم متبقية • الهدف: سبتمبر 2025';
+
+  @override
+  String get aidSupport => 'المساعدة والدعم';
+
+  @override
+  String get helpCenter => 'مركز المساعدة والأسئلة الشائعة';
+
+  @override
+  String get contactSupport => 'اتصل بالدعم';
+
+  @override
+  String get legal => 'قانوني';
+
+  @override
+  String get conditionsOfUse => 'شروط الاستخدام';
+
+  @override
+  String get cancelMembership => 'إلغاء العضوية';
+
+  @override
+  String get privacyPolicyTitle => 'سياسة الخصوصية';
+
+  @override
+  String get name => 'الاسم';
 }

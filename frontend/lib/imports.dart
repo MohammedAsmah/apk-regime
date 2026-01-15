@@ -16,6 +16,7 @@ export './l10n/index.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_trnx_project/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,8 +28,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 export './core/index.dart';
 import './core/index.dart';
 export './features/index.dart';
+import './features/index.dart';
 
 
 part 'app.dart';
+part 'app_layout.dart';
 
 

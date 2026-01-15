@@ -58,5 +58,21 @@
   "whatsOnYourMind": "ما الذي يدور في ذهنك",
   "weightLossJourney": "رحلة فقدان الوزن",
   "lastMonth": "الشهر الماضي",
-  "currentMonth": "الشهر الحالي"
+  "currentMonth": "الشهر الحالي",
+  "profile": "الملف الشخصي",
+  "changePersonalInfo": "تغيير المعلومات الشخصية",
+  "memberSince": "عضو منذ",
+  "daysStreak": "أيام متتالية",
+  "weightLost": "الوزن المفقود",
+  "actualWeight": "الوزن الحالي",
+  "goal": "الهدف",
+  "progressToGoal": "2 كجم متبقية • الهدف: سبتمبر 2025",
+  "aidSupport": "المساعدة والدعم",
+  "helpCenter": "مركز المساعدة والأسئلة الشائعة",
+  "contactSupport": "اتصل بالدعم",
+  "legal": "قانوني",
+  "conditionsOfUse": "شروط الاستخدام",
+  "cancelMembership": "إلغاء العضوية",
+  "privacyPolicyTitle": "سياسة الخصوصية",
+  "name": "الاسم"
 }

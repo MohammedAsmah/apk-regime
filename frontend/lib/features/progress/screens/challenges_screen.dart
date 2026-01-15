@@ -8,39 +8,26 @@ class ChallengesScreen extends StatefulWidget {
 }
 
 class _ChallengesScreenState extends State<ChallengesScreen> {
-  int _currentBottomNavIndex = 3;
-
-  void _handleBottomNavTap(int index) {
-    setState(() {
-      _currentBottomNavIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Scaffold(
-      backgroundColor: theme.colorScheme.surface,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: AppDimensions.screenPaddingHorizontal,
+            vertical: AppDimensions.m,
+          ),
+          child: ChallengesHeader(userName: 'Mark'),
+        ),
+        Expanded(
+          child: SingleChildScrollView(
+            child: Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: AppDimensions.screenPaddingHorizontal,
-                vertical: AppDimensions.m,
               ),
-              child: ChallengesHeader(userName: 'Mark'),
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: AppDimensions.screenPaddingHorizontal,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                       SizedBox(height: AppDimensions.m),
                       ChallengeDetailCard(
                         icon: Icons.star,
@@ -95,21 +82,13 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
                         description: 'No excuses, just progress 💪',
                         isCompleted: true,
                       ),
-                      SizedBox(height: AppDimensions.xxl),
-                    ],
-                  ),
-                ),
+                  SizedBox(height: AppDimensions.xxl),
+                ],
               ),
             ),
-          ],
+          ),
         ),
-      ),
-      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: CustomBottomNavBar(
-        currentIndex: _currentBottomNavIndex,
-        onTap: _handleBottomNavTap,
-      ),
+      ],
     );
   }
 }

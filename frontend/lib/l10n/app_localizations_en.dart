@@ -187,4 +187,53 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get currentMonth => 'Current Month';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get changePersonalInfo => 'Change personnal infos';
+
+  @override
+  String get memberSince => 'Membre depuis';
+
+  @override
+  String get daysStreak => 'Days Streak';
+
+  @override
+  String get weightLost => 'Weight lost';
+
+  @override
+  String get actualWeight => 'Actual weight';
+
+  @override
+  String get goal => 'Goal';
+
+  @override
+  String get progressToGoal =>
+      'Plus que 2kg à perdre • Objectif: septembre 2025';
+
+  @override
+  String get aidSupport => 'Aide & Support';
+
+  @override
+  String get helpCenter => 'Centre d\'aide FAQ et tutoriels';
+
+  @override
+  String get contactSupport => 'Contacter le Support';
+
+  @override
+  String get legal => 'Légal';
+
+  @override
+  String get conditionsOfUse => 'Conditions d\'utilisation';
+
+  @override
+  String get cancelMembership => 'Cancel My Membership';
+
+  @override
+  String get privacyPolicyTitle => 'Politique de confidentialité';
+
+  @override
+  String get name => 'Name';
 }

@@ -3,7 +3,8 @@ part of index;
 
 enum EntetyStock {
   session(String),
-  themeMode(String);
+  themeMode(String),
+  userProfile(String);
 
   String get stockName {
     return 'stock_$name';

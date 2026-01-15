@@ -58,5 +58,21 @@
   "whatsOnYourMind": "What's on your mind",
   "weightLossJourney": "weight loss journey",
   "lastMonth": "Last Month",
-  "currentMonth": "Current Month"
+  "currentMonth": "Current Month",
+  "profile": "Profile",
+  "changePersonalInfo": "Change personnal infos",
+  "memberSince": "Membre depuis",
+  "daysStreak": "Days Streak",
+  "weightLost": "Weight lost",
+  "actualWeight": "Actual weight",
+  "goal": "Goal",
+  "progressToGoal": "Plus que 2kg à perdre • Objectif: septembre 2025",
+  "aidSupport": "Aide & Support",
+  "helpCenter": "Centre d'aide FAQ et tutoriels",
+  "contactSupport": "Contacter le Support",
+  "legal": "Légal",
+  "conditionsOfUse": "Conditions d'utilisation",
+  "cancelMembership": "Cancel My Membership",
+  "privacyPolicyTitle": "Politique de confidentialité",
+  "name": "Name"
 }

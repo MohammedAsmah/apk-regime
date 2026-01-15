@@ -8,32 +8,19 @@ class ProgressScreen extends StatefulWidget {
 }
 
 class _ProgressScreenState extends State<ProgressScreen> {
-  int _currentBottomNavIndex = 3;
-
-  void _handleBottomNavTap(int index) {
-    setState(() {
-      _currentBottomNavIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Scaffold(
-      backgroundColor: theme.colorScheme.surface,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: AppDimensions.screenPaddingHorizontal,
-              vertical: AppDimensions.m,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ProgressHeader(userName: 'Mark'),
-                SizedBox(height: AppDimensions.l),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: AppDimensions.screenPaddingHorizontal,
+          vertical: AppDimensions.m,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ProgressHeader(userName: 'Mark'),
+            SizedBox(height: AppDimensions.l),
                 WorkoutProgressCard(
                   workouts: [
                     WorkoutProgress(
@@ -91,17 +78,9 @@ class _ProgressScreenState extends State<ProgressScreen> {
                   onAddEvent: () {},
                   onSeeMore: () {},
                 ),
-                SizedBox(height: AppDimensions.xxl),
-              ],
-            ),
-          ),
+            SizedBox(height: AppDimensions.xxl),
+          ],
         ),
-      ),
-      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: CustomBottomNavBar(
-        currentIndex: _currentBottomNavIndex,
-        onTap: _handleBottomNavTap,
       ),
     );
   }
