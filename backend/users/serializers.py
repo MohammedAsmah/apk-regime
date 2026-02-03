@@ -12,9 +12,10 @@ User = get_user_model()
 # ==========================================
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
+    user_id = serializers.ReadOnlyField(source='id')
     language = serializers.CharField(
-        required=True,  
-        allow_blank=False,
+        required=False,  
+        allow_blank=True,
         max_length=20,
         validators=[                                                        
             MinLengthValidator(5),
@@ -24,6 +25,8 @@ class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
+            "id",
+            "user_id",
             "username",
             "password",
             "email",

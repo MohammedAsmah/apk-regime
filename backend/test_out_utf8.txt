@@ -1,0 +1,228 @@
+﻿python : Creating 
+test database for 
+alias 'default'...
+At line:1 char:1
++ python manage.py 
+test nutrition > 
+test_out.txt 2>&1
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (Creatin   
+ g test d...as 'd    
+efault'...:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+
+EEE
+=====================
+=====================
+=====================
+=======
+ERROR: 
+test_food_search (nut
+rition.tests.Nutritio
+nTests.test_food_sear
+ch)
+---------------------
+---------------------
+---------------------
+-------
+Traceback (most 
+recent call last):
+  File "C:\Users\DELL
+\AppData\Local\Progra
+ms\Python\Python313\L
+ib\site-packages\djan
+go\urls\base.py", 
+line 81, in reverse
+    extra, resolver 
+= resolver.namespace_
+dict[ns]
+                     
+ ~~~~~~~~~~~~~~~~~~~~
+~~~^^^^
+KeyError: 'nutrition'
+
+During handling of 
+the above exception, 
+another exception 
+occurred:
+
+Traceback (most 
+recent call last):
+  File "C:\Users\DELL
+\Desktop\APK-REGIMES\
+APK-Regimes-Perte-de-
+Poids\backend\nutriti
+on\tests.py", line 
+25, in setUp
+    
+self.food_list_url = 
+reverse('nutrition:fo
+od-list')
+                     
+    ~~~~~~~^^^^^^^^^^
+^^^^^^^^^^^^^
+  File "C:\Users\DELL
+\AppData\Local\Progra
+ms\Python\Python313\L
+ib\site-packages\djan
+go\urls\base.py", 
+line 92, in reverse
+    raise 
+NoReverseMatch("%s 
+is not a registered 
+namespace" % key)
+django.urls.exception
+s.NoReverseMatch: 
+'nutrition' is not a 
+registered namespace
+
+=====================
+=====================
+=====================
+=======
+ERROR: 
+test_meal_creation (n
+utrition.tests.Nutrit
+ionTests.test_meal_cr
+eation)
+---------------------
+---------------------
+---------------------
+-------
+Traceback (most 
+recent call last):
+  File "C:\Users\DELL
+\AppData\Local\Progra
+ms\Python\Python313\L
+ib\site-packages\djan
+go\urls\base.py", 
+line 81, in reverse
+    extra, resolver 
+= resolver.namespace_
+dict[ns]
+                     
+ ~~~~~~~~~~~~~~~~~~~~
+~~~^^^^
+KeyError: 'nutrition'
+
+During handling of 
+the above exception, 
+another exception 
+occurred:
+
+Traceback (most 
+recent call last):
+  File "C:\Users\DELL
+\Desktop\APK-REGIMES\
+APK-Regimes-Perte-de-
+Poids\backend\nutriti
+on\tests.py", line 
+25, in setUp
+    
+self.food_list_url = 
+reverse('nutrition:fo
+od-list')
+                     
+    ~~~~~~~^^^^^^^^^^
+^^^^^^^^^^^^^
+  File "C:\Users\DELL
+\AppData\Local\Progra
+ms\Python\Python313\L
+ib\site-packages\djan
+go\urls\base.py", 
+line 92, in reverse
+    raise 
+NoReverseMatch("%s 
+is not a registered 
+namespace" % key)
+django.urls.exception
+s.NoReverseMatch: 
+'nutrition' is not a 
+registered namespace
+
+=====================
+=====================
+=====================
+=======
+ERROR: test_meal_list
+_only_owned (nutritio
+n.tests.NutritionTest
+s.test_meal_list_only
+_owned)
+---------------------
+---------------------
+---------------------
+-------
+Traceback (most 
+recent call last):
+  File "C:\Users\DELL
+\AppData\Local\Progra
+ms\Python\Python313\L
+ib\site-packages\djan
+go\urls\base.py", 
+line 81, in reverse
+    extra, resolver 
+= resolver.namespace_
+dict[ns]
+                     
+ ~~~~~~~~~~~~~~~~~~~~
+~~~^^^^
+KeyError: 'nutrition'
+
+During handling of 
+the above exception, 
+another exception 
+occurred:
+
+Traceback (most 
+recent call last):
+  File "C:\Users\DELL
+\Desktop\APK-REGIMES\
+APK-Regimes-Perte-de-
+Poids\backend\nutriti
+on\tests.py", line 
+25, in setUp
+    
+self.food_list_url = 
+reverse('nutrition:fo
+od-list')
+                     
+    ~~~~~~~^^^^^^^^^^
+^^^^^^^^^^^^^
+  File "C:\Users\DELL
+\AppData\Local\Progra
+ms\Python\Python313\L
+ib\site-packages\djan
+go\urls\base.py", 
+line 92, in reverse
+    raise 
+NoReverseMatch("%s 
+is not a registered 
+namespace" % key)
+django.urls.exception
+s.NoReverseMatch: 
+'nutrition' is not a 
+registered namespace
+
+---------------------
+---------------------
+---------------------
+-------
+Ran 3 tests in 7.080s
+
+FAILED (errors=3)
+Destroying test 
+database for alias 
+'default'...
+
+Found 3 test(s).
+System check identified no issues (0 silenced).

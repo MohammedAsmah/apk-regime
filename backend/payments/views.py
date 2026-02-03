@@ -79,4 +79,4 @@ class CancelSubscriptionView(APIView):
             
             return Response({"message": "Subscription canceled"}, status=200)
         except Subscription.DoesNotExist:
-            return Response({"error": "No subscription found"}, status=404)
+            return Response({"message": "No active subscription found to cancel"}, status=200)

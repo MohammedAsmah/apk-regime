@@ -1,0 +1,40 @@
+﻿python : Creating 
+test database for 
+alias 'default'...
+At line:1 char:82
++ ... lyContinue; 
+python manage.py 
+test nutrition > 
+test_output.txt 
+2>&1; G ...
++                 ~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (Creatin   
+ g test d...as 'd    
+efault'...:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+
+....
+---------------------
+---------------------
+---------------------
+-------
+Ran 4 tests in 
+15.452s
+
+OK
+Destroying test 
+database for alias 
+'default'...
+
+Found 4 test(s).
+System check identified no issues (0 silenced).

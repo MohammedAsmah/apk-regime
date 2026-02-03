@@ -8,5 +8,6 @@ async def main():
         await ws.send(json.dumps({"message": "Bonjour AI"}))
         print(await ws.recv())
 
-asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())
 

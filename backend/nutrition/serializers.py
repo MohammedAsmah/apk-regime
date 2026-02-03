@@ -2,6 +2,12 @@ from rest_framework import serializers
 from .models import Food, Meal, MealPlan, MealPhoto
 
 class FoodSerializer(serializers.ModelSerializer):
+    calories = serializers.FloatField(required=False, default=0)
+    protein = serializers.FloatField(required=False, default=0)
+    carbs = serializers.FloatField(required=False, default=0)
+    fat = serializers.FloatField(required=False, default=0)
+    portion_grams = serializers.FloatField(required=False, default=100)
+
     class Meta:
         model = Food
         fields = "__all__"
@@ -32,6 +38,6 @@ class MealPlanSerializer(serializers.ModelSerializer):
         read_only_fields = ("id", "user", "created_at")
 
 class MealPlanGenerateSerializer(serializers.Serializer):
-    target_calories = serializers.IntegerField(min_value=500, max_value=5000)
+    target_calories = serializers.IntegerField(default=2000, min_value=500, max_value=5000)
     meals_per_day = serializers.IntegerField(default=3, min_value=1, max_value=6)
     diet_type = serializers.CharField(required=False, default="balanced") 

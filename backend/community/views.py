@@ -72,5 +72,5 @@ class JoinChallengeView(APIView):
                 challenge.participants.add(request.user)
                 return Response({"message": "Challenge joined successfully"}, status=200)
             except Challenge.DoesNotExist:
-                return Response({"error": "Challenge not found"}, status=404)
+                return Response({"error": "Challenge not found. Please provide a valid challenge_id."}, status=404)
         return Response(serializer.errors, status=400)
