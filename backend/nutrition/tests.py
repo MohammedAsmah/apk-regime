@@ -9,9 +9,10 @@ User = get_user_model()
 
 class NutritionTests(APITestCase):
     def setUp(self):
+        self.test_password = "SecureTestPassword123!"
         self.user = User.objects.create_user(
             username="testuser", 
-            password="testpassword123",
+            password=self.test_password,
             language="english"
         )
         self.food = Food.objects.create(
@@ -29,7 +30,7 @@ class NutritionTests(APITestCase):
         login_url = reverse('token_obtain_pair')
         response = self.client.post(login_url, {
             "username": "testuser",
-            "password": "testpassword123"
+            "password": self.test_password
         })
         self.token = response.data['access']
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.token}')
@@ -57,7 +58,7 @@ class NutritionTests(APITestCase):
         Meal.objects.create(user=self.user, name="My Meal", date=date.today())
         
         # Create another user and a meal for them
-        other_user = User.objects.create_user(username="other", password="pass", language="english")
+        other_user = User.objects.create_user(username="other", password="SecureOtherPassword123!", language="english")
         Meal.objects.create(user=other_user, name="Other Meal", date=date.today())
         
         response = self.client.get(self.meal_list_url)

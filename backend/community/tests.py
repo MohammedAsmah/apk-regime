@@ -9,7 +9,8 @@ User = get_user_model()
 
 class CommunityTests(APITestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username="testuser", password="password123", language="french")
+        self.test_password = "SecureTestPassword123!"
+        self.user = User.objects.create_user(username="testuser", password=self.test_password, language="french")
         self.client.force_authenticate(user=self.user)
         
         self.post_list_url = reverse('community-posts')

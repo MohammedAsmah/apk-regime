@@ -66,8 +66,8 @@ class PaymentTests(APITestCase):
         self.assertEqual(response.data['message'], "No active subscription found to cancel")
 
     def test_invoice_list(self):
-        Invoice.objects.create(user=self.user, amount=9.99, pdf_url="http://test.com/1.pdf")
-        Invoice.objects.create(user=self.user, amount=29.99, pdf_url="http://test.com/2.pdf")
+        Invoice.objects.create(user=self.user, amount=9.99, pdf_url="https://test.com/1.pdf")
+        Invoice.objects.create(user=self.user, amount=29.99, pdf_url="https://test.com/2.pdf")
         
         response = self.client.get(self.invoice_list_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)

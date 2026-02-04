@@ -10,9 +10,10 @@ class AuthTests(APITestCase):
         self.register_url = reverse('register')
         self.login_url = reverse('token_obtain_pair')
         self.profile_url = reverse('user_profile')
+        self.test_password = "SecureTestPassword123!"
         self.user_data = {
             "username": "testuser",
-            "password": "testpassword123",
+            "password": self.test_password,
             "email": "test@example.com",
             "date_of_birth": "1995-01-01",
             "gender": "M",
@@ -35,7 +36,7 @@ class AuthTests(APITestCase):
         # Then login
         login_data = {
             "username": "testuser",
-            "password": "testpassword123"
+            "password": self.test_password
         }
         response = self.client.post(self.login_url, login_data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -47,7 +48,7 @@ class AuthTests(APITestCase):
         self.client.post(self.register_url, self.user_data)
         login_response = self.client.post(self.login_url, {
             "username": "testuser",
-            "password": "testpassword123"
+            "password": self.test_password
         })
         token = login_response.data['access']
         
@@ -62,7 +63,7 @@ class AuthTests(APITestCase):
         self.client.post(self.register_url, self.user_data)
         login_response = self.client.post(self.login_url, {
             "username": "testuser",
-            "password": "testpassword123"
+            "password": self.test_password
         })
         access_token = login_response.data['access']
         refresh_token = login_response.data['refresh']
