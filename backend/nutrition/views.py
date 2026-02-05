@@ -1,3 +1,4 @@
+# Optimized for performance and robustness - 2026-02-04
 from rest_framework import generics, permissions, filters, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -99,7 +100,13 @@ class MealPlanGenerateView(APIView):
             )
             for fname in m_data.get('foods', []):
                 f, _ = Food.objects.get_or_create(
-                    name=fname, defaults={'calories': 100}
+                    name=fname, 
+                    defaults={
+                        'calories': 100,
+                        'protein': 0,
+                        'carbs': 0,
+                        'fat': 0
+                    }
                 )
                 meal.foods.add(f)
             created_meals.append(meal)
@@ -112,7 +119,7 @@ class MealPlanGenerateView(APIView):
         )
         plan.meals.set(created_meals)
         
-        return Response(MealPlanSerializer(plan).data)
+        return Response(MealPlanSerializer(plan).data, status=status.HTTP_201_CREATED)
 
 # ==========================================
 # 4. CRUD STANDARD MEALS (Tracking)

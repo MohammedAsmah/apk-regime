@@ -1,0 +1,220 @@
+﻿python : Creating test 
+database for alias 
+'default' ('file:memorydb_de
+fault?mode=memory&cache=shar
+ed')...
+At line:1 char:1
++ python manage.py test -v 
+2 2>&1 | Out-File -FilePath 
+test_results_ver ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo          
+    : NotSpecified: (Creat  
+  ing test d...che=shared   
+ ')...:String) [], Remot    
+eException
+    + FullyQualifiedErrorId 
+    : NativeCommandError
+ 
+
+Found 19 test(s).
+Operations to perform:
+  Synchronize unmigrated apps: channels, corsheaders, daphne, django_filters, drf_yasg, messages, rest_framework, rest_framework_simplejwt, staticfiles, storages
+  Apply all migrations: admin, auth, chat, community, contenttypes, nutrition, payments, progress, sessions, token_blacklist, users
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0001_initial... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying users.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying chat.0001_initial... OK
+  Applying chat.0002_alter_chatsession_options_chatsession_updated_at_and_more... OK
+  Applying chat.0003_remove_message_sender_message_role_and_more... OK
+  Applying community.0001_initial... OK
+  Applying nutrition.0001_initial... OK
+  Applying nutrition.0002_meal_mealplan_remove_dailylog_foods_and_more... OK
+  Applying nutrition.0003_alter_meal_options_remove_meal_updated_at_and_more... OK
+  Applying payments.0001_initial... OK
+  Applying progress.0001_initial... OK
+  Applying progress.0002_alter_progress_options_alter_progress_user_and_more... OK
+  Applying progress.0003_dailylog_progressphoto_delete_progress... OK
+  Applying progress.0004_badge_dailylog_chest_cm_dailylog_hip_cm_and_more... OK
+  Applying sessions.0001_initial... OK
+  Applying token_blacklist.0001_initial... OK
+  Applying token_blacklist.0002_outstandingtoken_jti_hex... OK
+  Applying token_blacklist.0003_auto_20171017_2007... OK
+  Applying token_blacklist.0004_auto_20171017_2013... OK
+  Applying token_blacklist.0005_remove_outstandingtoken_jti... OK
+  Applying token_blacklist.0006_auto_20171017_2113... OK
+  Applying token_blacklist.0007_auto_20171017_2214... OK
+  Applying token_blacklist.0008_migrate_to_bigautofield... OK
+  Applying token_blacklist.0010_fix_migrate_to_bigautofield... OK
+  Applying token_blacklist.0011_linearizes_history... OK
+  Applying token_blacklist.0012_alter_outstandingtoken_user... OK
+  Applying token_blacklist.0013_alter_blacklistedtoken_options_and_more... OK
+  Applying users.0002_user_currency_user_date_of_birth_user_gender_and_more... OK
+test_challenge_list (communi
+ty.tests.CommunityTests.test
+_challenge_list) ... ok
+test_join_challenge_already_
+joined (community.tests.Comm
+unityTests.test_join_challen
+ge_already_joined) ... ok
+test_join_challenge_not_foun
+d (community.tests.Community
+Tests.test_join_challenge_no
+t_found) ... ok
+test_join_challenge_success 
+(community.tests.CommunityTe
+sts.test_join_challenge_succ
+ess) ... ok
+test_post_creation (communit
+y.tests.CommunityTests.test_
+post_creation) ... ok
+test_post_list (community.te
+sts.CommunityTests.test_post
+_list) ... ok
+test_food_search (nutrition.
+tests.NutritionTests.test_fo
+od_search) ... ok
+test_meal_creation (nutritio
+n.tests.NutritionTests.test_
+meal_creation) ... ok
+test_meal_list_only_owned (n
+utrition.tests.NutritionTest
+s.test_meal_list_only_owned)
+ ... ok
+test_meal_plan_generation (n
+utrition.tests.NutritionTest
+s.test_meal_plan_generation)
+ ... ok
+test_cancel_subscription_not
+_found (payments.tests.Payme
+ntTests.test_cancel_subscrip
+tion_not_found) ... ok
+test_cancel_subscription_suc
+cess (payments.tests.Payment
+Tests.test_cancel_subscripti
+on_success) ... ok
+test_create_subscription_inv
+alid_plan (payments.tests.Pa
+ymentTests.test_create_subsc
+ription_invalid_plan) ... ok
+test_create_subscription_suc
+cess (payments.tests.Payment
+Tests.test_create_subscripti
+on_success) ... ok
+test_invoice_list (payments.
+tests.PaymentTests.test_invo
+ice_list) ... ok
+test_access_profile_with_tok
+en (users.tests.AuthTests.te
+st_access_profile_with_token
+) ... ERROR
+test_login (users.tests.Auth
+Tests.test_login) ... FAIL
+test_logout (users.tests.Aut
+hTests.test_logout) ... 
+ERROR
+test_registration (users.tes
+ts.AuthTests.test_registrati
+on) ... ok
+
+============================
+============================
+==============
+ERROR: test_access_profile_w
+ith_token (users.tests.AuthT
+ests.test_access_profile_wit
+h_token)
+----------------------------
+----------------------------
+--------------
+Traceback (most recent call 
+last):
+  File "C:\Users\DELL\Deskto
+p\APK-REGIMES\APK-Regimes-Pe
+rte-de-Poids\backend\users\t
+ests.py", line 53, in test_a
+ccess_profile_with_token
+    token = login_response.d
+ata['access']
+            ~~~~~~~~~~~~~~~~
+~~~^^^^^^^^^^
+KeyError: 'access'
+  Applying users.0003_user_activity_level_user_current_weight_kg_and_more... OK
+System check identified no issues (0 silenced).
+
+============================
+============================
+==============
+ERROR: test_logout (users.te
+sts.AuthTests.test_logout)
+----------------------------
+----------------------------
+--------------
+Traceback (most recent call 
+last):
+  File "C:\Users\DELL\Deskto
+p\APK-REGIMES\APK-Regimes-Pe
+rte-de-Poids\backend\users\t
+ests.py", line 68, in 
+test_logout
+    access_token = login_res
+ponse.data['access']
+                   ~~~~~~~~~
+~~~~~~~~~~^^^^^^^^^^
+KeyError: 'access'
+
+============================
+============================
+==============
+FAIL: test_login (users.test
+s.AuthTests.test_login)
+----------------------------
+----------------------------
+--------------
+Traceback (most recent call 
+last):
+  File "C:\Users\DELL\Deskto
+p\APK-REGIMES\APK-Regimes-Pe
+rte-de-Poids\backend\users\t
+ests.py", line 42, in 
+test_login
+    self.assertEqual(respons
+e.status_code, 
+status.HTTP_200_OK)
+    ~~~~~~~~~~~~~~~~^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^
+AssertionError: 401 != 200
+
+----------------------------
+----------------------------
+--------------
+Ran 19 tests in 28.871s
+
+FAILED (failures=1, 
+errors=2)
+Destroying test database 
+for alias 'default' ('file:m
+emorydb_default?mode=memory&
+cache=shared')...
+
