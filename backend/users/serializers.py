@@ -18,7 +18,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         allow_blank=True,
         max_length=20,
         validators=[                                                        
-            MinLengthValidator(5),
             MaxLengthValidator(20),
         ]   
     )
@@ -58,7 +57,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
         allow_blank=False,
         max_length=20,
         validators=[
-            MinLengthValidator(5),
             MaxLengthValidator(20),
         ]
     )
@@ -127,7 +125,6 @@ class OnboardingSerializer(serializers.ModelSerializer):
         allow_blank=False,
         max_length=20,
         validators=[
-            MinLengthValidator(5),
             MaxLengthValidator(20),
         ]
     )

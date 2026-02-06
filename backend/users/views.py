@@ -40,6 +40,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
+@method_decorator(name='post', decorator=swagger_auto_schema(tags=['Authentication']))
 @method_decorator(name='put', decorator=swagger_auto_schema(tags=['Authentication']))
 @method_decorator(name='patch', decorator=swagger_auto_schema(tags=['Authentication']))
 class ChangePasswordView(generics.UpdateAPIView):
@@ -48,9 +49,14 @@ class ChangePasswordView(generics.UpdateAPIView):
     
     def get_object(self):
         return self.request.user
+    
+    def post(self, request, *args, **kwargs):
+        """Allow POST method as well as PUT/PATCH."""
+        return self.put(request, *args, **kwargs)
+    
     def update(self, request, *args, **kwargs):
         super().update(request, *args, **kwargs)
-        return Response({"detail": "password chnaged "})
+        return Response({"detail": "password changed"})
 
 # ==========================================
 # 2. USER PROFILE
@@ -96,3 +102,24 @@ class DeleteAccountView(APIView):
     def delete(self, request):
         request.user.delete()
         return Response(status=204)
+
+class LogoutView(APIView):
+    """Custom logout view that blacklists the refresh token."""
+    permission_classes = [IsAuthenticated]
+    
+    @swagger_auto_schema(tags=['Authentication'], request_body=None)
+    def post(self, request):
+        try:
+            from rest_framework_simplejwt.token_blacklist.models import OutstandingToken, BlacklistedToken
+            from rest_framework_simplejwt.tokens import RefreshToken
+            from rest_framework_simplejwt.settings import api_settings
+            
+            # Get the refresh token from request data
+            refresh = request.data.get('refresh')
+            if refresh:
+                token = RefreshToken(refresh)
+                token.blacklist()
+            
+            return Response({"detail": "Successfully logged out."}, status=200)
+        except Exception as e:
+            return Response({"error": str(e)}, status=400)

@@ -39,16 +39,21 @@ class PostListCreateView(generics.ListCreateAPIView):
         serializer.save(user=self.request.user)
 
 # ==========================================
-# 2. CHALLENGES LIST (GET)
+# 2. CHALLENGES LIST (GET & POST)
 # ==========================================
 @method_decorator(name='get', decorator=swagger_auto_schema(tags=['Community']))
-class ChallengeListView(generics.ListAPIView):
+@method_decorator(name='post', decorator=swagger_auto_schema(tags=['Community']))
+class ChallengeListView(generics.ListCreateAPIView):
     """
     GET: Liste des challenges disponibles.
+    POST: Créer un nouveau challenge.
     """
     serializer_class = ChallengeSerializer
     permission_classes = [permissions.IsAuthenticated]
     queryset = Challenge.objects.all()
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
 
 # ==========================================
 # 3. JOIN CHALLENGE (POST)

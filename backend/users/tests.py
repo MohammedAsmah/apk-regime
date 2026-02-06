@@ -70,6 +70,7 @@ class AuthTests(APITestCase):
         
         # 2. Action: Logout (Blacklist Refresh Token)
         logout_url = reverse('token_blacklist')
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {access_token}')
         response = self.client.post(logout_url, {"refresh": refresh_token})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         
