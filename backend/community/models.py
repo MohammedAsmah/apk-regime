@@ -17,6 +17,7 @@ class Challenge(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     participants = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="joined_challenges", blank=True)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name="created_challenges")
     
     def __str__(self):
         return self.title

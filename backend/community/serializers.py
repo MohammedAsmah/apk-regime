@@ -12,10 +12,12 @@ class PostSerializer(serializers.ModelSerializer):
 class ChallengeSerializer(serializers.ModelSerializer):
     participants_count = serializers.IntegerField(source='participants.count', read_only=True)
     is_joined = serializers.SerializerMethodField()
+    created_by_username = serializers.CharField(source='created_by.username', read_only=True)
 
     class Meta:
         model = Challenge
-        fields = ['id', 'title', 'description', 'start_date', 'end_date', 'participants_count', 'is_joined']
+        fields = ['id', 'title', 'description', 'start_date', 'end_date', 'participants_count', 'is_joined', 'created_by', 'created_by_username']
+        read_only_fields = ['id', 'participants_count', 'is_joined', 'created_by', 'created_by_username']
 
     def get_is_joined(self, obj):
         request = self.context.get('request')
