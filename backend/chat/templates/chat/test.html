@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Chat AI (Tor/Local)</title>
     <style>
         body { font-family: sans-serif; padding: 20px; max-width: 800px; margin: auto; }
@@ -18,12 +20,12 @@
     <h2>🤖 NutriFit AI Chat Test</h2>
 
     <div id="token-area">
-        <label>JWT Access Token:</label><br>
+        <label for="auth-token">JWT Access Token:</label><br>
         <input type="text" id="auth-token" placeholder="Coller le token ici..." style="width: 100%;">
         <button onclick="connectChat()">🔌 Connect WebSocket</button>
     </div>
 
-    <div id="chat-log"></div>
+    <div id="chat-log" role="log" aria-live="polite"></div>
     
     <div style="display: flex;">
         <input id="chat-message-input" type="text" placeholder="Posez une question nutrition..." disabled>
@@ -35,45 +37,69 @@
         let sessionId = null;
 
         function connectChat() {
-            const token = document.getElementById('auth-token').value;
+            const tokenInput = document.getElementById('auth-token');
+            const token = tokenInput.value.trim();
             if (!token) { alert("Token requis!"); return; }
 
-            const ws_scheme = window.location.protocol === "https:" ? "wss" : "ws";
-            const url = `${ws_scheme}://${window.location.host}/ws/chat/?token=${token}`;
+            const protocol = window.location.protocol === "https:" ? "wss" : "ws";
+            const host = window.location.host;
+            const url = `${protocol}://${host}/ws/chat/?token=${token}`;
 
             chatSocket = new WebSocket(url);
 
-            chatSocket.onopen = function(e) {
+            chatSocket.onopen = function() {
                 log("--- Connecté au serveur ---", "system");
                 document.getElementById('chat-message-input').disabled = false;
                 document.getElementById('chat-message-submit').disabled = false;
             };
 
             chatSocket.onmessage = function(e) {
-                const data = JSON.parse(e.data);
-                
-                if (data.error) {
-                    log("Erreur: " + data.error, "system");
-                } else {
-                    if (data.session_id) sessionId = data.session_id;
-                    log(data.message, "assistant");
+                try {
+                    const data = JSON.parse(e.data);
+                    if (data.error) {
+                        log("Erreur: " + data.error, "system");
+                    } else {
+                        if (data.session_id) sessionId = data.session_id;
+                        log(data.message, "assistant");
+                    }
+                } catch (err) {
+                    console.error("Failed to parse message", err);
                 }
             };
 
-            chatSocket.onclose = function(e) {
+            chatSocket.onclose = function() {
                 log("--- Déconnecté ---", "system");
+                document.getElementById('chat-message-input').disabled = true;
+                document.getElementById('chat-message-submit').disabled = true;
+            };
+
+            chatSocket.onerror = function(err) {
+                console.error("WebSocket error", err);
+                log("--- Erreur de connexion ---", "system");
             };
         }
 
         function log(message, type) {
             const chatLog = document.getElementById('chat-log');
-            chatLog.innerHTML += `<div class="message ${type}"><b>${type.toUpperCase()}:</b> ${message}</div>`;
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            
+            const label = document.createElement('b');
+            label.textContent = `${type.toUpperCase()}: `;
+            
+            const content = document.createElement('span');
+            content.textContent = message;
+            
+            messageDiv.appendChild(label);
+            messageDiv.appendChild(content);
+            chatLog.appendChild(messageDiv);
             chatLog.scrollTop = chatLog.scrollHeight;
         }
 
-        document.getElementById('chat-message-submit').onclick = function(e) {
+        document.getElementById('chat-message-submit').onclick = function() {
             const input = document.getElementById('chat-message-input');
-            const message = input.value;
+            const message = input.value.trim();
+            if (!message || !chatSocket) return;
             
             chatSocket.send(JSON.stringify({
                 'message': message,
@@ -82,6 +108,12 @@
             
             log(message, "user");
             input.value = '';
+        };
+
+        document.getElementById('chat-message-input').onkeypress = function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('chat-message-submit').click();
+            }
         };
     </script>
 </body>
