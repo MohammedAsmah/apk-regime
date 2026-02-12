@@ -7,7 +7,10 @@ from .views import (
     ChangePasswordView,
     OnboardingView,      
     DeleteAccountView,
-    LogoutView
+    LogoutView,
+    HealthProfileView,
+    UserGoalView,
+    UserPreferenceView
 )
 
 urlpatterns = [
@@ -20,5 +23,9 @@ urlpatterns = [
     path("change-password/", ChangePasswordView.as_view(), name="change_password"),
     
     path("onboarding/", OnboardingView.as_view(), name="user_onboarding"), 
-    path("account/", DeleteAccountView.as_view(), name="delete_account"),   
+    path("account/", DeleteAccountView.as_view(), name="delete_account"),
+    
+    path("health-profile/", HealthProfileView.as_view(), name="health_profile"),
+    path("goals/", UserGoalView.as_view(), name="user_goals"),
+    path("preferences/", UserPreferenceView.as_view(), name="user_preferences"),
 ]

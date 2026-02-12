@@ -81,3 +81,31 @@ class NutritionTests(APITestCase):
         self.assertTrue(Meal.objects.filter(user=self.user).count() >= 3)
         # Check that "Oeufs" was created as a Food item (from mock)
         self.assertTrue(Food.objects.filter(name="Oeufs").exists())
+
+class MealPlanNavigationTests(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="navuser", password="SecureTestPassword123!", language="english")
+        login_response = self.client.post(reverse('token_obtain_pair'), {
+            "username": "navuser",
+            "password": "SecureTestPassword123!"
+        })
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {login_response.data["access"]}')
+        
+        # Create a meal plan
+        self.plan = MealPlan.objects.create(user=self.user, name="Old Plan")
+        self.plan.created_at = "2026-01-01" # Manual set for ordering test if needed, though auto_now_add is usually used
+        self.plan.save()
+        
+        self.latest_plan = MealPlan.objects.create(user=self.user, name="Latest Plan")
+
+    def test_meal_plan_history(self):
+        url = reverse('plan-history')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 2)
+
+    def test_current_meal_plan(self):
+        url = reverse('plan-current')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['name'], "Latest Plan")

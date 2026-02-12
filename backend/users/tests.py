@@ -86,3 +86,50 @@ class AuthTests(APITestCase):
         profile_response = self.client.get(self.profile_url)
         # Traditionally, this returns 200 until the token expires.
         self.assertEqual(profile_response.status_code, status.HTTP_200_OK)
+
+class ProfileExtensionTests(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="extuser", 
+            password="SecureTestPassword123!",
+            language="english"
+        )
+        login_response = self.client.post(reverse('token_obtain_pair'), {
+            "username": "extuser",
+            "password": "SecureTestPassword123!"
+        })
+        self.token = login_response.data['access']
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.token}')
+
+    def test_health_profile_get_put(self):
+        url = reverse('health_profile')
+        # GET should create and return empty if not exists
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
+        # PUT update
+        data = {"allergies": "Peanuts", "sleep_hours": 8.5}
+        response = self.client.put(url, data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['allergies'], "Peanuts")
+        self.assertEqual(response.data['sleep_hours'], 8.5)
+
+    def test_user_goals_get_put(self):
+        url = reverse('user_goals')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
+        data = {"target_weight_kg": 75.0, "calorie_target": 2500}
+        response = self.client.put(url, data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['target_weight_kg'], 75.0)
+
+    def test_user_preferences_get_put(self):
+        url = reverse('user_preferences')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
+        data = {"cuisine_type": "Mediterranean", "unit_system": "Metric"}
+        response = self.client.put(url, data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['cuisine_type'], "Mediterranean")

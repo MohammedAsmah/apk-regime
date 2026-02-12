@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     "progress",
     'community',
     'payments',
+    'analytics',
+    'coaching',
 ]
 
 # --- DARORI BACH MA-IBQASH L-BUG ---

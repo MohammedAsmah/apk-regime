@@ -3,7 +3,9 @@ from .views import (
     FoodListCreateView,
     MealPhotoScanView,
     MealPlanGenerateView,
+    MealPlanListView,
     MealPlanDetailView,
+    CurrentMealPlanView,
     MealListCreateView,
     MealDetailView
 )
@@ -19,6 +21,12 @@ urlpatterns = [
     
     #  /api/v1/meal-plan/generate/
     path("meal-plan/generate/", MealPlanGenerateView.as_view(), name="plan-generate"),
+    
+    # /api/v1/meal-plan/history/ (New)
+    path("meal-plan/history/", MealPlanListView.as_view(), name="plan-history"),
+    
+    # /api/v1/meal-plan/current/ (New)
+    path("meal-plan/current/", CurrentMealPlanView.as_view(), name="plan-current"),
     
     # /api/v1/meal-plan/<id>/
     path("meal-plan/<int:pk>/", MealPlanDetailView.as_view(), name="plan-detail"),

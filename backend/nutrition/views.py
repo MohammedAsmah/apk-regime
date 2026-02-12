@@ -149,6 +149,22 @@ class MealDetailView(generics.RetrieveUpdateDestroyAPIView):
         if getattr(self, 'swagger_fake_view', False): return Meal.objects.none() 
         return Meal.objects.filter(user=self.request.user)
 
+# ==========================================
+# 5. MEAL PLANS (Navigation)
+# ==========================================
+
+@method_decorator(name='get', decorator=swagger_auto_schema(tags=['Nutrition']))
+class MealPlanListView(generics.ListAPIView):
+    """
+    GET: Historique des plans alimentaires.
+    """
+    serializer_class = MealPlanSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False): return MealPlan.objects.none() 
+        return MealPlan.objects.filter(user=self.request.user).order_by('-created_at')
+
 @method_decorator(name='get', decorator=swagger_auto_schema(tags=['Nutrition']))
 class MealPlanDetailView(generics.RetrieveAPIView):
     serializer_class = MealPlanSerializer
@@ -157,3 +173,17 @@ class MealPlanDetailView(generics.RetrieveAPIView):
     def get_queryset(self):
         if getattr(self, 'swagger_fake_view', False): return MealPlan.objects.none() 
         return MealPlan.objects.filter(user=self.request.user)
+
+class CurrentMealPlanView(APIView):
+    """
+    GET: Retourne le plan alimentaire le plus récent.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+
+    @swagger_auto_schema(tags=['Nutrition'], responses={200: MealPlanSerializer})
+    def get(self, request):
+        plan = MealPlan.objects.filter(user=request.user).order_by('-created_at').first()
+        if not plan:
+            return Response({"detail": "No meal plan found."}, status=status.HTTP_404_NOT_FOUND)
+        serializer = MealPlanSerializer(plan)
+        return Response(serializer.data)

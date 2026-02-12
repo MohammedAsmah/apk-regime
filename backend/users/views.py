@@ -11,7 +11,8 @@ from django.utils.decorators import method_decorator
 
 from .serializers import (
     RegisterSerializer, UserProfileSerializer, 
-    ChangePasswordSerializer, OnboardingSerializer
+    ChangePasswordSerializer, OnboardingSerializer,
+    HealthProfileSerializer, UserGoalSerializer, UserPreferenceSerializer
 )
 from .utils import calculate_daily_calories
 
@@ -76,6 +77,37 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
         user = serializer.save()
         user.daily_calorie_goal = calculate_daily_calories(user)
         user.save()
+
+# ==========================================
+# 3. EXTENDED PROFILES (Health, Goals, Prefs)
+# ==========================================
+
+class BaseProfileExtensionView(generics.RetrieveUpdateAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        # Automatically create the profile object if it doesn't exist
+        model = self.serializer_class.Meta.model
+        obj, created = model.objects.get_or_create(user=self.request.user)
+        return obj
+
+@method_decorator(name='get', decorator=swagger_auto_schema(tags=['User Profile']))
+@method_decorator(name='put', decorator=swagger_auto_schema(tags=['User Profile']))
+@method_decorator(name='patch', decorator=swagger_auto_schema(tags=['User Profile']))
+class HealthProfileView(BaseProfileExtensionView):
+    serializer_class = HealthProfileSerializer
+
+@method_decorator(name='get', decorator=swagger_auto_schema(tags=['User Profile']))
+@method_decorator(name='put', decorator=swagger_auto_schema(tags=['User Profile']))
+@method_decorator(name='patch', decorator=swagger_auto_schema(tags=['User Profile']))
+class UserGoalView(BaseProfileExtensionView):
+    serializer_class = UserGoalSerializer
+
+@method_decorator(name='get', decorator=swagger_auto_schema(tags=['User Profile']))
+@method_decorator(name='put', decorator=swagger_auto_schema(tags=['User Profile']))
+@method_decorator(name='patch', decorator=swagger_auto_schema(tags=['User Profile']))
+class UserPreferenceView(BaseProfileExtensionView):
+    serializer_class = UserPreferenceSerializer
 
 class OnboardingView(APIView):
     permission_classes = [IsAuthenticated]

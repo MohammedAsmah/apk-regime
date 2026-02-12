@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import (
     DailyLogListCreateView, DailyLogDetailView, 
-    ProgressPhotoView, ProgressChartView, BadgeListView
+    ProgressPhotoView, ProgressChartView, ProgressSummaryView, BadgeListView
 )
 
 urlpatterns = [
@@ -14,6 +14,9 @@ urlpatterns = [
     
     #  /api/v1/progress/chart/ 
     path("chart/", ProgressChartView.as_view(), name="progress-chart"),
+
+    #  /api/v1/progress/summary/ (New)
+    path("summary/", ProgressSummaryView.as_view(), name="progress-summary"),
     
     #  /api/v1/progress/photos/ 
     path("photos/", ProgressPhotoView.as_view(), name="progress-photos"),

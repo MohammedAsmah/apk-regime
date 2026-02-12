@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
+from .models import HealthProfile, UserGoal, UserPreference
 from django.contrib.auth.hashers import make_password
 from django.core.validators import MinLengthValidator, MaxLengthValidator
 
@@ -147,3 +148,36 @@ class OnboardingSerializer(serializers.ModelSerializer):
         if value >= date.today():
             raise serializers.ValidationError("Date of birth cannot be in the future.")
         return value
+
+# ==========================================
+# 5. HEALTH PROFILE SERIALIZER
+# ==========================================
+class HealthProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HealthProfile
+        fields = [
+            'allergies', 'diseases', 'stress_level', 
+            'sleep_hours', 'activity_type', 'religious_constraints'
+        ]
+
+# ==========================================
+# 6. USER GOAL SERIALIZER
+# ==========================================
+class UserGoalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserGoal
+        fields = [
+            'target_weight_kg', 'calorie_target', 
+            'macro_targets', 'start_date', 'end_date'
+        ]
+        read_only_fields = ['start_date']
+
+# ==========================================
+# 7. USER PREFERENCE SERIALIZER
+# ==========================================
+class UserPreferenceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserPreference
+        fields = [
+            'cuisine_type', 'unit_system', 'notifications_enabled'
+        ]

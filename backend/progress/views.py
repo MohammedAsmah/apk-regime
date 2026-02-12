@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser
 from datetime import timedelta, date
+from django.db.models import Avg
 
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
@@ -75,7 +76,7 @@ class ProgressPhotoView(generics.ListCreateAPIView):
         serializer.save(user=self.request.user)
 
 # ==========================================
-# 3. CHART 
+# 3. CHART & SUMMARY
 # ==========================================
 class ProgressChartView(APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -88,6 +89,58 @@ class ProgressChartView(APIView):
         
         data = [{"date": l.date, "weight": l.weight_kg, "calories": l.calories_consumed} for l in logs]
         return Response(data)
+
+class ProgressSummaryView(APIView):
+    """
+    GET: Résumé global de progression.
+    - Perte de poids totale
+    - Score d'adhérence (basé sur les calories vs objectif)
+    """
+    permission_classes = [permissions.IsAuthenticated]
+
+    @swagger_auto_schema(tags=['Progress'])
+    def get(self, request):
+        user = request.user
+        logs = DailyLog.objects.filter(user=user).order_by('date')
+        
+        if not logs.exists():
+            return Response({
+                "total_weight_loss": 0,
+                "adherence_score": 0,
+                "message": "Start logging to see your summary!"
+            })
+
+        first_log = logs.first()
+        latest_log = logs.last()
+        
+        total_loss = (first_log.weight_kg or 0) - (latest_log.weight_kg or 0)
+        
+        # Calculate adherence score (last 30 days)
+        last_30_days = date.today() - timedelta(days=30)
+        recent_logs = logs.filter(date__gte=last_30_days)
+        
+        adherence_days = 0
+        total_recent_days = recent_logs.count()
+        
+        if total_recent_days > 0:
+            for log in recent_logs:
+                # Adherence = within 15% of calorie goal
+                goal = user.daily_calorie_goal
+                if goal > 0:
+                    deviation = abs(log.calories_consumed - goal) / goal
+                    if deviation <= 0.15:
+                        adherence_days += 1
+            
+            adherence_score = (adherence_days / total_recent_days) * 100
+        else:
+            adherence_score = 0
+
+        return Response({
+            "total_weight_loss": round(total_loss, 2),
+            "adherence_score": round(adherence_score, 1),
+            "days_tracked": total_recent_days,
+            "current_weight": latest_log.weight_kg
+        })
 
 # ==========================================
 # 4. BADGES 

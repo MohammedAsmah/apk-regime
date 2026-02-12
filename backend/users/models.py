@@ -36,3 +36,35 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+
+class HealthProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="health_profile")
+    allergies = models.TextField(blank=True, null=True)
+    diseases = models.TextField(blank=True, null=True)
+    stress_level = models.CharField(max_length=50, blank=True, null=True)
+    sleep_hours = models.FloatField(null=True, blank=True)
+    activity_type = models.CharField(max_length=100, blank=True, null=True)
+    religious_constraints = models.TextField(blank=True, null=True)
+    
+    def __str__(self):
+        return f"Health Profile for {self.user.username}"
+
+class UserGoal(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="goal")
+    target_weight_kg = models.FloatField(null=True, blank=True)
+    calorie_target = models.PositiveIntegerField(null=True, blank=True)
+    macro_targets = models.JSONField(default=dict, blank=True)
+    start_date = models.DateField(auto_now_add=True)
+    end_date = models.DateField(null=True, blank=True)
+    
+    def __str__(self):
+        return f"Goal for {self.user.username}"
+
+class UserPreference(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="preferences")
+    cuisine_type = models.CharField(max_length=100, blank=True, null=True)
+    unit_system = models.CharField(max_length=20, choices=[('Metric', 'Metric'), ('Imperial', 'Imperial')], default='Metric')
+    notifications_enabled = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return f"Preferences for {self.user.username}"
