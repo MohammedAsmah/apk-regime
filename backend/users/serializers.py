@@ -42,6 +42,31 @@ class RegisterSerializer(serializers.ModelSerializer):
         
         validated_data["password"] = make_password(validated_data["password"])
         return User.objects.create(**validated_data)
+
+    def validate_password(self, value):
+        from django.contrib.auth.password_validation import validate_password
+        validate_password(value)
+        if len(value) < 8:
+            raise serializers.ValidationError("Password must be at least 8 characters long.")
+        return value
+
+    def validate_date_of_birth(self, value):
+        from datetime import date
+        today = date.today()
+        if value >= today:
+            raise serializers.ValidationError("Date of birth cannot be in the future.")
+        
+        # Age validation (Minimum 18 years old)
+        age = today.year - value.year - ((today.month, today.day) < (value.month, value.day))
+        if age < 18:
+            raise serializers.ValidationError("You must be at least 18 years old to register.")
+        return value
+
+    def validate_height_cm(self, value):
+        if value and (value < 50 or value > 250):
+            raise serializers.ValidationError("Please enter a valid height between 50 and 250 cm.")
+        return value
+
     def validate_language(self, value):
         if any(char.isdigit() for char in value):
             raise serializers.ValidationError(
@@ -73,11 +98,29 @@ class UserProfileSerializer(serializers.ModelSerializer):
         ]
         
         read_only_fields = ["id", "username", "email", "is_premium", "daily_calorie_goal"]
+
     def validate_language(self, value):
         if any(char.isdigit() for char in value):
             raise serializers.ValidationError(
                 "in language  should not contain numbers."
             )
+        return value
+
+    def validate_date_of_birth(self, value):
+        from datetime import date
+        today = date.today()
+        if value >= today:
+            raise serializers.ValidationError("Date of birth cannot be in the future.")
+        
+        # Age validation (Minimum 18 years old)
+        age = today.year - value.year - ((today.month, today.day) < (value.month, value.day))
+        if age < 18:
+            raise serializers.ValidationError("You must be at least 18 years old.")
+        return value
+
+    def validate_height_cm(self, value):
+        if value and (value < 50 or value > 250):
+            raise serializers.ValidationError("Please enter a valid height between 50 and 250 cm.")
         return value
 
 
@@ -145,14 +188,28 @@ class OnboardingSerializer(serializers.ModelSerializer):
     
     def validate_date_of_birth(self, value):
         from datetime import date
-        if value >= date.today():
+        today = date.today()
+        if value >= today:
             raise serializers.ValidationError("Date of birth cannot be in the future.")
+        
+        # Age validation (Minimum 18 years old)
+        age = today.year - value.year - ((today.month, today.day) < (value.month, value.day))
+        if age < 18:
+            raise serializers.ValidationError("You must be at least 18 years old to complete onboarding.")
+        return value
+
+    def validate_height_cm(self, value):
+        if value and (value < 50 or value > 250):
+            raise serializers.ValidationError("Please enter a valid height between 50 and 250 cm.")
         return value
 
 # ==========================================
 # 5. HEALTH PROFILE SERIALIZER
 # ==========================================
 class HealthProfileSerializer(serializers.ModelSerializer):
+    activity_type = serializers.CharField(required=True)
+    sleep_hours = serializers.FloatField(required=True)
+    
     class Meta:
         model = HealthProfile
         fields = [
@@ -164,6 +221,10 @@ class HealthProfileSerializer(serializers.ModelSerializer):
 # 6. USER GOAL SERIALIZER
 # ==========================================
 class UserGoalSerializer(serializers.ModelSerializer):
+    target_weight_kg = serializers.FloatField(required=True)
+    calorie_target = serializers.IntegerField(required=True)
+    end_date = serializers.DateField(required=True)
+    
     class Meta:
         model = UserGoal
         fields = [
@@ -172,10 +233,40 @@ class UserGoalSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ['start_date']
 
+    def validate_calorie_target(self, value):
+        if value and (value < 500 or value > 5000):
+            raise serializers.ValidationError("Please enter a calorie target between 500 and 5000.")
+        return value
+
+    def validate_target_weight_kg(self, value):
+        if value and (value < 30 or value > 300):
+            raise serializers.ValidationError("Please enter a target weight between 30 and 300 kg.")
+        return value
+
+    def validate(self, data):
+        """
+        Check that end_date is after start_date.
+        """
+        from datetime import date
+        end_date = data.get('end_date')
+        if end_date:
+            # For new instances, start_date isn't set yet (auto_now_add)
+            # but we can assume today. For updates, we use instance.start_date.
+            start_date = date.today()
+            if self.instance and self.instance.start_date:
+                start_date = self.instance.start_date
+            
+            if end_date <= start_date:
+                raise serializers.ValidationError({"end_date": "End date must be after the start date."})
+        return data
+
 # ==========================================
 # 7. USER PREFERENCE SERIALIZER
 # ==========================================
 class UserPreferenceSerializer(serializers.ModelSerializer):
+    cuisine_type = serializers.CharField(required=True)
+    unit_system = serializers.CharField(required=True)
+    
     class Meta:
         model = UserPreference
         fields = [

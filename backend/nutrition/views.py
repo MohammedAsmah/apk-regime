@@ -59,9 +59,9 @@ class MealPhotoScanView(APIView):
         if serializer.is_valid():
             
             scan_obj = serializer.save(user=request.user)
-            
-           
-            ai_result = analyze_meal_photo_mock(scan_obj.image.path)
+            # Analyse AI (Mock)
+            # Utilise .name au lieu de .path car .path n'est pas supporté par S3
+            ai_result = analyze_meal_photo_mock(scan_obj.image.name)
             
             
             scan_obj.recognized_foods = ai_result.get('foods', [])

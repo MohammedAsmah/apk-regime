@@ -1,4 +1,4 @@
-from rest_framework import generics, status
+from rest_framework import generics, status, serializers
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -30,6 +30,11 @@ class RegisterView(generics.CreateAPIView):
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
+        # Validation of password length (User requirement for 400 error)
+        password = attrs.get("password")
+        if password and len(password) < 8:
+            raise serializers.ValidationError({"password": "Password must be at least 8 characters long."})
+
         data = super().validate(attrs)
         data['user_id'] = self.user.id
         data['username'] = self.user.username

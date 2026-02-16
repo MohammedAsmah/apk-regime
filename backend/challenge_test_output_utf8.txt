@@ -1,0 +1,126 @@
+﻿venv\Scripts\python.e
+xe : Creating test 
+database for alias 
+'default' ('file:memo
+rydb_default?mode=mem
+ory&cache=shared')...
+At line:1 char:1
++ venv\Scripts\python
+.exe manage.py test c
+ommunity.reproduce_ch
+allenge_ ...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (Creatin   
+ g test d...che=s    
+hared')...:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+
+Found 3 test(s).
+Operations to perform:
+  Synchronize unmigrated apps: channels, corsheaders, daphne, django_filters, drf_yasg, messages, rest_framework, rest_framework_simplejwt, staticfiles, storages
+  Apply all migrations: admin, analytics, auth, chat, coaching, community, contenttypes, nutrition, payments, progress, sessions, token_blacklist, users
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0001_initial... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying users.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying analytics.0001_initial... OK
+  Applying chat.0001_initial... OK
+  Applying chat.0002_alter_chatsession_options_chatsession_updated_at_and_more... OK
+  Applying chat.0003_remove_message_sender_message_role_and_more... OK
+  Applying coaching.0001_initial... OK
+  Applying community.0001_initial... OK
+  Applying community.0002_challenge_created_by... OK
+  Applying nutrition.0001_initial... OK
+  Applying nutrition.0002_meal_mealplan_remove_dailylog_foods_and_more... OK
+  Applying nutrition.0003_alter_meal_options_remove_meal_updated_at_and_more... OK
+  Applying payments.0001_initial... OK
+  Applying progress.0001_initial... OK
+  Applying progress.0002_alter_progress_options_alter_progress_user_and_more... OK
+  Applying progress.0003_dailylog_progressphoto_delete_progress... OK
+  Applying progress.0004_badge_dailylog_chest_cm_dailylog_hip_cm_and_more... OK
+  Applying sessions.0001_initial... OK
+  Applying token_blacklist.0001_initial... OK
+  Applying token_blacklist.0002_outstandingtoken_jti_hex... OK
+  Applying token_blacklist.0003_auto_20171017_2007... OK
+  Applying token_blacklist.0004_auto_20171017_2013... OK
+  Applying token_blacklist.0005_remove_outstandingtoken_jti... OK
+  Applying token_blacklist.0006_auto_20171017_2113... OK
+  Applying token_blacklist.0007_auto_20171017_2214... OK
+  Applying token_blacklist.0008_migrate_to_bigautofield... OK
+  Applying token_blacklist.0010_fix_migrate_to_bigautofield... OK
+  Applying token_blacklist.0011_linearizes_history... OK
+  Applying token_blacklist.0012_alter_outstandingtoken_user... OK
+  Applying token_blacklist.0013_alter_blacklistedtoken_options_and_more... OK
+  Applying users.0002_user_currency_user_date_of_birth_user_gender_and_more... OK
+  Applying users.0003_user_activity_level_user_current_weight_kg_and_more... OK
+  Applying users.0004_alter_user_language... OK
+test_post_challenge_f
+uture_date_fail (comm
+unity.reproduce_chall
+enge_issue.ChallengeR
+eproductionTests.test
+_post_challenge_futur
+e_date_fail) ... ok
+test_post_challenge_i
+nvalid_range_fail (co
+mmunity.reproduce_cha
+llenge_issue.Challeng
+eReproductionTests.te
+st_post_challenge_inv
+alid_range_fail) ... 
+ok
+test_post_challenge_s
+uccess_returns_201 (c
+ommunity.reproduce_ch
+allenge_issue.Challen
+geReproductionTests.t
+est_post_challenge_su
+ccess_returns_201) 
+... ok
+
+---------------------
+---------------------
+---------------------
+-------
+Ran 3 tests in 3.471s
+
+OK
+Destroying test 
+database for alias 
+'default' ('file:memo
+rydb_default?mode=mem
+ory&cache=shared')...
+
+  Applying users.0005_healthprofile_usergoal_userpreference... OK
+System check identified no issues (0 silenced).
+DEBUG: Status code for future challenge: 201
+DEBUG: Status code for invalid range: 201
+DEBUG: Status code for valid challenge: 201

@@ -107,9 +107,9 @@ class ProfileExtensionTests(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         
-        # PUT update
+        # PATCH update (partial)
         data = {"allergies": "Peanuts", "sleep_hours": 8.5}
-        response = self.client.put(url, data)
+        response = self.client.patch(url, data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['allergies'], "Peanuts")
         self.assertEqual(response.data['sleep_hours'], 8.5)
@@ -120,7 +120,7 @@ class ProfileExtensionTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         
         data = {"target_weight_kg": 75.0, "calorie_target": 2500}
-        response = self.client.put(url, data)
+        response = self.client.patch(url, data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['target_weight_kg'], 75.0)
 
@@ -130,6 +130,6 @@ class ProfileExtensionTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         
         data = {"cuisine_type": "Mediterranean", "unit_system": "Metric"}
-        response = self.client.put(url, data)
+        response = self.client.patch(url, data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['cuisine_type'], "Mediterranean")
