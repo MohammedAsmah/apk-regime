@@ -5,6 +5,7 @@ urlpatterns = [
     # --- API REST (Pour Flutter) ---
     path('sessions/', views.SessionListView.as_view(), name='chat-sessions'),
     path('history/<int:pk>/', views.SessionHistoryView.as_view(), name='chat-history'),
+    path('message/', views.ChatMessageView.as_view(), name='chat-message'),
 
     # --- TEST PAGE (HTML) ---
     # Hadi Dertha pour Test webSocket local

@@ -12,7 +12,8 @@ from django.utils.decorators import method_decorator
 from .models import Food, Meal, MealPlan, MealPhoto
 from .serializers import (
     FoodSerializer, MealSerializer, MealPlanSerializer, 
-    MealPhotoSerializer, MealPlanGenerateSerializer
+    MealPhotoSerializer, MealPlanGenerateSerializer,
+    VoiceSearchSerializer
 )
 from .utils import analyze_meal_photo_mock, generate_meal_plan_mock
 
@@ -187,3 +188,106 @@ class CurrentMealPlanView(APIView):
             return Response({"detail": "No meal plan found."}, status=status.HTTP_404_NOT_FOUND)
         serializer = MealPlanSerializer(plan)
         return Response(serializer.data)
+
+# ==========================================
+# 6. VOICE SEARCH (STT)
+# ==========================================
+class VoiceSearchView(APIView):
+    """
+    POST: Recherche vocale d'aliments.
+    Prend un fichier audio (mock STT) ou un transcript direct.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+    parser_classes = [MultiPartParser, FormParser]
+
+    @swagger_auto_schema(
+        tags=['Nutrition'],
+        request_body=VoiceSearchSerializer,
+        responses={200: FoodSerializer(many=True)}
+    )
+    def post(self, request):
+        serializer = VoiceSearchSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        audio = serializer.validated_data.get('audio')
+        transcript = serializer.validated_data.get('transcript')
+
+        # Mock STT Logic
+        if audio and not transcript:
+            transcript = "poulet" # Mock result
+        
+        if not transcript:
+            return Response({"error": "No audio or transcript provided"}, status=400)
+
+        # Effectuer la recherche standard
+        from django.db.models import Q
+        foods = Food.objects.filter(Q(name__icontains=transcript) | Q(name_fr__icontains=transcript))
+        
+        return Response({
+            "transcript": transcript,
+            "results": FoodSerializer(foods, many=True).data
+        }, status=200)
+
+# ==========================================
+# 7. ADVANCED MENUS (Weekly & Cultural)
+# ==========================================
+class WeeklyMealPlanView(APIView):
+    """
+    GET: Génère un menu hebdomadaire (7 jours).
+    """
+    permission_classes = [permissions.IsAuthenticated]
+
+    @swagger_auto_schema(tags=['Nutrition'], responses={200: MealPlanSerializer(many=True)})
+    def get(self, request):
+        # Simulation d'un plan sur 7 jours
+        plans = []
+        for i in range(7):
+            plan = MealPlan.objects.create(
+                user=request.user,
+                name=f"Day {i+1} Plan",
+                constraints={"budget": "low", "diet": "balanced"}
+            )
+            plans.append(plan)
+        return Response(MealPlanSerializer(plans, many=True).data)
+
+class CulturalMealPlanView(APIView):
+    """
+    GET: Menus selon contexte culturel.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+
+    @swagger_auto_schema(tags=['Nutrition'])
+    def get(self, request):
+        context = request.query_params.get('context', 'Ramadan')
+        menu_data = {
+            "Ramadan": ["Dates", "Harira", "Chorba", "Milk", "Grilled Fish"],
+            "Fêtes": ["Lamb Roast", "Special Sweets", "Festive Rice"],
+            "Invitations": ["Appetizer platter", "Main stew", "Dessert"]
+        }
+        items = menu_data.get(context, menu_data["Ramadan"])
+        return Response({
+            "context": context,
+            "menu_suggestion": items,
+            "note": "AI suggestion based on cultural context."
+        })
+
+class FamilyLightRecipeView(APIView):
+    """
+    GET: Recettes familiales allégées.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+
+    @swagger_auto_schema(tags=['Nutrition'])
+    def get(self, request):
+        recipes = [
+            {"id": 1, "name": "Poulet rôti sans peau", "calories": 250},
+            {"id": 2, "name": "Lasagnes aux légumes", "calories": 320},
+            {"id": 3, "name": "Gratin de chou-fleur léger", "calories": 180}
+        ]
+        return Response(recipes)
+
+class MealAnalyzeView(MealPhotoScanView):
+    """
+    Alias pour support de l'endpoint /api/v1/meals/analyze
+    """
+    pass

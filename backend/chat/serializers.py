@@ -18,3 +18,7 @@ class ChatSessionSerializer(serializers.ModelSerializer):
         if msg:
             return msg.content[:30] + "..."
         return ""
+
+class ChatMessageRequestSerializer(serializers.Serializer):
+    session_id = serializers.IntegerField(required=False)
+    message = serializers.CharField(required=True)

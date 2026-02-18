@@ -96,6 +96,22 @@ class BaseProfileExtensionView(generics.RetrieveUpdateAPIView):
         obj, created = model.objects.get_or_create(user=self.request.user)
         return obj
 
+    def post(self, request, *args, **kwargs):
+        # Allow POST to behave like PUT/PATCH (Create or Update)
+        response = self.update(request, *args, **kwargs)
+        
+        # Trigger calorie calculation and add to response
+        user = request.user
+        calories = calculate_daily_calories(user)
+        user.daily_calorie_goal = calories
+        user.save()
+        
+        # Add to response data
+        if isinstance(response.data, dict):
+            response.data['daily_calorie_goal'] = calories
+            
+        return response
+
 @method_decorator(name='get', decorator=swagger_auto_schema(tags=['User Profile']))
 @method_decorator(name='put', decorator=swagger_auto_schema(tags=['User Profile']))
 @method_decorator(name='patch', decorator=swagger_auto_schema(tags=['User Profile']))

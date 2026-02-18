@@ -45,6 +45,78 @@ class SessionHistoryView(generics.ListAPIView):
             session__user=self.request.user
         )
 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+import asyncio
+from openai import AsyncOpenAI
+from .serializers import ChatMessageRequestSerializer
+from django.conf import settings
+
+@method_decorator(name='post', decorator=swagger_auto_schema(tags=['Chat'], request_body=ChatMessageRequestSerializer))
+class ChatMessageView(APIView):
+    """
+    POST: Envoie un message à l'IA et reçoit une réponse en temps réel.
+    Multi-langue supporté via le prompt système du LLM.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        serializer = ChatMessageRequestSerializer(data=request.data)
+        if serializer.is_valid():
+            user_message = serializer.validated_data.get('message')
+            session_id = serializer.validated_data.get('session_id')
+            user = request.user
+
+            # 1. Get or create session
+            session = self.get_or_create_session(user, session_id)
+            
+            # 2. Save User Message
+            Message.objects.create(session=session, role=Message.Role.USER, content=user_message)
+
+            # 3. Call AI (Async wrapper to call from Sync view)
+            ai_response = asyncio.run(self.call_llm_with_fallback(user_message))
+
+            # 4. Save AI Response
+            ai_msg = Message.objects.create(session=session, role=Message.Role.ASSISTANT, content=ai_response)
+
+            return Response({
+                "session_id": session.id,
+                "user_message": user_message,
+                "ai_response": ai_response,
+                "created_at": ai_msg.created_at
+            }, status=status.HTTP_200_OK)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def get_or_create_session(self, user, session_id=None):
+        if session_id:
+            try:
+                return ChatSession.objects.get(id=session_id, user=user)
+            except ChatSession.DoesNotExist:
+                pass
+        return ChatSession.objects.create(user=user, session_name=f"Chat {user.username}")
+
+    async def call_llm_with_fallback(self, prompt):
+        try:
+            client = AsyncOpenAI(
+                base_url="http://localhost:11434/v1", 
+                api_key="ollama",
+                timeout=5.0 
+            )
+            response = await client.chat.completions.create(
+                model="llama3.2", 
+                messages=[
+                    {"role": "system", "content": "You are an empathetic nutrition coach. Support multi-language requests (FR, EN, AR, etc.)."},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=0.7,
+            )
+            return response.choices[0].message.content
+        except Exception:
+            await asyncio.sleep(0.5)
+            return f"🤖 [Mock AI]: Je suis le coach IA (Simulation). Serveur LLM indisponible. J'ai bien reçu: '{prompt}'"
+
 # ==========================
 # 2. HTML TEST VIEW
 # ==========================

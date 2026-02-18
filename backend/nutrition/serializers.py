@@ -40,4 +40,8 @@ class MealPlanSerializer(serializers.ModelSerializer):
 class MealPlanGenerateSerializer(serializers.Serializer):
     target_calories = serializers.IntegerField(default=2000, min_value=500, max_value=5000)
     meals_per_day = serializers.IntegerField(default=3, min_value=1, max_value=6)
-    diet_type = serializers.CharField(required=False, default="balanced") 
+    diet_type = serializers.CharField(required=False, default="balanced")
+
+class VoiceSearchSerializer(serializers.Serializer):
+    audio = serializers.FileField(required=False)
+    transcript = serializers.CharField(required=False)

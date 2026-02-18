@@ -7,7 +7,12 @@ from .views import (
     MealPlanDetailView,
     CurrentMealPlanView,
     MealListCreateView,
-    MealDetailView
+    MealDetailView,
+    VoiceSearchView,
+    WeeklyMealPlanView,
+    CulturalMealPlanView,
+    FamilyLightRecipeView,
+    MealAnalyzeView
 )
 
 urlpatterns = [
@@ -18,6 +23,14 @@ urlpatterns = [
     #  /api/v1/food/scan/
     path("food/scan/", MealPhotoScanView.as_view(), name="food-scan"),
     
+    #  /api/v1/food/voice-search/
+    path("food/voice-search/", VoiceSearchView.as_view(), name="voice-search"),
+    
+    # New Endpoints
+    path("meal-plans/weekly/", WeeklyMealPlanView.as_view(), name="weekly-menu"),
+    path("meal-plans/cultural-context/", CulturalMealPlanView.as_view(), name="cultural-menu"),
+    path("meals/analyze/", MealAnalyzeView.as_view(), name="meal-analyze"),
+    path("meals/family-light/", FamilyLightRecipeView.as_view(), name="family-light"),
     
     #  /api/v1/meal-plan/generate/
     path("meal-plan/generate/", MealPlanGenerateView.as_view(), name="plan-generate"),

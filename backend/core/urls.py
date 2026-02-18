@@ -59,7 +59,10 @@ urlpatterns = [
     path("api/v1/analytics/", include("analytics.urls")),
 
     # --- 8. COACHING ---
+    path("api/v1/", include("coaching.urls_quick")),
+    path("api/v1/coach-emotions/", include("coaching.urls_emotions")),
     path("api/v1/coach/", include("coaching.urls")),
+    path("api/emotions/", include("coaching.urls_patterns")),
 
     # --- 9. SWAGGER ---
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

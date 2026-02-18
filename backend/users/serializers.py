@@ -228,7 +228,7 @@ class UserGoalSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserGoal
         fields = [
-            'target_weight_kg', 'calorie_target', 
+            'target_weight_kg', 'calorie_target', 'effort_level',
             'macro_targets', 'start_date', 'end_date'
         ]
         read_only_fields = ['start_date']

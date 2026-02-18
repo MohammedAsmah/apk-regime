@@ -53,6 +53,7 @@ class UserGoal(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="goal")
     target_weight_kg = models.FloatField(null=True, blank=True)
     calorie_target = models.PositiveIntegerField(null=True, blank=True)
+    effort_level = models.CharField(max_length=20, choices=[('Low', 'Low'), ('Moderate', 'Moderate'), ('High', 'High')], default='Moderate')
     macro_targets = models.JSONField(default=dict, blank=True)
     start_date = models.DateField(auto_now_add=True)
     end_date = models.DateField(null=True, blank=True)

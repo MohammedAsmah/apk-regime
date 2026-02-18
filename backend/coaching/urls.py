@@ -21,7 +21,12 @@ class CoachSessionListCreateView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+from . import views
+
 # URLs
 urlpatterns = [
     path("session/", CoachSessionListCreateView.as_view(), name="coach-session-list"),
+    path("coach-emotions/session/", views.EmotionalCoachSessionView.as_view(), name="emotional-coach-session"),
+    path("emotions/patterns/", views.EmotionalPatternsView.as_view(), name="emotional-patterns"),
+    path("quick-techniques/", views.QuickTechniquesView.as_view(), name="quick-techniques"),
 ]
