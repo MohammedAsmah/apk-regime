@@ -1,4 +1,4 @@
-from rest_framework import generics, status, serializers
+from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -14,6 +14,7 @@ from .serializers import (
     ChangePasswordSerializer, OnboardingSerializer,
     HealthProfileSerializer, UserGoalSerializer, UserPreferenceSerializer
 )
+from .models import HealthProfile, UserGoal, UserPreference
 from .utils import calculate_daily_calories
 
 User = get_user_model()
@@ -30,11 +31,6 @@ class RegisterView(generics.CreateAPIView):
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
-        # Validation of password length (User requirement for 400 error)
-        password = attrs.get("password")
-        if password and len(password) < 8:
-            raise serializers.ValidationError({"password": "Password must be at least 8 characters long."})
-
         data = super().validate(attrs)
         data['user_id'] = self.user.id
         data['username'] = self.user.username
@@ -83,53 +79,6 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
         user.daily_calorie_goal = calculate_daily_calories(user)
         user.save()
 
-# ==========================================
-# 3. EXTENDED PROFILES (Health, Goals, Prefs)
-# ==========================================
-
-class BaseProfileExtensionView(generics.RetrieveUpdateAPIView):
-    permission_classes = [IsAuthenticated]
-
-    def get_object(self):
-        # Automatically create the profile object if it doesn't exist
-        model = self.serializer_class.Meta.model
-        obj, created = model.objects.get_or_create(user=self.request.user)
-        return obj
-
-    def post(self, request, *args, **kwargs):
-        # Allow POST to behave like PUT/PATCH (Create or Update)
-        response = self.update(request, *args, **kwargs)
-        
-        # Trigger calorie calculation and add to response
-        user = request.user
-        calories = calculate_daily_calories(user)
-        user.daily_calorie_goal = calories
-        user.save()
-        
-        # Add to response data
-        if isinstance(response.data, dict):
-            response.data['daily_calorie_goal'] = calories
-            
-        return response
-
-@method_decorator(name='get', decorator=swagger_auto_schema(tags=['User Profile']))
-@method_decorator(name='put', decorator=swagger_auto_schema(tags=['User Profile']))
-@method_decorator(name='patch', decorator=swagger_auto_schema(tags=['User Profile']))
-class HealthProfileView(BaseProfileExtensionView):
-    serializer_class = HealthProfileSerializer
-
-@method_decorator(name='get', decorator=swagger_auto_schema(tags=['User Profile']))
-@method_decorator(name='put', decorator=swagger_auto_schema(tags=['User Profile']))
-@method_decorator(name='patch', decorator=swagger_auto_schema(tags=['User Profile']))
-class UserGoalView(BaseProfileExtensionView):
-    serializer_class = UserGoalSerializer
-
-@method_decorator(name='get', decorator=swagger_auto_schema(tags=['User Profile']))
-@method_decorator(name='put', decorator=swagger_auto_schema(tags=['User Profile']))
-@method_decorator(name='patch', decorator=swagger_auto_schema(tags=['User Profile']))
-class UserPreferenceView(BaseProfileExtensionView):
-    serializer_class = UserPreferenceSerializer
-
 class OnboardingView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -176,3 +125,70 @@ class LogoutView(APIView):
             return Response({"detail": "Successfully logged out."}, status=200)
         except Exception as e:
             return Response({"error": str(e)}, status=400)
+
+# ==========================================
+# 3. PROFILE EXTENSIONS (Health, Goals...)
+# ==========================================
+
+class BaseProfileExtensionView(APIView):
+    """
+    Base view to handle OneToOne models linked to User.
+    Strictly distinguishes between PUT (Full) and PATCH (Partial).
+    """
+    permission_classes = [IsAuthenticated]
+    model = None
+    serializer_class = None
+
+    def get_object(self):
+        obj, _ = self.model.objects.get_or_create(user=self.request.user)
+        return obj
+
+    @swagger_auto_schema(tags=['User Profile Extension'])
+    def get(self, request):
+        obj = self.get_object()
+        serializer = self.serializer_class(obj)
+        return Response(serializer.data)
+
+    @swagger_auto_schema(tags=['User Profile Extension'])
+    def put(self, request):
+        """Full update: Requires all fields."""
+        obj = self.get_object()
+        serializer = self.serializer_class(obj, data=request.data)
+        if serializer.is_valid():
+            self.perform_update(serializer)
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
+
+    @swagger_auto_schema(tags=['User Profile Extension'])
+    def patch(self, request):
+        """Partial update: Only provided fields."""
+        obj = self.get_object()
+        serializer = self.serializer_class(obj, data=request.data, partial=True)
+        if serializer.is_valid():
+            self.perform_update(serializer)
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
+
+    @swagger_auto_schema(tags=['User Profile Extension'])
+    def post(self, request):
+        """Allow POST as an alias for partial update (requested for Health Profile)."""
+        return self.patch(request)
+
+    def perform_update(self, serializer):
+        user = self.request.user
+        serializer.save(user=user)
+        # Re-trigger energy calculation
+        user.daily_calorie_goal = calculate_daily_calories(user)
+        user.save()
+
+class HealthProfileView(BaseProfileExtensionView):
+    model = HealthProfile
+    serializer_class = HealthProfileSerializer
+
+class UserGoalView(BaseProfileExtensionView):
+    model = UserGoal
+    serializer_class = UserGoalSerializer
+
+class UserPreferenceView(BaseProfileExtensionView):
+    model = UserPreference
+    serializer_class = UserPreferenceSerializer

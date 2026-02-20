@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 class User(AbstractUser):
 
+    email = models.EmailField(_('email address'), unique=True)
     date_of_birth = models.DateField(null=True, blank=True)
     gender = models.CharField(max_length=10, choices=[('M', 'Male'), ('F', 'Female')], null=True, blank=True)
     height_cm = models.PositiveIntegerField(null=True, blank=True)
@@ -38,10 +39,16 @@ class User(AbstractUser):
         return self.username
 
 class HealthProfile(models.Model):
+    STRESS_CHOICES = [
+        ('Low', 'Low'),
+        ('Moderate', 'Moderate'),
+        ('High', 'High'),
+        ('Very High', 'Very High'),
+    ]
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="health_profile")
     allergies = models.TextField(blank=True, null=True)
     diseases = models.TextField(blank=True, null=True)
-    stress_level = models.CharField(max_length=50, blank=True, null=True)
+    stress_level = models.CharField(max_length=50, choices=STRESS_CHOICES, blank=True, null=True)
     sleep_hours = models.FloatField(null=True, blank=True)
     activity_type = models.CharField(max_length=100, blank=True, null=True)
     religious_constraints = models.TextField(blank=True, null=True)

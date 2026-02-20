@@ -1,0 +1,291 @@
+﻿venv\Scripts\python.e
+xe : Traceback (most 
+recent call last):
+At line:1 char:1
++ venv\Scripts\python
+.exe manage.py 
+makemigrations 2>&1 
+| tee migration ...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (Traceba   
+ ck (most recent     
+call last)::Stri    
+ng) [], RemoteEx    
+ception
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+  File "C:\Users\DELL
+\Desktop\APK-Regimes-
+Perte-de-Poids\backen
+d\manage.py", line 
+22, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\DELL
+\Desktop\APK-Regimes-
+Perte-de-Poids\backen
+d\manage.py", line 
+18, in main
+    execute_from_comm
+and_line(sys.argv)
+    ~~~~~~~~~~~~~~~~~
+~~~~~~~~^^^^^^^^^^
+  File "C:\Users\DELL
+\Desktop\APK-Regimes-
+Perte-de-Poids\backen
+d\venv\Lib\site-packa
+ges\django\core\manag
+ement\__init__.py", 
+line 442, in execute_
+from_command_line
+    utility.execute()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\DELL
+\Desktop\APK-Regimes-
+Perte-de-Poids\backen
+d\venv\Lib\site-packa
+ges\django\core\manag
+ement\__init__.py", 
+line 436, in execute
+    self.fetch_comman
+d(subcommand).run_fro
+m_argv(self.argv)
+    ~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~^^^^^^^^^^^
+  File "C:\Users\DELL
+\Desktop\APK-Regimes-
+Perte-de-Poids\backen
+d\venv\Lib\site-packa
+ges\django\core\manag
+ement\base.py", line 
+416, in run_from_argv
+    
+self.execute(*args, 
+**cmd_options)
+    ~~~~~~~~~~~~^^^^^
+^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL
+\Desktop\APK-Regimes-
+Perte-de-Poids\backen
+d\venv\Lib\site-packa
+ges\django\core\manag
+ement\base.py", line 
+457, in execute
+    self.check(**chec
+k_kwargs)
+    ~~~~~~~~~~^^^^^^^
+^^^^^^^^^
+  File "C:\Users\DELL
+\Desktop\APK-Regimes-
+Perte-de-Poids\backen
+d\venv\Lib\site-packa
+ges\django\core\manag
+ement\base.py", line 
+492, in check
+    all_issues = 
+checks.run_checks(
+        app_configs=a
+pp_configs,
+    ...<2 lines>...
+        
+databases=databases,
+    )
+  File "C:\Users\DELL
+\Desktop\APK-Regimes-
+Perte-de-Poids\backen
+d\venv\Lib\site-packa
+ges\django\core\check
+s\registry.py", line 
+89, in run_checks
+    new_errors = chec
+k(app_configs=app_con
+figs, 
+databases=databases)
+  File "C:\Users\DELL
+\Desktop\APK-Regimes-
+Perte-de-Poids\backen
+d\venv\Lib\site-packa
+ges\django\core\check
+s\urls.py", line 
+136, in check_custom_
+error_handlers
+    handler = resolve
+r.resolve_error_handl
+er(status_code)
+  File "C:\Users\DELL
+\Desktop\APK-Regimes-
+Perte-de-Poids\backen
+d\venv\Lib\site-packa
+ges\django\urls\resol
+vers.py", line 732, 
+in 
+resolve_error_handler
+    callback = getatt
+r(self.urlconf_module
+, "handler%s" % 
+view_type, None)
+                     
+  ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL
+\Desktop\APK-Regimes-
+Perte-de-Poids\backen
+d\venv\Lib\site-packa
+ges\django\utils\func
+tional.py", line 47, 
+in __get__
+    res = instance.__
+dict__[self.name] = 
+self.func(instance)
+                     
+                    
+~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\DELL
+\Desktop\APK-Regimes-
+Perte-de-Poids\backen
+d\venv\Lib\site-packa
+ges\django\urls\resol
+vers.py", line 711, 
+in urlconf_module
+    return import_mod
+ule(self.urlconf_name
+)
+  File "C:\Users\DELL
+\AppData\Local\Progra
+ms\Python\Python313\L
+ib\importlib\__init__
+.py", line 88, in 
+import_module
+    return _bootstrap
+._gcd_import(name[lev
+el:], package, level)
+           ~~~~~~~~~~
+~~~~~~~~~~~~^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen impor
+tlib._bootstrap>", 
+line 1387, in 
+_gcd_import
+  File "<frozen impor
+tlib._bootstrap>", 
+line 1360, in 
+_find_and_load
+  File "<frozen impor
+tlib._bootstrap>", 
+line 1331, in _find_a
+nd_load_unlocked
+  File "<frozen impor
+tlib._bootstrap>", 
+line 935, in 
+_load_unlocked
+  File "<frozen impor
+tlib._bootstrap_exter
+nal>", line 1026, in 
+exec_module
+  File "<frozen impor
+tlib._bootstrap>", 
+line 488, in _call_wi
+th_frames_removed
+  File "C:\Users\DELL
+\Desktop\APK-Regimes-
+Perte-de-Poids\backen
+d\core\urls.py", 
+line 59, in <module>
+    path("api/v1/anal
+ytics/", include("ana
+lytics.urls")),
+                     
+         ~~~~~~~^^^^^
+^^^^^^^^^^^^^
+  File "C:\Users\DELL
+\Desktop\APK-Regimes-
+Perte-de-Poids\backen
+d\venv\Lib\site-packa
+ges\django\urls\conf.
+py", line 39, in 
+include
+    urlconf_module = 
+import_module(urlconf
+_module)
+  File "C:\Users\DELL
+\AppData\Local\Progra
+ms\Python\Python313\L
+ib\importlib\__init__
+.py", line 88, in 
+import_module
+    return _bootstrap
+._gcd_import(name[lev
+el:], package, level)
+           ~~~~~~~~~~
+~~~~~~~~~~~~^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen impor
+tlib._bootstrap>", 
+line 1387, in 
+_gcd_import
+  File "<frozen impor
+tlib._bootstrap>", 
+line 1360, in 
+_find_and_load
+  File "<frozen impor
+tlib._bootstrap>", 
+line 1331, in _find_a
+nd_load_unlocked
+  File "<frozen impor
+tlib._bootstrap>", 
+line 935, in 
+_load_unlocked
+  File "<frozen impor
+tlib._bootstrap_exter
+nal>", line 1026, in 
+exec_module
+  File "<frozen impor
+tlib._bootstrap>", 
+line 488, in _call_wi
+th_frames_removed
+  File "C:\Users\DELL
+\Desktop\APK-Regimes-
+Perte-de-Poids\backen
+d\analytics\urls.py",
+ line 2, in <module>
+    from .models 
+import AnalyticsEvent
+  File "C:\Users\DELL
+\Desktop\APK-Regimes-
+Perte-de-Poids\backen
+d\analytics\models.py
+", line 4, in 
+<module>
+    class AnalyticsEv
+ent(models.Model):
+    ...<6 lines>...
+            return 
+f"{self.event_type} 
+by 
+{self.user.username} 
+at {self.timestamp}"
+  File "C:\Users\DELL
+\Desktop\APK-Regimes-
+Perte-de-Poids\backen
+d\venv\Lib\site-packa
+ges\django\db\models\
+base.py", line 136, 
+in __new__
+    raise 
+RuntimeError(
+    ...<3 lines>...
+    )
+RuntimeError: Model 
+class analytics.model
+s.AnalyticsEvent 
+doesn't declare an 
+explicit app_label 
+and isn't in an 
+application in 
+INSTALLED_APPS.

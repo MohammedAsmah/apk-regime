@@ -58,3 +58,13 @@ class RegistrationValidationTests(APITestCase):
     def test_valid_registration(self):
         response = self.client.post(self.register_url, self.base_data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_duplicate_email(self):
+        # Register first user
+        self.client.post(self.register_url, self.base_data)
+        # Try to register second user with same email but different username
+        data = self.base_data.copy()
+        data["username"] = "otheruser"
+        response = self.client.post(self.register_url, data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("email", response.data)
