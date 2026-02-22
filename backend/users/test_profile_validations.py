@@ -40,3 +40,23 @@ class ProfileValidationTests(APITestCase):
         underage_dob = date.today() - timedelta(days=17*365 + 4)
         response = self.client.patch(self.profile_url, {"date_of_birth": underage_dob.strftime('%Y-%m-%d')})
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_put_invalid_current_weight_returns_400(self):
+        response = self.client.put(self.profile_url, {"current_weight_kg": 600, "language": "en"})
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("current_weight_kg", response.data)
+
+    def test_put_invalid_target_weight_returns_400(self):
+        response = self.client.put(self.profile_url, {"target_weight_kg": 5, "language": "en"})
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("target_weight_kg", response.data)
+
+    def test_patch_invalid_current_weight_returns_400(self):
+        response = self.client.patch(self.profile_url, {"current_weight_kg": 600})
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("current_weight_kg", response.data)
+
+    def test_patch_invalid_target_weight_returns_400(self):
+        response = self.client.patch(self.profile_url, {"target_weight_kg": 5})
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("target_weight_kg", response.data)

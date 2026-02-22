@@ -31,6 +31,10 @@ class RegisterView(generics.CreateAPIView):
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
+        password = attrs.get("password")
+        if password and len(password) < 8:
+            raise serializers.ValidationError({"password": "Password must be at least 8 characters long."})
+            
         data = super().validate(attrs)
         data['user_id'] = self.user.id
         data['username'] = self.user.username
@@ -150,29 +154,28 @@ class BaseProfileExtensionView(APIView):
         return Response(serializer.data)
 
     @swagger_auto_schema(tags=['User Profile Extension'])
-    def put(self, request):
+    def put(self, request, *args, **kwargs):
         """Full update: Requires all fields."""
-        obj = self.get_object()
-        serializer = self.serializer_class(obj, data=request.data)
-        if serializer.is_valid():
-            self.perform_update(serializer)
-            return Response(serializer.data)
-        return Response(serializer.errors, status=400)
+        return self.update(request, partial=False, *args, **kwargs)
 
     @swagger_auto_schema(tags=['User Profile Extension'])
-    def patch(self, request):
+    def patch(self, request, *args, **kwargs):
         """Partial update: Only provided fields."""
-        obj = self.get_object()
-        serializer = self.serializer_class(obj, data=request.data, partial=True)
+        return self.update(request, partial=True, *args, **kwargs)
+
+    @swagger_auto_schema(tags=['User Profile Extension'])
+    def post(self, request, *args, **kwargs):
+        """Allow POST as an alias for partial update (requested for Health Profile)."""
+        # POST acts like PATCH for easy frontend integration
+        return self.update(request, partial=True, *args, **kwargs)
+
+    def update(self, request, partial=False, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.serializer_class(instance, data=request.data, partial=partial)
         if serializer.is_valid():
             self.perform_update(serializer)
             return Response(serializer.data)
-        return Response(serializer.errors, status=400)
-
-    @swagger_auto_schema(tags=['User Profile Extension'])
-    def post(self, request):
-        """Allow POST as an alias for partial update (requested for Health Profile)."""
-        return self.patch(request)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def perform_update(self, serializer):
         user = self.request.user

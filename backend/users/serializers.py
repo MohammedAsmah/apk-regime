@@ -1,4 +1,4 @@
-from rest_framework import serializers
+from rest_framework import serializers, validators
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from django.core.validators import MinLengthValidator, MaxLengthValidator
@@ -21,6 +21,10 @@ class RegisterSerializer(serializers.ModelSerializer):
         validators=[                                                        
             MaxLengthValidator(20),
         ]   
+    )
+    email = serializers.EmailField(
+        required=True,
+        validators=[validators.UniqueValidator(queryset=User.objects.all(), message="A user with that email already exists.")]
     )
     class Meta:
         model = User
@@ -85,6 +89,26 @@ class UserProfileSerializer(serializers.ModelSerializer):
         validators=[
             MaxLengthValidator(20),
         ]
+    )
+    current_weight_kg = serializers.FloatField(
+        required=False,
+        allow_null=True,
+        min_value=20,
+        max_value=500,
+        error_messages={
+            'min_value': 'la valeur de poids actuelle est invalide',
+            'max_value': 'la valeur de poids actuelle est invalide',
+        }
+    )
+    target_weight_kg = serializers.FloatField(
+        required=False,
+        allow_null=True,
+        min_value=20,
+        max_value=500,
+        error_messages={
+            'min_value': 'la valeur de poids ciblé est invalide',
+            'max_value': 'la valeur de poids ciblé est invalide',
+        }
     )
     class Meta:
         model = User
@@ -169,20 +193,52 @@ class OnboardingSerializer(serializers.ModelSerializer):
             MaxLengthValidator(20),
         ]
     )
+    height_cm = serializers.IntegerField(
+        required=False,
+        allow_null=True,
+        min_value=50,
+        max_value=250,
+        error_messages={
+            'min_value': 'la valeur de la hauteur en cm est invalide',
+            'max_value': 'la valeur de la hauteur en cm est invalide',
+        }
+    )
+    current_weight_kg = serializers.FloatField(
+        required=False,
+        allow_null=True,
+        min_value=20,
+        max_value=500,
+        error_messages={
+            'min_value': 'la valeur de poids actuelle est invalide',
+            'max_value': 'la valeur de poids actuelle est invalide',
+        }
+    )
+    target_weight_kg = serializers.FloatField(
+        required=False,
+        allow_null=True,
+        min_value=20,
+        max_value=500,
+        error_messages={
+            'min_value': 'la valeur de poids ciblé est invalide',
+            'max_value': 'la valeur de poids ciblé est invalide',
+        }
+    )
+
     class Meta:
         model = User
         fields = [
-            "date_of_birth", "gender", "height_cm", 
+            "date_of_birth", "gender", "height_cm",
             "current_weight_kg", "target_weight_kg", "activity_level",
             "language", "timezone"
         ]
+
     def validate_language(self, value):
         if any(char.isdigit() for char in value):
             raise serializers.ValidationError(
                 "in language  should not contain numbers."
             )
-        return value        
-    
+        return value
+
     def validate_date_of_birth(self, value):
         from datetime import date
         if not value: return value
@@ -192,46 +248,61 @@ class OnboardingSerializer(serializers.ModelSerializer):
         today = date.today()
         age = today.year - value.year - ((today.month, today.day) < (value.month, value.day))
         if age < 18:
-            raise serializers.ValidationError("You must be at least 18 years old to register")
+            raise serializers.ValidationError(
+                "la date de naissance indique que vous êtes moins de [COND] âge"
+            )
         return value
-
-    def validate_height_cm(self, value):
-        if value is not None and (value < 50 or value > 250):
-            raise serializers.ValidationError("Please enter a valid height between 50 and 250 cm.")
-        return value
-
-# ==========================================
-# 5. HEALTH PROFILE SERIALIZER
-# ==========================================
 
 # ==========================================
 # 5. HEALTH PROFILE SERIALIZER
 # ==========================================
 class HealthProfileSerializer(serializers.ModelSerializer):
+    sleep_hours = serializers.FloatField(
+        required=False,
+        allow_null=True,
+        min_value=0,
+        max_value=24,
+        error_messages={
+            'min_value': 'valeur de nombres des heures de sommeil est invalide',
+            'max_value': 'valeur de nombres des heures de sommeil est invalide',
+        }
+    )
+    stress_level = serializers.ChoiceField(
+        choices=HealthProfile.STRESS_CHOICES,
+        required=False,
+        allow_blank=True,
+        allow_null=True,
+        error_messages={
+            'invalid_choice': 'valeur niveau de stress est invalide',
+        }
+    )
+
     class Meta:
         model = HealthProfile
         fields = '__all__'
         read_only_fields = ['user']
 
-    def validate_sleep_hours(self, value):
-        if value is not None and (value < 0 or value > 24):
-            raise serializers.ValidationError("Please enter a valid number of sleep hours between 0 and 24.")
-        return value
-
-    def validate_stress_level(self, value):
-        if value and value not in dict(HealthProfile.STRESS_CHOICES):
-             raise serializers.ValidationError(f"Invalid stress level. Choices are: {', '.join(dict(HealthProfile.STRESS_CHOICES).keys())}")
-        return value
-
     def validate_allergies(self, value):
         if value and len(value) > 1000:
-             raise serializers.ValidationError("Allergies description is too long.")
+            raise serializers.ValidationError(
+                "la valeur d'allergie et de maladies saisir est invalide"
+            )
         return value
 
+    def validate_diseases(self, value):
+        if value and len(value) > 1000:
+            raise serializers.ValidationError(
+                "la valeur d'allergie et de maladies saisir est invalide"
+            )
+        return value
 # ==========================================
 # 6. USER GOAL SERIALIZER
 # ==========================================
 class UserGoalSerializer(serializers.ModelSerializer):
+    target_weight_kg = serializers.FloatField(required=True)
+    calorie_target = serializers.IntegerField(required=True)
+    end_date = serializers.DateField(required=True)
+
     class Meta:
         model = UserGoal
         fields = '__all__'
@@ -248,8 +319,16 @@ class UserGoalSerializer(serializers.ModelSerializer):
         return value
 
     def validate(self, data):
-        if data.get('end_date') and data.get('start_date'):
-            if data['end_date'] < data['start_date']:
+        start_date = data.get('start_date')
+        if not start_date and self.instance:
+            start_date = self.instance.start_date
+        
+        end_date = data.get('end_date')
+        if not end_date and self.instance:
+            end_date = self.instance.end_date
+
+        if end_date and start_date:
+            if end_date < start_date:
                  raise serializers.ValidationError("End date cannot be before start date.")
         return data
 
@@ -257,6 +336,25 @@ class UserGoalSerializer(serializers.ModelSerializer):
 # 7. USER PREFERENCE SERIALIZER
 # ==========================================
 class UserPreferenceSerializer(serializers.ModelSerializer):
+    unit_system = serializers.ChoiceField(
+        choices=[('Metric', 'Metric'), ('Imperial', 'Imperial')],
+        required=False,
+        allow_blank=True,
+        allow_null=True,
+        error_messages={
+            'invalid_choice': "L'unit system est invalide",
+        }
+    )
+    cuisine_type = serializers.ChoiceField(
+        choices=UserPreference.CUISINE_CHOICES,
+        required=False,
+        allow_blank=True,
+        allow_null=True,
+        error_messages={
+            'invalid_choice': 'la valeur de type de cuisine est invalide',
+        }
+    )
+
     class Meta:
         model = UserPreference
         fields = '__all__'

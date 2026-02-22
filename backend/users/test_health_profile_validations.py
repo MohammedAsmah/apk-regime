@@ -18,17 +18,17 @@ class HealthProfileValidationTests(APITestCase):
     def test_invalid_sleep_hours_low(self):
         response = self.client.put(self.health_url, {"sleep_hours": -1, "stress_level": "Low"})
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertIn("sleep_hours", response.data)
+        self.assertEqual(response.data["sleep_hours"][0], "valeur de nombres des heures de sommeil est invalide")
 
     def test_invalid_sleep_hours_high(self):
         response = self.client.put(self.health_url, {"sleep_hours": 25, "stress_level": "Low"})
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertIn("sleep_hours", response.data)
+        self.assertEqual(response.data["sleep_hours"][0], "valeur de nombres des heures de sommeil est invalide")
 
     def test_invalid_stress_level(self):
         response = self.client.put(self.health_url, {"sleep_hours": 8, "stress_level": "Extremely Stressed"})
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertIn("stress_level", response.data)
+        self.assertEqual(response.data["stress_level"][0], "valeur niveau de stress est invalide")
 
     def test_patch_success(self):
         response = self.client.patch(self.health_url, {"sleep_hours": 7})

@@ -13,6 +13,7 @@ class NutritionTests(APITestCase):
         self.user = User.objects.create_user(
             username="testuser", 
             password=self.test_password,
+            email="test@example.com",
             language="english"
         )
         self.food = Food.objects.create(
@@ -58,7 +59,7 @@ class NutritionTests(APITestCase):
         Meal.objects.create(user=self.user, name="My Meal", date=date.today())
         
         # Create another user and a meal for them
-        other_user = User.objects.create_user(username="other", password="SecureOtherPassword123!", language="english")
+        other_user = User.objects.create_user(username="other", password="SecureOtherPassword123!", email="other@example.com", language="english")
         Meal.objects.create(user=other_user, name="Other Meal", date=date.today())
         
         response = self.client.get(self.meal_list_url)
@@ -84,16 +85,18 @@ class NutritionTests(APITestCase):
 
 class MealPlanNavigationTests(APITestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username="navuser", password="SecureTestPassword123!", language="english")
+        self.user = User.objects.create_user(username="navuser", password="SecureTestPassword123!", email="nav@example.com", language="english")
         login_response = self.client.post(reverse('token_obtain_pair'), {
             "username": "navuser",
             "password": "SecureTestPassword123!"
         })
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {login_response.data["access"]}')
         
+        from django.utils import timezone
+        import datetime
         # Create a meal plan
         self.plan = MealPlan.objects.create(user=self.user, name="Old Plan")
-        self.plan.created_at = "2026-01-01" # Manual set for ordering test if needed, though auto_now_add is usually used
+        self.plan.created_at = timezone.make_aware(datetime.datetime(2026, 1, 1))
         self.plan.save()
         
         self.latest_plan = MealPlan.objects.create(user=self.user, name="Latest Plan")

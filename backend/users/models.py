@@ -69,8 +69,21 @@ class UserGoal(models.Model):
         return f"Goal for {self.user.username}"
 
 class UserPreference(models.Model):
+    CUISINE_CHOICES = [
+        ('Mediterranean', 'Mediterranean'),
+        ('Asian', 'Asian'),
+        ('Western', 'Western'),
+        ('Middle Eastern', 'Middle Eastern'),
+        ('African', 'African'),
+        ('Latin American', 'Latin American'),
+        ('French', 'French'),
+        ('Italian', 'Italian'),
+        ('Japanese', 'Japanese'),
+        ('Indian', 'Indian'),
+        ('Other', 'Other'),
+    ]
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="preferences")
-    cuisine_type = models.CharField(max_length=100, blank=True, null=True)
+    cuisine_type = models.CharField(max_length=100, choices=CUISINE_CHOICES, blank=True, null=True)
     unit_system = models.CharField(max_length=20, choices=[('Metric', 'Metric'), ('Imperial', 'Imperial')], default='Metric')
     notifications_enabled = models.BooleanField(default=True)
     

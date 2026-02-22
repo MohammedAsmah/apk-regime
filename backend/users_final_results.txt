@@ -1,0 +1,72 @@
+Creating test database for alias 'default'...
+..........E........................
+======================================================================
+ERROR: test_login_short_password_returns_400 (users.test_login_validations.LoginValidationTests.test_login_short_password_returns_400)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\DELL\Desktop\APK-Regimes-Perte-de-Poids\backend\users\test_login_validations.py", line 14, in test_login_short_password_returns_400
+    response = self.client.post(self.login_url, data)
+  File "C:\Users\DELL\Desktop\APK-Regimes-Perte-de-Poids\backend\venv\Lib\site-packages\rest_framework\test.py", line 299, in post
+    response = super().post(
+        path, data=data, format=format, content_type=content_type, **extra)
+  File "C:\Users\DELL\Desktop\APK-Regimes-Perte-de-Poids\backend\venv\Lib\site-packages\rest_framework\test.py", line 213, in post
+    return self.generic('POST', path, data, content_type, **extra)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Desktop\APK-Regimes-Perte-de-Poids\backend\venv\Lib\site-packages\rest_framework\test.py", line 237, in generic
+    return super().generic(
+           ~~~~~~~~~~~~~~~^
+        method, path, data, content_type, secure, **extra)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Desktop\APK-Regimes-Perte-de-Poids\backend\venv\Lib\site-packages\django\test\client.py", line 671, in generic
+    return self.request(**r)
+           ~~~~~~~~~~~~^^^^^
+  File "C:\Users\DELL\Desktop\APK-Regimes-Perte-de-Poids\backend\venv\Lib\site-packages\rest_framework\test.py", line 289, in request
+    return super().request(**kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\DELL\Desktop\APK-Regimes-Perte-de-Poids\backend\venv\Lib\site-packages\rest_framework\test.py", line 241, in request
+    request = super().request(**kwargs)
+  File "C:\Users\DELL\Desktop\APK-Regimes-Perte-de-Poids\backend\venv\Lib\site-packages\django\test\client.py", line 1087, in request
+    self.check_exception(response)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\DELL\Desktop\APK-Regimes-Perte-de-Poids\backend\venv\Lib\site-packages\django\test\client.py", line 802, in check_exception
+    raise exc_value
+  File "C:\Users\DELL\Desktop\APK-Regimes-Perte-de-Poids\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\DELL\Desktop\APK-Regimes-Perte-de-Poids\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\DELL\Desktop\APK-Regimes-Perte-de-Poids\backend\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\DELL\Desktop\APK-Regimes-Perte-de-Poids\backend\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Desktop\APK-Regimes-Perte-de-Poids\backend\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\DELL\Desktop\APK-Regimes-Perte-de-Poids\backend\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\DELL\Desktop\APK-Regimes-Perte-de-Poids\backend\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\DELL\Desktop\APK-Regimes-Perte-de-Poids\backend\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\DELL\Desktop\APK-Regimes-Perte-de-Poids\backend\venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\DELL\Desktop\APK-Regimes-Perte-de-Poids\backend\venv\Lib\site-packages\rest_framework_simplejwt\views.py", line 46, in post
+    serializer.is_valid(raise_exception=True)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Desktop\APK-Regimes-Perte-de-Poids\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 225, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Desktop\APK-Regimes-Perte-de-Poids\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 447, in run_validation
+    value = self.validate(value)
+  File "C:\Users\DELL\Desktop\APK-Regimes-Perte-de-Poids\backend\users\views.py", line 36, in validate
+    raise serializers.ValidationError({"password": "Password must be at least 8 characters long."})
+          ^^^^^^^^^^^
+NameError: name 'serializers' is not defined
+
+----------------------------------------------------------------------
+Ran 35 tests in 62.071s
+
+FAILED (errors=1)
+Destroying test database for alias 'default'...
+Found 35 test(s).
+System check identified no issues (0 silenced).
